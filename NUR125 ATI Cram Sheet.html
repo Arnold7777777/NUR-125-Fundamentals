@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NUR125 · ATI Fundamentals Cram Sheet</title><style>
+ :root{--bg:#07161c;--panel:#102a33;--panel2:#14343f;--ink:#eefaff;--soft:#bfe3ee;--muted:#8fb6c2;
+   --line:#1d4a56;--gold:#ffcf5c;--teal:#5ad1e6;--green:#5be39b;--red:#ff7a8a;--orange:#ffa45c;--blue:#7fb4ff}
+ *{box-sizing:border-box} html{min-height:100%}
+ body{margin:0;font-family:'Segoe UI',system-ui,sans-serif;color:var(--ink);line-height:1.55;font-size:16px;
+   background-color:#07161c;
+   background-image:linear-gradient(rgba(4,14,18,.90),rgba(4,14,18,.94)),url("bg.jpg");
+   background-size:cover;background-position:center;background-attachment:fixed;background-repeat:no-repeat}
+ .wrap{max-width:1040px;margin:0 auto;padding:22px 18px 80px}
+ header.top{background:linear-gradient(135deg,#1d6fa5,#0f8a7e);border:1px solid var(--line);border-radius:18px;
+   padding:22px 24px;margin-bottom:20px;text-align:center}
+ header.top h1{margin:0 0 6px;font-size:1.6rem} header.top p{margin:0;color:#d8fbff;font-size:.95rem}
+ a.homebtn{position:fixed;top:10px;right:12px;z-index:99999;background:linear-gradient(135deg,#1d6fa5,#0f8a7e);
+   color:#fff;text-decoration:none;font:700 .82rem 'Segoe UI',system-ui,sans-serif;padding:8px 14px;border-radius:22px;
+   box-shadow:0 4px 14px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.18)}
+ .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:16px 0}
+ .panel h2{margin:0 0 10px;font-size:1.15rem;color:var(--teal)}
+ h2.sys{margin:32px 0 6px;font-size:1.35rem;color:var(--gold);border-bottom:2px solid var(--line);padding-bottom:8px}
+ h3.grph{font-size:1.02rem;color:var(--blue);margin:16px 0 8px;font-weight:800}
+ table{width:100%;border-collapse:collapse;font-size:.88rem}
+ th{background:var(--panel2);color:var(--gold);text-align:left;padding:8px 10px;border:1px solid var(--line);
+   font-size:.72rem;text-transform:uppercase;letter-spacing:.4px}
+ td{padding:8px 10px;border:1px solid var(--line);vertical-align:top;color:#e6f7fd}
+ tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+ .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+ .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin-top:8px}
+ a.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 17px;
+   text-decoration:none;color:var(--ink);transition:.15s}
+ a.card:hover{border-color:var(--teal);transform:translateY(-2px)}
+ a.card b{display:block;font-size:1.02rem;margin-bottom:5px;color:#fff}
+ a.card span{font-size:.85rem;color:var(--soft);line-height:1.45}
+ .pill{display:inline-block;background:rgba(90,209,230,.14);border:1px solid var(--teal);color:#dcf7ff;
+   border-radius:20px;padding:4px 11px;margin:3px;font-size:.8rem;font-weight:600}
+ .alert{background:rgba(255,122,138,.08);border-left:4px solid var(--red);border-radius:9px;padding:11px 14px;margin:12px 0}
+ .tip{background:rgba(255,207,92,.08);border-left:4px solid var(--gold);border-radius:9px;padding:11px 14px;margin:12px 0}
+ .good{background:rgba(91,227,155,.08);border-left:4px solid var(--green);border-radius:9px;padding:11px 14px;margin:12px 0}
+ b.hl{color:var(--gold)} .red{color:var(--red);font-weight:700} .grn{color:var(--green);font-weight:700}
+ details.ig{background:rgba(255,207,92,.06);border:1px solid rgba(255,207,92,.36);border-radius:12px;margin:9px 0;overflow:hidden}
+ details.ig>summary{cursor:pointer;padding:10px 14px;font-weight:800;font-size:.9rem;color:var(--gold);list-style:none;display:flex;gap:9px;align-items:center}
+ details.ig>summary::-webkit-details-marker{display:none}
+ details.ig>summary::before{content:'\25B8';font-weight:900;display:inline-block;transition:.15s}
+ details.ig[open]>summary::before{transform:rotate(90deg)}
+ .igwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;padding:12px}
+ .igf{margin:0;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+ .igf figcaption{font-size:.76rem;font-weight:700;color:var(--gold);padding:7px 10px 3px;line-height:1.3}
+ .igf .chap{font-size:.68rem;color:var(--muted);padding:0 10px 6px}
+ .igf img{display:block;width:100%;height:auto;background:#fff}
+ .foot{text-align:center;color:var(--muted);font-size:.8rem;margin-top:30px}
+ ul{margin:6px 0 6px 20px;padding:0} li{margin:4px 0}
+ @media(max-width:640px){.igwrap{grid-template-columns:1fr}}
+</style></head><body>
+<a class="homebtn" href="index.html">🏠 Home</a>
+<div class="wrap">
+<header class="top"><h1>⚡ ATI Fundamentals Cram Sheet</h1><p>The highest-yield facts for the Content Mastery Proctored Assessment</p></header>
+
+<div class="alert"><b class="red">The 8 rules that answer a third of the exam.</b> If you are short on time, learn these first.
+<ol style="margin:8px 0 0 18px;color:#e6f7fd">
+<li><b>ASSESS FIRST.</b> Fall, med error, refusal, new symptom — always assess the client before you notify, document, or fix anything.</li>
+<li><b>ABC, then Maslow.</b> Airway → Breathing → Circulation. Then physiological → safety → psychological.</li>
+<li><b>Unstable before stable, acute before chronic, actual before risk-for.</b></li>
+<li><b>Least invasive first.</b> Reposition before you suction; bladder scan before you catheterize.</li>
+<li><b>Never delegate assessment, teaching, evaluation, or an unstable client.</b> UAPs get tasks, not judgment.</li>
+<li><b>Absolutes are almost always wrong.</b> always, never, all, only, every.</li>
+<li><b>Self-report is the gold standard for pain.</b> Pain is whatever the client says it is.</li>
+<li><b>Read the stem twice</b> — half of ATI's difficulty is a negatively worded question ("needs further teaching") that you answered positively.</li>
+</ol></div>
+
+<h2 class="sys">🔢 Numbers ATI expects you to know cold</h2>
+<div class="scroll"><table><thead><tr><th>Measure</th><th>Normal / threshold</th><th>What it means if it's off</th></tr></thead><tbody><tr><td>Temperature</td><td>36–38 °C · 96.8–100.4 °F</td><td>&gt;38 °C = fever, look for infection</td></tr><tr><td>Pulse</td><td>60–100 bpm</td><td>Hold beta blockers &amp; digoxin if &lt;60 (apical, 1 full minute)</td></tr><tr><td>Respirations</td><td>12–20/min</td><td><b class='red'>HOLD an opioid if RR &lt;12</b></td></tr><tr><td>Blood pressure</td><td>&lt;120/80</td><td>Orthostatic = drop of 20 systolic / 10 diastolic on standing</td></tr><tr><td>SpO₂</td><td>95–100%</td><td>&lt;90% needs action; COPD target is often 88–92%</td></tr><tr><td>Urine output</td><td><b class='hl'>≥30 mL/hr</b></td><td>Below that = report; think perfusion or retention</td></tr><tr><td>Capillary refill</td><td>&lt;3 seconds</td><td>Prolonged = poor perfusion</td></tr><tr><td>Pain reassessment</td><td>IV 15–30 min · PO 60 min</td><td>You must re-evaluate or the intervention isn't finished</td></tr><tr><td>Reposition</td><td>every 2 hours</td><td>Pressure injury prevention</td></tr><tr><td>HOB for tube feeding</td><td>30–45°</td><td>Aspiration prevention; keep up 30–60 min after</td></tr><tr><td>HOB to prevent shearing</td><td>≤30°</td><td>Skin integrity</td></tr><tr><td>Acetaminophen max</td><td><b class='red'>4 g/day</b></td><td>Hepatotoxicity; less with liver disease or alcohol</td></tr><tr><td>Braden Scale</td><td>≤9 very high · 19–23 no risk</td><td>Predicts risk — it does NOT stage a wound</td></tr><tr><td>Glasgow Coma Scale</td><td>15 best · 8 or less = intubate</td><td>≤8, protect the airway</td></tr></tbody></table></div>
+<h2 class="sys">🧴 Infection control — guaranteed points</h2>
+<div class="good"><b>Stages of infection:</b> Incubation (exposed, no symptoms) → <b class="hl">PRODROMAL (vague symptoms, MOST CONTAGIOUS)</b> → Illness (specific symptoms) → Convalescence (recovery).</div>
+<div class="scroll"><table><thead><tr><th>Precaution</th><th>Examples</th><th>PPE</th></tr></thead><tbody><tr><td>Standard</td><td>Every client, every time</td><td>Gloves; add gown/mask/eye protection if splashing is likely</td></tr><tr><td><b>Contact</b></td><td><b class='hl'>C. difficile</b>, MRSA, VRE, RSV, scabies</td><td>Gown + gloves; dedicated equipment</td></tr><tr><td><b>Droplet</b></td><td>Influenza, pertussis, meningitis, mumps, rubella</td><td>Surgical mask within 3–6 ft; private room</td></tr><tr><td><b>Airborne</b></td><td><b class='hl'>TB, measles, varicella</b> ("My Chicken Hz TB")</td><td><b class='red'>N95</b> + negative-pressure room</td></tr><tr><td>Protective</td><td>Neutropenic / transplant client</td><td>Positive-pressure room; no fresh flowers, no raw produce</td></tr></tbody></table></div>
+<div class="alert"><b class="red">Alcohol hand rub does NOT work on C. difficile or norovirus.</b> Soap and water — the friction physically removes the spores. Also wash (don't rub) whenever hands are visibly soiled.</div>
+<div class="tip"><b>Order matters.</b> Donning: gown → mask → goggles → gloves. Doffing: gloves → goggles → gown → mask (dirtiest first, and the mask comes off last, outside the room).</div>
+
+<h2 class="sys">🩹 Pressure injury staging</h2>
+<div class="scroll"><table><thead><tr><th>Stage</th><th>What you see</th><th>Memory hook</th></tr></thead><tbody><tr><td><b>Stage 1</b></td><td><b class='hl'>INTACT skin</b>, non-blanchable erythema</td><td>Still closed</td></tr><tr><td><b>Stage 2</b></td><td>Partial thickness, exposed dermis, pink/red, looks like a ruptured blister</td><td>Shallow &amp; shiny</td></tr><tr><td><b>Stage 3</b></td><td>Full thickness, <b class='hl'>ADIPOSE (fat) visible</b></td><td>Fat = 3</td></tr><tr><td><b>Stage 4</b></td><td>Full thickness, <b class='hl'>muscle, tendon, fascia or BONE</b>; may undermine/tunnel</td><td>Bone = 4</td></tr><tr><td><b>Unstageable</b></td><td>Base hidden by slough or eschar</td><td>Can't see it → can't stage it</td></tr><tr><td><b>Deep tissue injury</b></td><td>Intact skin, deep red/purple/maroon, boggy</td><td>Bruise-like but intact</td></tr></tbody></table></div>
+<div class="tip"><b>Prevention:</b> reposition q2h · pillow under the <b>CALVES</b> to float the heels (never under the knees) · HOB ≤30° · keep skin clean and dry · barrier cream · lift sheet, don't drag · <b class="red">NO donut cushions</b> · <b class="red">NEVER massage a bony prominence</b>.</div>
+
+<h2 class="sys">🩸 Wound drainage &amp; healing</h2>
+<div class="scroll"><table><thead><tr><th>Drainage</th><th>Looks like</th><th>Action</th></tr></thead><tbody><tr><td>Serous</td><td>Clear, watery</td><td>Normal</td></tr><tr><td>Serosanguineous</td><td>Pink, thin</td><td>Normal post-op</td></tr><tr><td>Sanguineous</td><td>Bright red</td><td><b class='red'>Active bleeding — report</b></td></tr><tr><td><b>Purulent</b></td><td>Thick yellow/green, foul</td><td><b class='red'>INFECTION — report</b></td></tr></tbody></table></div>
+<div class="good"><b>Healing intentions:</b> <b class="hl">Primary</b> = closed surgically, minimal scar · <b class="hl">Secondary</b> = left open, granulates from the bottom up, more scarring · <b class="hl">Tertiary</b> = left open 5–10 days to treat infection, <i>then</i> closed (delayed primary closure).</div>
+<div class="alert"><b class="red">Evisceration:</b> cover with <b>sterile saline-soaked</b> gauze (never dry, never reinsert), low-Fowler's with knees bent, NPO, call the surgeon.</div>
+
+<h2 class="sys">💉 Medication safety</h2>
+<div class="good"><b>Rights:</b> right client (<b class="hl">two identifiers — never the room number</b>), drug, dose, route, time, documentation, reason, response, education, refusal. <b>Three checks:</b> pulling it, preparing it, and at the bedside.</div>
+<div class="alert"><b class="red">Do-not-use abbreviations:</b> QD, QOD, U, IU, MS/MSO₄, trailing zeros (2.0 mg), naked decimals (.5 mg). Write <b>0.5 mg</b> and <b>2 mg</b>.</div>
+<div class="scroll"><table><thead><tr><th>Route</th><th>Angle / technique</th><th>Watch for</th></tr></thead><tbody><tr><td>Intradermal</td><td>5–15°, bevel up, raise a bleb</td><td>TB test, allergy testing</td></tr><tr><td>Subcutaneous</td><td>45–90°, do NOT aspirate</td><td>Insulin, heparin — <b>don't massage heparin</b></td></tr><tr><td><b>Intramuscular</b></td><td><b class='hl'>90°, ventrogluteal is safest for adults</b></td><td>Z-track for irritating drugs; vastus lateralis for infants</td></tr><tr><td>Transdermal</td><td>Remove the old patch, rotate, wear gloves, date it</td><td>Heat ↑ absorption</td></tr><tr><td>Inhaler</td><td><b class='hl'>Bronchodilator first, then steroid</b></td><td>Rinse the mouth after a steroid (thrush)</td></tr></tbody></table></div>
+<div class="tip"><b>Insulin:</b> clear before cloudy · only <b>regular</b> insulin goes IV · <b>never mix glargine</b> · rotate sites · never reuse a needle.<br>
+<b>Never crush</b> enteric-coated or extended-release. For dysphagia, look for a liquid form <i>first</i>.</div>
+
+<h2 class="sys">💨 Oxygen delivery</h2>
+<div class="scroll"><table><thead><tr><th>Device</th><th>Flow</th><th>FiO₂ / note</th></tr></thead><tbody><tr><td>Nasal cannula</td><td>1–6 L/min</td><td>24–44%; humidify above 4 L</td></tr><tr><td>Simple mask</td><td><b class='hl'>5–10 L/min</b></td><td>40–60%; never below 5 L or CO₂ rebreathes</td></tr><tr><td>Partial rebreather</td><td>10–15 L/min</td><td>60–75%; keep the bag from fully collapsing</td></tr><tr><td><b>Non-rebreather</b></td><td>10–15 L/min</td><td><b class='hl'>Highest delivery, 80–95%</b> — bag must stay inflated</td></tr><tr><td>Venturi mask</td><td>Varies by adaptor</td><td><b class='hl'>Most precise FiO₂ — the COPD answer</b></td></tr></tbody></table></div>
+<div class="alert"><b class="red">Hypoxia:</b> EARLY = restlessness, anxiety, tachycardia, tachypnea. LATE = cyanosis, bradycardia, confusion. <b>Restlessness is the first sign — treat it as hypoxia until proven otherwise.</b></div>
+<div class="tip"><b>Suctioning:</b> sterile technique · hyperoxygenate first · <b>≤10–15 seconds</b> · suction only on the way OUT · rest between passes.<br>
+<b>Sterile field:</b> 1-inch border is contaminated · keep it above your waist · in your sight at all times · <b>wet = contaminated</b>.</div>
+
+<h2 class="sys">🗣️ Therapeutic communication</h2>
+<div class="scroll"><table><thead><tr><th>Use these</th><th>Never these</th></tr></thead><tbody><tr><td>Open-ended questions, silence, reflecting, restating, clarifying, offering self, summarizing</td><td><b class='red'>False reassurance</b> ("you'll be fine") · giving advice · <b class='red'>"Why" questions</b> (judgmental) · changing the subject · minimizing · defending</td></tr></tbody></table></div>
+<div class="good"><b>SBAR</b> — Situation (what's happening now), Background (relevant history), Assessment (what you think it is), Recommendation (what you want). <br>
+<b>Teach-back</b> is how you evaluate learning — have them explain it back or demonstrate it. Never just ask "do you understand?"<br>
+<b>Interpreters</b> must be qualified and professional — <b class="red">never a family member, never a child</b>. Look at and speak to the <b>client</b>.</div>
+
+<h2 class="sys">🛡️ Levels of prevention</h2>
+<div class="scroll"><table><thead><tr><th>Level</th><th>Goal</th><th>Examples</th></tr></thead><tbody><tr><td><b>Primary</b></td><td>Stop it from ever happening</td><td>Immunizations, seat belts, exercise, health teaching</td></tr><tr><td><b>Secondary</b></td><td>Find it early in someone with no symptoms</td><td>Mammogram, colonoscopy, Pap smear, BP screening, PPD</td></tr><tr><td><b>Tertiary</b></td><td>Limit disability, rehabilitate</td><td>Cardiac rehab, stroke PT, diabetic support group</td></tr></tbody></table></div>
+<div class="tip">Classify by <b>where the client is in the disease</b>: no disease → primary · disease present but silent → secondary · disease established → tertiary.</div>
+
+<h2 class="sys">⚰️ End of life</h2>
+<div class="good"><b>Palliative</b> = any stage, any age, alongside curative treatment. <b>Hospice</b> = prognosis around 6 months or less, curative treatment stopped.<br>
+<b class="hl">Hearing is believed to be the last sense to go</b> — keep talking to the client.<br>
+<b>Post-mortem:</b> dentures in <b>before rigor mortis</b> · elevate the head slightly · close the eyelids gently · <b class="red">do not remove tubes if there's an autopsy or coroner's case</b>.</div>
+
+<h2 class="sys">🧮 Conversions you must have memorized</h2>
+<div class="scroll"><table><thead><tr><th>From</th><th>To</th></tr></thead><tbody><tr><td>1 tsp</td><td>5 mL</td></tr><tr><td>1 Tbsp</td><td>15 mL (3 tsp)</td></tr><tr><td>1 oz</td><td>30 mL</td></tr><tr><td>1 cup</td><td>240 mL</td></tr><tr><td>1 kg</td><td>2.2 lb</td></tr><tr><td>1 g</td><td>1000 mg</td></tr><tr><td>1 mg</td><td>1000 mcg</td></tr><tr><td>1 L</td><td>1000 mL</td></tr></tbody></table></div>
+<div class="tip"><b>Formula:</b> Desired ÷ Have × Quantity. <b>IV pump:</b> mL ÷ hr. <b>Drip rate:</b> (volume × drop factor) ÷ minutes.<br>
+<b>Logic check:</b> kilograms is always the smaller number than pounds. If you want more than you have on hand, your answer must be more than one unit.<br>
+<b>Round only at the end.</b> Leading zero yes (0.5), trailing zero never (2.0).</div>
+
+<div class="alert" style="margin-top:22px"><b class="red">Delegation cheat:</b> a UAP can do standard, predictable <b>tasks</b> on a <b>stable</b> client — bathing, feeding, positioning, ambulating, vital signs, I&amp;O, weights.
+They can <b>never</b> assess, teach, evaluate, or take an unstable client. If three options are assessments and one is a task, the task is your answer.</div>
+
+<div class="foot">NUR 125 · Nursing Fundamentals · built for the ATI Content Mastery Fundamentals Proctored Assessment · always confirm against your course materials</div>
+</div></body></html>
