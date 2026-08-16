@@ -1,0 +1,490 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NUR125 · Lecture Slides</title><style>
+ :root{--bg:#07161c;--panel:#102a33;--panel2:#14343f;--ink:#eefaff;--soft:#bfe3ee;--muted:#8fb6c2;
+   --line:#1d4a56;--gold:#ffcf5c;--teal:#5ad1e6;--green:#5be39b;--red:#ff7a8a;--orange:#ffa45c;--blue:#7fb4ff}
+ *{box-sizing:border-box} html{min-height:100%}
+ body{margin:0;font-family:'Segoe UI',system-ui,sans-serif;color:var(--ink);line-height:1.55;font-size:16px;
+   background-color:#07161c;
+   background-image:linear-gradient(rgba(4,14,18,.90),rgba(4,14,18,.94)),url("bg.jpg");
+   background-size:cover;background-position:center;background-attachment:fixed;background-repeat:no-repeat}
+ .wrap{max-width:1040px;margin:0 auto;padding:22px 18px 80px}
+ header.top{background:linear-gradient(135deg,#1d6fa5,#0f8a7e);border:1px solid var(--line);border-radius:18px;
+   padding:22px 24px;margin-bottom:20px;text-align:center}
+ header.top h1{margin:0 0 6px;font-size:1.6rem} header.top p{margin:0;color:#d8fbff;font-size:.95rem}
+ a.homebtn{position:fixed;top:10px;right:12px;z-index:99999;background:linear-gradient(135deg,#1d6fa5,#0f8a7e);
+   color:#fff;text-decoration:none;font:700 .82rem 'Segoe UI',system-ui,sans-serif;padding:8px 14px;border-radius:22px;
+   box-shadow:0 4px 14px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.18)}
+ .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:16px 0}
+ .panel h2{margin:0 0 10px;font-size:1.15rem;color:var(--teal)}
+ h2.sys{margin:32px 0 6px;font-size:1.35rem;color:var(--gold);border-bottom:2px solid var(--line);padding-bottom:8px}
+ h3.grph{font-size:1.02rem;color:var(--blue);margin:16px 0 8px;font-weight:800}
+ table{width:100%;border-collapse:collapse;font-size:.88rem}
+ th{background:var(--panel2);color:var(--gold);text-align:left;padding:8px 10px;border:1px solid var(--line);
+   font-size:0.82rem;text-transform:uppercase;letter-spacing:.4px}
+ td{padding:8px 10px;border:1px solid var(--line);vertical-align:top;color:#e6f7fd}
+ tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+ .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+ .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin-top:8px}
+ a.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 17px;
+   text-decoration:none;color:var(--ink);transition:.15s}
+ a.card:hover{border-color:var(--teal);transform:translateY(-2px)}
+ a.card b{display:block;font-size:1.02rem;margin-bottom:5px;color:#fff}
+ a.card span{font-size:.85rem;color:var(--soft);line-height:1.45}
+ .pill{display:inline-block;background:rgba(90,209,230,.14);border:1px solid var(--teal);color:#dcf7ff;
+   border-radius:20px;padding:4px 11px;margin:3px;font-size:0.82rem;font-weight:600}
+ .alert{background:rgba(255,122,138,.08);border-left:4px solid var(--red);border-radius:9px;padding:11px 14px;margin:12px 0}
+ .tip{background:rgba(255,207,92,.08);border-left:4px solid var(--gold);border-radius:9px;padding:11px 14px;margin:12px 0}
+ .good{background:rgba(91,227,155,.08);border-left:4px solid var(--green);border-radius:9px;padding:11px 14px;margin:12px 0}
+ b.hl{color:var(--gold)} .red{color:var(--red);font-weight:700} .grn{color:var(--green);font-weight:700}
+ details.ig{background:rgba(255,207,92,.06);border:1px solid rgba(255,207,92,.36);border-radius:12px;margin:9px 0;overflow:hidden}
+ details.ig>summary{cursor:pointer;padding:10px 14px;font-weight:800;font-size:.9rem;color:var(--gold);list-style:none;display:flex;gap:9px;align-items:center}
+ details.ig>summary::-webkit-details-marker{display:none}
+ details.ig>summary::before{content:'\25B8';font-weight:900;display:inline-block;transition:.15s}
+ details.ig[open]>summary::before{transform:rotate(90deg)}
+ .igwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;padding:12px}
+ .igf{margin:0;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+ .igf figcaption{font-size:0.82rem;font-weight:700;color:var(--gold);padding:7px 10px 3px;line-height:1.3}
+ .igf .chap{font-size:0.82rem;color:var(--muted);padding:0 10px 6px}
+ .igf img{display:block;width:100%;height:auto;background:#fff}
+ .foot{text-align:center;color:var(--muted);font-size:0.82rem;margin-top:30px}
+ ul{margin:6px 0 6px 20px;padding:0} li{margin:4px 0}
+ @media(max-width:640px){.igwrap{grid-template-columns:1fr}}
+</style><style>
+ .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+ a.chip{font-size:0.82rem;color:#dff6ff;text-decoration:none;background:rgba(90,209,230,.12);
+   border:1px solid rgba(90,209,230,.45);padding:5px 11px;border-radius:16px}
+ a.chip:hover{background:rgba(90,209,230,.28);border-color:var(--teal)}
+ a.quizbtn{display:inline-block;font-size:0.82rem;font-weight:700;color:#04222a;text-decoration:none;
+   background:linear-gradient(135deg,#5ad1e6,#5be39b);padding:7px 15px;border-radius:18px;margin-bottom:6px}
+ .modcard.hide{display:none}
+ .msearch{width:100%;padding:11px 15px;font-size:1rem;border-radius:12px;border:1px solid var(--line);
+   background:rgba(0,0,0,.32);color:var(--ink);margin:6px 0 2px}
+</style><style id="skimCSS">
+#skimBtn{position:fixed;left:12px;bottom:12px;z-index:9000;
+ display:flex;align-items:center;gap:8px;
+ background:rgba(157,92,255,.92);border:1px solid rgba(255,255,255,.45);color:#fff;
+ border-radius:14px;padding:11px 14px;cursor:pointer;
+ font:800 .95rem 'Segoe UI',system-ui,sans-serif;
+ box-shadow:0 6px 20px rgba(0,0,0,.45);backdrop-filter:blur(6px);
+ max-width:calc(100vw - 24px)}
+#skimBtn:hover{background:rgba(157,92,255,1)}
+#skimBtn .n{font-weight:900;font-size:.88rem;opacity:.92;white-space:nowrap}
+body.skimOn #skimBtn{background:rgba(255,194,51,.95);color:#231a02;
+ border-color:rgba(0,0,0,.35)}
+body.skimOn .skimHide{display:none !important}
+body.skimOn .skimKeep{outline:0}
+
+#skimBtn{touch-action:none;cursor:grab}
+#skimBtn.dragging{opacity:.92;cursor:grabbing}
+
+#skimBtn:focus-visible{outline:3px solid #ffd76a;outline-offset:2px}
+@media print{#skimBtn{display:none}}
+</style>
+</head><body>
+<style id="navDragCSS">
+#navBtns{touch-action:none;cursor:grab}
+#navBtns.dragging{opacity:.9;cursor:grabbing}
+#navBtns.hidden-by-overlay{display:none !important}
+
+
+#navBtns.dragging 
+@media print{#navBtns{display:none !important}}
+</style>
+<style id="a11yCSS">
+/* keep wide things inside the viewport so magnifying never forces sideways scrolling */
+img,svg,video,canvas{max-width:100%;height:auto}
+pre,code,kbd{white-space:pre-wrap;overflow-wrap:anywhere}
+.a11y-tblwrap{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+@media(max-width:1024px){
+  #nav a{white-space:normal}
+  .bar{margin-left:0 !important;margin-right:0 !important;max-width:100% !important}
+}
+
+/* rem (not em) so these can never compound down to unreadable sizes */
+small,.eyebrow,.rail-sep,.sm-txt,.tiny,.fine,.cap,.foot{font-size:.82rem}
+sub,sup{font-size:.72rem}
+
+/* keep the fixed Home/ABSN cluster from sitting on top of page titles */
+@media(max-width:1024px){
+  header h1, header p, h1:first-of-type{padding-right:92px}
+}
+@media(max-width:560px){
+  header h1, header p, h1:first-of-type{padding-right:80px}
+}
+</style>
+
+<style id="navbtnCSS">
+#navBtns{position:fixed;top:10px;right:12px;z-index:2147483000;display:flex;gap:7px;align-items:center}
+#navBtns a,#navBtns button{
+  display:inline-block;font:700 .8rem 'Segoe UI',system-ui,sans-serif;
+  padding:7px 13px;border-radius:22px;text-decoration:none;cursor:pointer;
+  border:1px solid rgba(255,255,255,.22);box-shadow:0 4px 14px rgba(0,0,0,.5);
+  color:#fff;white-space:nowrap;line-height:1.3;
+}
+#navBtns .nbLook{background:linear-gradient(135deg,#1d4ed8,#2f6bff)}
+#navBtns .nbHome{background:linear-gradient(135deg,#5a2d82,#8e2d6b)}
+#navBtns .nbAbsn{background:linear-gradient(135deg,#0f7d6b,#12b886)}
+#navBtns a:hover,#navBtns button:hover{filter:brightness(1.15)}
+#navBtns a,#navBtns button{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+/* magnified viewports report a narrow CSS width - shed the labels early so the
+   cluster stops sitting on top of page headings */
+@media(max-width:1024px){
+  #navBtns{top:6px;right:6px;gap:5px}
+  #navBtns .nbLabel{display:none}
+  #navBtns a,#navBtns button{padding:8px 11px;font-size:1rem;line-height:1}
+}
+@media(max-width:560px){
+  #navBtns a,#navBtns button{padding:7px 9px;font-size:.95rem}
+}
+@media print{#navBtns{display:none}}
+</style>
+<div id="navBtns"><a class="nbLook" href="https://arnold7777777.github.io/NUR-198-Study-Guide/Look%20It%20Up.html" target="_blank" rel="noopener" title="Look up any topic across all your sites">&#128269;<span class="nbLabel"> Look Up</span></a><a class="nbHome" href="index.html" title="Back to this course's study hub">&#127968;<span class="nbLabel"> Home</span></a><a class="nbAbsn" href="https://arnold7777777.github.io/ABSN-Study-Hub/" onclick="return nbToAbsn(event)" title="Close this page and go back toward the ABSN Study Hub">&#127891;<span class="nbLabel"> ABSN Hub</span></a></div>
+<script>if(window.top!==window.self){var _nb=document.getElementById("navBtns");if(_nb)_nb.style.display="none";}</script>
+<script>
+(function(){
+  var ABSN='https://arnold7777777.github.io/ABSN-Study-Hub/';
+  window.nbToAbsn=function(ev){
+    if(ev&&ev.preventDefault)ev.preventDefault();
+    /* On a sub-page: try to close this tab so the study hub behind it is revealed.
+       Browsers only allow close() on script-opened tabs, so fall back to navigating. */
+    try{ window.close(); }catch(e){}
+    setTimeout(function(){ if(!window.closed) window.location.href=ABSN; },120);
+    return false;
+  };
+})();
+</script>
+
+<a class="homebtn" href="index.html">🏠 Home</a>
+<div class="wrap"><header class="top"><h1>🖥️ Lecture Slides</h1><p>All 86 slides from your six module decks</p></header>
+<div class="panel"><h2>🔎 Search all 86 slides</h2><input id="sq" class="msearch" placeholder="Type a topic — SBAR, PPE, Braden, opioid, sleep…"><div class="hitcount" id="shits"></div></div><h2 class="sys">Modules 1-3 · Clinical judgment, medications, infection control, post-mortem</h2><div class="igwrap"><figure class="igf slide" data-txt="the guardian of safety and dignity title slide: nur 125 master blueprint for medications, infection control, and patient care."><figcaption>The Guardian of Safety and Dignity</figcaption><div class="chap">Title slide: NUR 125 master blueprint for medications, infection control, and patient care.</div><a href="slides/sl-m1-3-01.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-01.jpg" alt="The Guardian of Safety and Dignity"></a></figure><figure class="igf slide" data-txt="framework for clinical judgment ncjmm 6 functions: recognize/analyze cues, prioritize hypotheses, generate solutions, act, evaluate vs adpie."><figcaption>Framework for Clinical Judgment</figcaption><div class="chap">NCJMM 6 functions: recognize/analyze cues, prioritize hypotheses, generate solutions, act, evaluate vs ADPIE.</div><a href="slides/sl-m1-3-02.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-02.jpg" alt="Framework for Clinical Judgment"></a></figure><figure class="igf slide" data-txt="chemical safety: preventing medication errors causes: work-arounds, interruptions, look/sound-alikes, math errors; then assess, notify, report, document."><figcaption>Chemical Safety: Preventing Medication Errors</figcaption><div class="chap">Causes: work-arounds, interruptions, look/sound-alikes, math errors; then assess, notify, report, document.</div><a href="slides/sl-m1-3-03.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-03.jpg" alt="Chemical Safety: Preventing Medication Errors"></a></figure><figure class="igf slide" data-txt="the 10 rights of medication administration patient (2 ids), medication, dose, route, time, indication, assessment, evaluation, documentation, education."><figcaption>The 10 Rights of Medication Administration</figcaption><div class="chap">Patient (2 IDs), medication, dose, route, time, indication, assessment, evaluation, documentation, education.</div><a href="slides/sl-m1-3-04.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-04.jpg" alt="The 10 Rights of Medication Administration"></a></figure><figure class="igf slide" data-txt="pharmacokinetics across the lifespan infant vs older-adult adme changes converging on toxicity risk; mec and peak/trough monitoring."><figcaption>Pharmacokinetics Across the Lifespan</figcaption><div class="chap">Infant vs older-adult ADME changes converging on toxicity risk; MEC and peak/trough monitoring.</div><a href="slides/sl-m1-3-05.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-05.jpg" alt="Pharmacokinetics Across the Lifespan"></a></figure><figure class="igf slide" data-txt="parenteral delivery: injection route matrix id 15 deg, sq 45-90 deg, im 90 deg, iv ~25 deg with absorption speed and uses (tb test, insulin/heparin, vaccines)."><figcaption>Parenteral Delivery: Injection Route Matrix</figcaption><div class="chap">ID 15 deg, SQ 45-90 deg, IM 90 deg, IV ~25 deg with absorption speed and uses (TB test, insulin/heparin, vaccines).</div><a href="slides/sl-m1-3-06.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-06.jpg" alt="Parenteral Delivery: Injection Route Matrix"></a></figure><figure class="igf slide" data-txt="calculations, enteral, and opioid safety lb/2.2 to kg, desired-over-have, leading not trailing zeros; hob 30-45, 15-30 ml flush, 2-nurse opioid waste."><figcaption>Calculations, Enteral, and Opioid Safety</figcaption><div class="chap">lb/2.2 to kg, desired-over-have, leading not trailing zeros; HOB 30-45, 15-30 mL flush, 2-nurse opioid waste.</div><a href="slides/sl-m1-3-07.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-07.jpg" alt="Calculations, Enteral, and Opioid Safety"></a></figure><figure class="igf slide" data-txt="breaking the chain of infection six links: agent, reservoir, portal of exit, transmission, portal of entry, host; transmission best to break."><figcaption>Breaking the Chain of Infection</figcaption><div class="chap">Six links: agent, reservoir, portal of exit, transmission, portal of entry, host; transmission best to break.</div><a href="slides/sl-m1-3-08.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-08.jpg" alt="Breaking the Chain of Infection"></a></figure><figure class="igf slide" data-txt="medical vs. surgical asepsis clean vs sterile; alcohol rub vs soap for c. diff; sterile-to-sterile, above waist, 1-inch border dirty."><figcaption>Medical vs. Surgical Asepsis</figcaption><div class="chap">Clean vs sterile; alcohol rub vs soap for C. diff; sterile-to-sterile, above waist, 1-inch border dirty.</div><a href="slides/sl-m1-3-09.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-09.jpg" alt="Medical vs. Surgical Asepsis"></a></figure><figure class="igf slide" data-txt="transmission-based precautions contact (gown+gloves, mrsa/c. diff), droplet (mask 3-6 ft, flu), airborne (n95 + negative pressure, tb)."><figcaption>Transmission-Based Precautions</figcaption><div class="chap">Contact (gown+gloves, MRSA/C. diff), Droplet (mask 3-6 ft, flu), Airborne (N95 + negative pressure, TB).</div><a href="slides/sl-m1-3-10.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-10.jpg" alt="Transmission-Based Precautions"></a></figure><figure class="igf slide" data-txt="the ppe sequence: donning and doffing don gown, mask, goggles, gloves; doff gloves, goggles, gown, mask last outside the room."><figcaption>The PPE Sequence: Donning and Doffing</figcaption><div class="chap">Don gown, mask, goggles, gloves; doff gloves, goggles, gown, mask last outside the room.</div><a href="slides/sl-m1-3-11.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-11.jpg" alt="The PPE Sequence: Donning and Doffing"></a></figure><figure class="igf slide" data-txt="infection assessment and stages local (redness, warmth, purulent drainage) vs systemic signs; incubation, prodromal, illness, convalescence."><figcaption>Infection Assessment and Stages</figcaption><div class="chap">Local (redness, warmth, purulent drainage) vs systemic signs; incubation, prodromal, illness, convalescence.</div><a href="slides/sl-m1-3-12.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-12.jpg" alt="Infection Assessment and Stages"></a></figure><figure class="igf slide" data-txt="emotional safety: the hierarchy of loss actual vs perceived, maturational vs situational loss; kubler-ross stages are cyclical, not linear."><figcaption>Emotional Safety: The Hierarchy of Loss</figcaption><div class="chap">Actual vs perceived, maturational vs situational loss; Kubler-Ross stages are cyclical, not linear.</div><a href="slides/sl-m1-3-13.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-13.jpg" alt="Emotional Safety: The Hierarchy of Loss"></a></figure><figure class="igf slide" data-txt="the physiology of dying terminal restlessness, cheyne-stokes, death rattle, weak pulse, mottling, low urine output; cure to comfort."><figcaption>The Physiology of Dying</figcaption><div class="chap">Terminal restlessness, Cheyne-Stokes, death rattle, weak pulse, mottling, low urine output; cure to comfort.</div><a href="slides/sl-m1-3-14.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-14.jpg" alt="The Physiology of Dying"></a></figure><figure class="igf slide" data-txt="postmortem care workflow verify death, pause for donation/autopsy (leave lines), remove tubes, hob up for livor mortis, bathe, tag."><figcaption>Postmortem Care Workflow</figcaption><div class="chap">Verify death, pause for donation/autopsy (leave lines), remove tubes, HOB up for livor mortis, bathe, tag.</div><a href="slides/sl-m1-3-15.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-15.jpg" alt="Postmortem Care Workflow"></a></figure><figure class="igf slide" data-txt="delegation, culture, and documentation what ap can/cannot do after death, cultural and gender-specific ritual questions, what must be charted."><figcaption>Delegation, Culture, and Documentation</figcaption><div class="chap">What AP can/cannot do after death, cultural and gender-specific ritual questions, what must be charted.</div><a href="slides/sl-m1-3-16.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-16.jpg" alt="Delegation, Culture, and Documentation"></a></figure><figure class="igf slide" data-txt="synthesis: the guardian framework summary slide tying chemical, biological, and emotional safety together through ncjmm clinical judgment."><figcaption>Synthesis: The Guardian Framework</figcaption><div class="chap">Summary slide tying chemical, biological, and emotional safety together through NCJMM clinical judgment.</div><a href="slides/sl-m1-3-17.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m1-3-17.jpg" alt="Synthesis: The Guardian Framework"></a></figure></div><h2 class="sys">Safety, sensory, stoma &amp; end-of-life hygiene</h2><div class="igwrap"><figure class="igf slide" data-txt="the clinical blueprint title slide: nur 125 master study guide for safety, skin integrity, and hygiene."><figcaption>The Clinical Blueprint</figcaption><div class="chap">Title slide: NUR 125 master study guide for safety, skin integrity, and hygiene.</div><a href="slides/sl-m4-6a-01.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-01.jpg" alt="The Clinical Blueprint"></a></figure><figure class="igf slide" data-txt="team handoffs (i-pass) and engagement (aidet) i-pass illness severity, patient summary, action items, situational awareness, synthesis; aidet and isbar."><figcaption>Team Handoffs (I-PASS) and Engagement (AIDET)</figcaption><div class="chap">I-PASS illness severity, patient summary, action items, situational awareness, synthesis; AIDET and ISBAR.</div><a href="slides/sl-m4-6a-02.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-02.jpg" alt="Team Handoffs (I-PASS) and Engagement (AIDET)"></a></figure><figure class="igf slide" data-txt="the systemic effects of sensory alteration deprivation (cognitive, affective, perceptual) vs overload (racing thoughts); quiet time protocol."><figcaption>The Systemic Effects of Sensory Alteration</figcaption><div class="chap">Deprivation (cognitive, affective, perceptual) vs overload (racing thoughts); Quiet Time protocol.</div><a href="slides/sl-m4-6a-03.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-03.jpg" alt="The Systemic Effects of Sensory Alteration"></a></figure><figure class="igf slide" data-txt="home hazard assessment and sighted guide throw rugs, dim lighting, unlabeled faucets; 100-watt warm bulbs, flashing alarms, sighted guide technique."><figcaption>Home Hazard Assessment and Sighted Guide</figcaption><div class="chap">Throw rugs, dim lighting, unlabeled faucets; 100-watt warm bulbs, flashing alarms, sighted guide technique.</div><a href="slides/sl-m4-6a-04.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-04.jpg" alt="Home Hazard Assessment and Sighted Guide"></a></figure><figure class="igf slide" data-txt="peripheral neuropathy and skin integrity numbness, lost proprioception, undetected pressure injury; 120 f water max, no heating pads, daily foot inspection."><figcaption>Peripheral Neuropathy and Skin Integrity</figcaption><div class="chap">Numbness, lost proprioception, undetected pressure injury; 120 F water max, no heating pads, daily foot inspection.</div><a href="slides/sl-m4-6a-05.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-05.jpg" alt="Peripheral Neuropathy and Skin Integrity"></a></figure><figure class="igf slide" data-txt="stoma diagnostic color scale beefy red = healthy, pale pink = poor perfusion/anemia, dark purple or black = ischemic surgical emergency."><figcaption>Stoma Diagnostic Color Scale</figcaption><div class="chap">Beefy red = healthy, pale pink = poor perfusion/anemia, dark purple or black = ischemic surgical emergency.</div><a href="slides/sl-m4-6a-06.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-06.jpg" alt="Stoma Diagnostic Color Scale"></a></figure><figure class="igf slide" data-txt="the aspiration protocol: enteral tube management ph 4.0 or less check, residuals q4-6h, high-fowler&#x27;s; then stop, side-lying, suction, oxygenate, report."><figcaption>The Aspiration Protocol: Enteral Tube Management</figcaption><div class="chap">pH 4.0 or less check, residuals q4-6h, high-Fowler&#x27;s; then stop, side-lying, suction, oxygenate, report.</div><a href="slides/sl-m4-6a-07.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-07.jpg" alt="The Aspiration Protocol: Enteral Tube Management"></a></figure><figure class="igf slide" data-txt="hygiene as comfort: end-of-life symptoms xerostomia oral care q2-4h, artificial tears, no briefs over a foley, hob up and turn q2h for death rattle."><figcaption>Hygiene as Comfort: End-of-Life Symptoms</figcaption><div class="chap">Xerostomia oral care q2-4h, artificial tears, no briefs over a Foley, HOB up and turn q2h for death rattle.</div><a href="slides/sl-m4-6a-08.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-08.jpg" alt="Hygiene as Comfort: End-of-Life Symptoms"></a></figure><figure class="igf slide" data-txt="the o.a.r.s. model for patient education open-ended questions, affirmations, reflective listening, summarizing with diabetic foot care examples."><figcaption>The O.A.R.S. Model for Patient Education</figcaption><div class="chap">Open-ended questions, affirmations, reflective listening, summarizing with diabetic foot care examples.</div><a href="slides/sl-m4-6a-09.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-09.jpg" alt="The O.A.R.S. Model for Patient Education"></a></figure><figure class="igf slide" data-txt="the clinical synthesis matrix: adpie integration summary grid of assessment, implementation, and evaluation across module 4 safety, 5 skin integrity, and 6 hygiene."><figcaption>The Clinical Synthesis Matrix: ADPIE Integration</figcaption><div class="chap">Summary grid of assessment, implementation, and evaluation across Module 4 safety, 5 skin integrity, and 6 hygiene.</div><a href="slides/sl-m4-6a-10.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6a-10.jpg" alt="The Clinical Synthesis Matrix: ADPIE Integration"></a></figure></div><h2 class="sys">Therapeutic communication &amp; patient education</h2><div class="igwrap"><figure class="igf slide" data-txt="building the bridge of care title slide: clinical blueprint for therapeutic communication and patient education."><figcaption>Building the Bridge of Care</figcaption><div class="chap">Title slide: clinical blueprint for therapeutic communication and patient education.</div><a href="slides/sl-m4-6b-01.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-01.jpg" alt="Building the Bridge of Care"></a></figure><figure class="igf slide" data-txt="the architecture of healing three-tier pyramid: therapeutic communication as base, patient education, then behavioral change and healing."><figcaption>The Architecture of Healing</figcaption><div class="chap">Three-tier pyramid: therapeutic communication as base, patient education, then behavioral change and healing.</div><a href="slides/sl-m4-6b-02.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-02.jpg" alt="The Architecture of Healing"></a></figure><figure class="igf slide" data-txt="the circular transactional model sender encodes, receiver decodes, feedback loop; visual/auditory/tactile channels, environment, variables."><figcaption>The Circular Transactional Model</figcaption><div class="chap">Sender encodes, receiver decodes, feedback loop; visual/auditory/tactile channels, environment, variables.</div><a href="slides/sl-m4-6b-03.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-03.jpg" alt="The Circular Transactional Model"></a></figure><figure class="igf slide" data-txt="navigating the physical space of care intimate 0-18 in, personal 18-40 in, social 4-12 ft, public 12+ ft; consent, vulnerable, and intimate body zones."><figcaption>Navigating the Physical Space of Care</figcaption><div class="chap">Intimate 0-18 in, personal 18-40 in, social 4-12 ft, public 12+ ft; consent, vulnerable, and intimate body zones.</div><a href="slides/sl-m4-6b-04.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-04.jpg" alt="Navigating the Physical Space of Care"></a></figure><figure class="igf slide" data-txt="the posture of therapeutic trust (surety) sit at an angle, uncross arms/legs, relax, eye contact, touch, your intuition."><figcaption>The Posture of Therapeutic Trust (SURETY)</figcaption><div class="chap">Sit at an angle, Uncross arms/legs, Relax, Eye contact, Touch, Your intuition.</div><a href="slides/sl-m4-6b-05.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-05.jpg" alt="The Posture of Therapeutic Trust (SURETY)"></a></figure><figure class="igf slide" data-txt="the timeline of a helping relationship preinteraction, orientation, working, termination phases with nurse tasks for each."><figcaption>The Timeline of a Helping Relationship</figcaption><div class="chap">Preinteraction, Orientation, Working, Termination phases with nurse tasks for each.</div><a href="slides/sl-m4-6b-06.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-06.jpg" alt="The Timeline of a Helping Relationship"></a></figure><figure class="igf slide" data-txt="guiding the conversation therapeutic focusing, paraphrasing, validation, silence vs false reassurance, sympathy, arguing, asking &#x27;why&#x27;."><figcaption>Guiding the Conversation</figcaption><div class="chap">Therapeutic focusing, paraphrasing, validation, silence vs false reassurance, sympathy, arguing, asking &#x27;why&#x27;.</div><a href="slides/sl-m4-6b-07.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-07.jpg" alt="Guiding the Conversation"></a></figure><figure class="igf slide" data-txt="navigating behavioral change (oars) motivational interviewing: open-ended questions, affirmations, reflective listening, summarizing scripts."><figcaption>Navigating Behavioral Change (OARS)</figcaption><div class="chap">Motivational interviewing: open-ended questions, affirmations, reflective listening, summarizing scripts.</div><a href="slides/sl-m4-6b-08.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-08.jpg" alt="Navigating Behavioral Change (OARS)"></a></figure><figure class="igf slide" data-txt="the teaching-nursing parallel adpie steps aligned to learning needs, knowledge gap, learning objectives, instruction, verify learning."><figcaption>The Teaching-Nursing Parallel</figcaption><div class="chap">ADPIE steps aligned to learning needs, knowledge gap, learning objectives, instruction, verify learning.</div><a href="slides/sl-m4-6b-09.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-09.jpg" alt="The Teaching-Nursing Parallel"></a></figure><figure class="igf slide" data-txt="diagnosing the learner readiness (grief stage, motivation, comfort), ability (development, cognition), environment (literacy)."><figcaption>Diagnosing the Learner</figcaption><div class="chap">Readiness (grief stage, motivation, comfort), ability (development, cognition), environment (literacy).</div><a href="slides/sl-m4-6b-10.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-10.jpg" alt="Diagnosing the Learner"></a></figure><figure class="igf slide" data-txt="architecting the lesson cognitive, affective, psychomotor domains with methods: lecture, role-play, return demonstration."><figcaption>Architecting the Lesson</figcaption><div class="chap">Cognitive, affective, psychomotor domains with methods: lecture, role-play, return demonstration.</div><a href="slides/sl-m4-6b-11.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-11.jpg" alt="Architecting the Lesson"></a></figure><figure class="igf slide" data-txt="frameworks for action: learning theories cognitive dissonance, health belief model, transtheoretical stages, self-efficacy with nursing applications."><figcaption>Frameworks for Action: Learning Theories</figcaption><div class="chap">Cognitive Dissonance, Health Belief Model, Transtheoretical stages, Self-Efficacy with nursing applications.</div><a href="slides/sl-m4-6b-12.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-12.jpg" alt="Frameworks for Action: Learning Theories"></a></figure><figure class="igf slide" data-txt="closing the communication gap (teach-back) closed-loop teach-back: patient restates, nurse owns the gap and re-explains rather than testing them."><figcaption>Closing the Communication Gap (Teach-Back)</figcaption><div class="chap">Closed-loop teach-back: patient restates, nurse owns the gap and re-explains rather than testing them.</div><a href="slides/sl-m4-6b-13.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-13.jpg" alt="Closing the Communication Gap (Teach-Back)"></a></figure><figure class="igf slide" data-txt="the integrated care loop summary slide merging the nursing process, transactional model, mi bridge, domain teaching, and teach-back loop."><figcaption>The Integrated Care Loop</figcaption><div class="chap">Summary slide merging the nursing process, transactional model, MI bridge, domain teaching, and teach-back loop.</div><a href="slides/sl-m4-6b-14.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m4-6b-14.jpg" alt="The Integrated Care Loop"></a></figure></div><h2 class="sys">Oxygenation, elimination &amp; nutrition</h2><div class="igwrap"><figure class="igf slide" data-txt="mastering clinical judgment: nur 125 exam 3 blueprint title slide: modules 7-9 roadmap - oxygenation &amp; asepsis, elimination &amp; integrity, digestion/enteral/ostomies."><figcaption>Mastering Clinical Judgment: NUR 125 Exam 3 Blueprint</figcaption><div class="chap">Title slide: Modules 7-9 roadmap - Oxygenation &amp; Asepsis, Elimination &amp; Integrity, Digestion/Enteral/Ostomies.</div><a href="slides/sl-m7-9-01.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-01.jpg" alt="Mastering Clinical Judgment: NUR 125 Exam 3 Blueprint"></a></figure><figure class="igf slide" data-txt="processing patient data like an expert nurse 3 steps: recognize cues, prioritize hypotheses, take action &amp; evaluate; exam rule - airway and safety first."><figcaption>Processing Patient Data Like an Expert Nurse</figcaption><div class="chap">3 steps: Recognize Cues, Prioritize Hypotheses, Take Action &amp; Evaluate; exam rule - airway and safety first.</div><a href="slides/sl-m7-9-02.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-02.jpg" alt="Processing Patient Data Like an Expert Nurse"></a></figure><figure class="igf slide" data-txt="managing airway priorities and respiratory distress dyspnea cues (tachypnea, death rattle) vs artificial airway: raise hob, oral care q2h, communication boards."><figcaption>Managing Airway Priorities and Respiratory Distress</figcaption><div class="chap">Dyspnea cues (tachypnea, death rattle) vs artificial airway: raise HOB, oral care q2h, communication boards.</div><a href="slides/sl-m7-9-03.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-03.jpg" alt="Managing Airway Priorities and Respiratory Distress"></a></figure><figure class="igf slide" data-txt="executing surgical asepsis and safe technique sterile (foley insertion, central lines, packing) vs clean (ng removal, postmortem care, emptying drainage bag)."><figcaption>Executing Surgical Asepsis and Safe Technique</figcaption><div class="chap">Sterile (Foley insertion, central lines, packing) vs clean (NG removal, postmortem care, emptying drainage bag).</div><a href="slides/sl-m7-9-04.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-04.jpg" alt="Executing Surgical Asepsis and Safe Technique"></a></figure><figure class="igf slide" data-txt="preventing cauti and maintaining skin integrity never brief over an indwelling foley (maceration); perineal hygiene, strict i&amp;o, daily catheter necessity check."><figcaption>Preventing CAUTI and Maintaining Skin Integrity</figcaption><div class="chap">Never brief over an indwelling Foley (maceration); perineal hygiene, strict I&amp;O, daily catheter necessity check.</div><a href="slides/sl-m7-9-05.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-05.jpg" alt="Preventing CAUTI and Maintaining Skin Integrity"></a></figure><figure class="igf slide" data-txt="interpreting bowel elimination diagnostic screenings guaiac stool test detects occult blood only, not dna/cancer; a positive result mandates colonoscopy follow-up."><figcaption>Interpreting Bowel Elimination Diagnostic Screenings</figcaption><div class="chap">Guaiac stool test detects occult blood only, not DNA/cancer; a positive result mandates colonoscopy follow-up.</div><a href="slides/sl-m7-9-06.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-06.jpg" alt="Interpreting Bowel Elimination Diagnostic Screenings"></a></figure><figure class="igf slide" data-txt="assessing ostomy viability and stoma circulation stoma colors: beefy red = healthy, pale pink = poor perfusion (check bag), purple/black = necrosis, report stat."><figcaption>Assessing Ostomy Viability and Stoma Circulation</figcaption><div class="chap">Stoma colors: beefy red = healthy, pale pink = poor perfusion (check bag), purple/black = necrosis, report STAT.</div><a href="slides/sl-m7-9-07.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-07.jpg" alt="Assessing Ostomy Viability and Stoma Circulation"></a></figure><figure class="igf slide" data-txt="navigating the psychosocial impact of body alterations normal reality processing (&quot;this smells awful&quot;) vs denial cues - uncontrollable laughter or disassociation."><figcaption>Navigating the Psychosocial Impact of Body Alterations</figcaption><div class="chap">Normal reality processing (&quot;this smells awful&quot;) vs denial cues - uncontrollable laughter or disassociation.</div><a href="slides/sl-m7-9-08.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-08.jpg" alt="Navigating the Psychosocial Impact of Body Alterations"></a></figure><figure class="igf slide" data-txt="safely placing and managing nasogastric tubes nex measuring; x-ray is gold standard, gastric ph 4 or less, never auscultate air, never clamp salem pigtail."><figcaption>Safely Placing and Managing Nasogastric Tubes</figcaption><div class="chap">NEX measuring; X-ray is gold standard, gastric pH 4 or less, never auscultate air, never clamp Salem pigtail.</div><a href="slides/sl-m7-9-09.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-09.jpg" alt="Safely Placing and Managing Nasogastric Tubes"></a></figure><figure class="igf slide" data-txt="responding to enteral feeding aspiration emergencies stop pump, side-lying, suction, oxygen/notify; prevent with hob 30+ degrees, residual checks, 30 ml water flush."><figcaption>Responding to Enteral Feeding Aspiration Emergencies</figcaption><div class="chap">Stop pump, side-lying, suction, oxygen/notify; prevent with HOB 30+ degrees, residual checks, 30 mL water flush.</div><a href="slides/sl-m7-9-10.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-10.jpg" alt="Responding to Enteral Feeding Aspiration Emergencies"></a></figure><figure class="igf slide" data-txt="selecting prescribed therapeutic diets clear liquids (black coffee, tea, broth, apple juice) vs banned milk, cheese, pulpy oj; for bowel prep/post-op."><figcaption>Selecting Prescribed Therapeutic Diets</figcaption><div class="chap">Clear liquids (black coffee, tea, broth, apple juice) vs banned milk, cheese, pulpy OJ; for bowel prep/post-op.</div><a href="slides/sl-m7-9-11.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-11.jpg" alt="Selecting Prescribed Therapeutic Diets"></a></figure><figure class="igf slide" data-txt="balancing the sensory environment to promote healing overload (icu alarms, lights) - quiet time, clustered care; deprivation (isolation) - clocks, calendars, visitors."><figcaption>Balancing the Sensory Environment to Promote Healing</figcaption><div class="chap">Overload (ICU alarms, lights) - quiet time, clustered care; deprivation (isolation) - clocks, calendars, visitors.</div><a href="slides/sl-m7-9-12.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-12.jpg" alt="Balancing the Sensory Environment to Promote Healing"></a></figure><figure class="igf slide" data-txt="standardizing critical handoffs and interventions sbar for team reporting, aidet for patients, plus the surety framework for active listening."><figcaption>Standardizing Critical Handoffs and Interventions</figcaption><div class="chap">SBAR for team reporting, AIDET for patients, plus the SURETY framework for active listening.</div><a href="slides/sl-m7-9-13.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-13.jpg" alt="Standardizing Critical Handoffs and Interventions"></a></figure><figure class="igf slide" data-txt="ensuring comprehension through the teach-back loop explain, ask for demonstration, identify gaps, clarify; it tests the nurse&#x27;s teaching and cuts readmissions."><figcaption>Ensuring Comprehension Through the Teach-Back Loop</figcaption><div class="chap">Explain, ask for demonstration, identify gaps, clarify; it tests the nurse&#x27;s teaching and cuts readmissions.</div><a href="slides/sl-m7-9-14.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-14.jpg" alt="Ensuring Comprehension Through the Teach-Back Loop"></a></figure><figure class="igf slide" data-txt="synthesizing high-yield priorities for exam 3 recap: stoma colors, stop feeding first in aspiration, ng x-ray/ph 4, no brief over foley, teach-back."><figcaption>Synthesizing High-Yield Priorities for Exam 3</figcaption><div class="chap">Recap: stoma colors, stop feeding first in aspiration, NG X-ray/pH 4, no brief over Foley, teach-back.</div><a href="slides/sl-m7-9-15.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m7-9-15.jpg" alt="Synthesizing High-Yield Priorities for Exam 3"></a></figure></div><h2 class="sys">Communication, education, loss &amp; grief</h2><div class="igwrap"><figure class="igf slide" data-txt="the care blueprint title slide: mastering communication, education, and compassion in the nurse-patient partnership."><figcaption>The Care Blueprint</figcaption><div class="chap">Title slide: mastering communication, education, and compassion in the nurse-patient partnership.</div><a href="slides/sl-m10-12-01.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-01.jpg" alt="The Care Blueprint"></a></figure><figure class="igf slide" data-txt="connect, teach, or heal roadmap of the three units: connection (communication), empowerment (patient education), compassion (loss)."><figcaption>Connect, Teach, or Heal</figcaption><div class="chap">Roadmap of the three units: Connection (communication), Empowerment (patient education), Compassion (loss).</div><a href="slides/sl-m10-12-02.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-02.jpg" alt="Connect, Teach, or Heal"></a></figure><figure class="igf slide" data-txt="the communication process model referent, sender, message channel, receiver, feedback loop, environment; interpersonal variable filters."><figcaption>The Communication Process Model</figcaption><div class="chap">Referent, sender, message channel, receiver, feedback loop, environment; interpersonal variable filters.</div><a href="slides/sl-m10-12-03.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-03.jpg" alt="The Communication Process Model"></a></figure><figure class="igf slide" data-txt="four phases of the helping relationship preinteraction, orientation, working, termination phases with nurse actions for each."><figcaption>Four Phases of the Helping Relationship</figcaption><div class="chap">Preinteraction, Orientation, Working, Termination phases with nurse actions for each.</div><a href="slides/sl-m10-12-04.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-04.jpg" alt="Four Phases of the Helping Relationship"></a></figure><figure class="igf slide" data-txt="therapeutic facilitators vs. nontherapeutic blockers surety listening, empathy, clarifying, focusing vs. sympathy, &#x27;why&#x27; questions, false reassurance."><figcaption>Therapeutic Facilitators vs. Nontherapeutic Blockers</figcaption><div class="chap">SURETY listening, empathy, clarifying, focusing vs. sympathy, &#x27;why&#x27; questions, false reassurance.</div><a href="slides/sl-m10-12-05.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-05.jpg" alt="Therapeutic Facilitators vs. Nontherapeutic Blockers"></a></figure><figure class="igf slide" data-txt="sbar handoffs vs. motivational interviewing (oars) sbar/i-pass (situation, background, assessment, recommendation) vs. oars (open, affirm, reflect, summarize)."><figcaption>SBAR Handoffs vs. Motivational Interviewing (OARS)</figcaption><div class="chap">SBAR/I-PASS (Situation, Background, Assessment, Recommendation) vs. OARS (Open, Affirm, Reflect, Summarize).</div><a href="slides/sl-m10-12-06.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-06.jpg" alt="SBAR Handoffs vs. Motivational Interviewing (OARS)"></a></figure><figure class="igf slide" data-txt="the three domains of learning cognitive, affective, psychomotor domains with each hierarchy and matching teaching methods."><figcaption>The Three Domains of Learning</figcaption><div class="chap">Cognitive, Affective, Psychomotor domains with each hierarchy and matching teaching methods.</div><a href="slides/sl-m10-12-07.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-07.jpg" alt="The Three Domains of Learning"></a></figure><figure class="igf slide" data-txt="psychological frameworks of motivation cognitive dissonance, health belief model, transtheoretical stages (precontemplation-maintenance), self-efficacy."><figcaption>Psychological Frameworks of Motivation</figcaption><div class="chap">Cognitive Dissonance, Health Belief Model, Transtheoretical stages (Precontemplation-Maintenance), Self-Efficacy.</div><a href="slides/sl-m10-12-08.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-08.jpg" alt="Psychological Frameworks of Motivation"></a></figure><figure class="igf slide" data-txt="grief stages and capacity for learning teaching adapted to denial, anger/bargaining, resolution, acceptance; teach present-tense only in early stages."><figcaption>Grief Stages and Capacity for Learning</figcaption><div class="chap">Teaching adapted to Denial, Anger/Bargaining, Resolution, Acceptance; teach present-tense only in early stages.</div><a href="slides/sl-m10-12-09.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-09.jpg" alt="Grief Stages and Capacity for Learning"></a></figure><figure class="igf slide" data-txt="health literacy and the educate model 90% struggle with literacy; 5th-grade reading level, 14-pt font; accurate/accessible/actionable; educate steps."><figcaption>Health Literacy and the EDUCATE Model</figcaption><div class="chap">90% struggle with literacy; 5th-grade reading level, 14-pt font; accurate/accessible/actionable; EDUCATE steps.</div><a href="slides/sl-m10-12-10.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-10.jpg" alt="Health Literacy and the EDUCATE Model"></a></figure><figure class="igf slide" data-txt="the teach-back method explain, assess, clarify, re-assess loop with sample scripts; nurse owns the miscommunication."><figcaption>The Teach-Back Method</figcaption><div class="chap">Explain, Assess, Clarify, Re-assess loop with sample scripts; nurse owns the miscommunication.</div><a href="slides/sl-m10-12-11.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-11.jpg" alt="The Teach-Back Method"></a></figure><figure class="igf slide" data-txt="the spectrum of human loss actual vs. perceived loss and maturational vs. situational loss, each with clinical examples."><figcaption>The Spectrum of Human Loss</figcaption><div class="chap">Actual vs. perceived loss and maturational vs. situational loss, each with clinical examples.</div><a href="slides/sl-m10-12-12.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-12.jpg" alt="The Spectrum of Human Loss"></a></figure><figure class="igf slide" data-txt="adapting teaching across the lifespan infant/toddler play and routines, adolescent autonomy, adult problem-centered, older adult sensory accommodations."><figcaption>Adapting Teaching Across the Lifespan</figcaption><div class="chap">Infant/toddler play and routines, adolescent autonomy, adult problem-centered, older adult sensory accommodations.</div><a href="slides/sl-m10-12-13.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-13.jpg" alt="Adapting Teaching Across the Lifespan"></a></figure><figure class="igf slide" data-txt="the adaptive nurse calibrates care synthesis: calibrating connection (sbar to oars), empowerment (lecture to return-demo), compassion (grief timing)."><figcaption>The Adaptive Nurse Calibrates Care</figcaption><div class="chap">Synthesis: calibrating Connection (SBAR to OARS), Empowerment (lecture to return-demo), Compassion (grief timing).</div><a href="slides/sl-m10-12-14.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-14.jpg" alt="The Adaptive Nurse Calibrates Care"></a></figure><figure class="igf slide" data-txt="the blueprint in practice: three takeaways closing summary: meaning resides in the patient, motivation is evoked not installed, presence is an intervention."><figcaption>The Blueprint in Practice: Three Takeaways</figcaption><div class="chap">Closing summary: meaning resides in the patient, motivation is evoked not installed, presence is an intervention.</div><a href="slides/sl-m10-12-15.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m10-12-15.jpg" alt="The Blueprint in Practice: Three Takeaways"></a></figure></div><h2 class="sys">Rest &amp; sleep, pain &amp; complementary therapy</h2><div class="igwrap"><figure class="igf slide" data-txt="holistic patient care: the clinical dashboard title slide for nur125 modules 13 &amp; 14: stress, sleep, pain, and complementary therapies."><figcaption>Holistic Patient Care: The Clinical Dashboard</figcaption><div class="chap">Title slide for NUR125 Modules 13 &amp; 14: stress, sleep, pain, and complementary therapies.</div><a href="slides/sl-m13-14-01.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-01.jpg" alt="Holistic Patient Care: The Clinical Dashboard"></a></figure><figure class="igf slide" data-txt="the four pillars of patient wellness agenda: mind (gas, coping), environment (sleep, sensory), body (gate-control, pca, pqrst), spirit (cam)."><figcaption>The Four Pillars of Patient Wellness</figcaption><div class="chap">Agenda: Mind (GAS, coping), Environment (sleep, sensory), Body (gate-control, PCA, PQRST), Spirit (CAM).</div><a href="slides/sl-m13-14-02.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-02.jpg" alt="The Four Pillars of Patient Wellness"></a></figure><figure class="igf slide" data-txt="general adaptation syndrome (gas) alarm reaction, resistance stage, exhaustion stage; unresolved pain and anxiety trap patients in alarm/resistance."><figcaption>General Adaptation Syndrome (GAS)</figcaption><div class="chap">Alarm reaction, Resistance stage, Exhaustion stage; unresolved pain and anxiety trap patients in alarm/resistance.</div><a href="slides/sl-m13-14-03.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-03.jpg" alt="General Adaptation Syndrome (GAS)"></a></figure><figure class="igf slide" data-txt="workplace stress &amp; compassion fatigue intentional communication vs. lateral violence behaviors; lateral violence as precursor to compassion fatigue."><figcaption>Workplace Stress &amp; Compassion Fatigue</figcaption><div class="chap">Intentional communication vs. lateral violence behaviors; lateral violence as precursor to compassion fatigue.</div><a href="slides/sl-m13-14-04.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-04.jpg" alt="Workplace Stress &amp; Compassion Fatigue"></a></figure><figure class="igf slide" data-txt="psychological coping &amp; ego defense mechanisms denial, displacement, projection defined; ostomy-bag laughter example protecting altered body image."><figcaption>Psychological Coping &amp; Ego Defense Mechanisms</figcaption><div class="chap">Denial, Displacement, Projection defined; ostomy-bag laughter example protecting altered body image.</div><a href="slides/sl-m13-14-05.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-05.jpg" alt="Psychological Coping &amp; Ego Defense Mechanisms"></a></figure><figure class="igf slide" data-txt="sleep architecture &amp; lifespan requirements nrem 75-80% physical restoration vs. rem 20-25% cognitive; adults need 7-9 hours; older adults sleep lighter."><figcaption>Sleep Architecture &amp; Lifespan Requirements</figcaption><div class="chap">NREM 75-80% physical restoration vs. REM 20-25% cognitive; adults need 7-9 hours; older adults sleep lighter.</div><a href="slides/sl-m13-14-06.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-06.jpg" alt="Sleep Architecture &amp; Lifespan Requirements"></a></figure><figure class="igf slide" data-txt="sensory alterations: deprivation vs. overload reticular activating system; deprivation causes confusion and panic, overload causes racing scattered thoughts."><figcaption>Sensory Alterations: Deprivation vs. Overload</figcaption><div class="chap">Reticular activating system; deprivation causes confusion and panic, overload causes racing scattered thoughts.</div><a href="slides/sl-m13-14-07.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-07.jpg" alt="Sensory Alterations: Deprivation vs. Overload"></a></figure><figure class="igf slide" data-txt="evidence-based practice: &#x27;quiet time&#x27; protocols checklist: dim lights, cut noise, earplugs and eye masks, cluster cares, off-unit staff phone areas."><figcaption>Evidence-Based Practice: &#x27;Quiet Time&#x27; Protocols</figcaption><div class="chap">Checklist: dim lights, cut noise, earplugs and eye masks, cluster cares, off-unit staff phone areas.</div><a href="slides/sl-m13-14-08.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-08.jpg" alt="Evidence-Based Practice: &#x27;Quiet Time&#x27; Protocols"></a></figure><figure class="igf slide" data-txt="pain physiology &amp; the gate-control theory small fibers carry pain, large fibers (touch, massage, heat/cold) close the spinal gate blocking transmission."><figcaption>Pain Physiology &amp; The Gate-Control Theory</figcaption><div class="chap">Small fibers carry pain, large fibers (touch, massage, heat/cold) close the spinal gate blocking transmission.</div><a href="slides/sl-m13-14-09.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-09.jpg" alt="Pain Physiology &amp; The Gate-Control Theory"></a></figure><figure class="igf slide" data-txt="diagnostic matrix: acute vs. chronic pain compares nature, response, and goal; chronic pain lasts 3-6+ months and needs around-the-clock dosing."><figcaption>Diagnostic Matrix: Acute vs. Chronic Pain</figcaption><div class="chap">Compares nature, response, and goal; chronic pain lasts 3-6+ months and needs around-the-clock dosing.</div><a href="slides/sl-m13-14-10.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-10.jpg" alt="Diagnostic Matrix: Acute vs. Chronic Pain"></a></figure><figure class="igf slide" data-txt="pqrst assessment &amp; pca safety pqrst (provokes, quality, radiates, severity 0-10, time) plus pca golden rule: only the patient pushes the button."><figcaption>PQRST Assessment &amp; PCA Safety</figcaption><div class="chap">PQRST (Provokes, Quality, Radiates, Severity 0-10, Time) plus PCA golden rule: only the patient pushes the button.</div><a href="slides/sl-m13-14-11.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-11.jpg" alt="PQRST Assessment &amp; PCA Safety"></a></figure><figure class="igf slide" data-txt="broadening the toolkit: complementary therapies biofeedback, guided imagery (parasympathetic activation), and therapeutic touch as mind-body interventions."><figcaption>Broadening the Toolkit: Complementary Therapies</figcaption><div class="chap">Biofeedback, guided imagery (parasympathetic activation), and therapeutic touch as mind-body interventions.</div><a href="slides/sl-m13-14-12.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-12.jpg" alt="Broadening the Toolkit: Complementary Therapies"></a></figure><figure class="igf slide" data-txt="the clinical power &amp; boundaries of touch social, consent, vulnerable, and intimate touch zones with body areas and permission level for each."><figcaption>The Clinical Power &amp; Boundaries of Touch</figcaption><div class="chap">Social, Consent, Vulnerable, and Intimate touch zones with body areas and permission level for each.</div><a href="slides/sl-m13-14-13.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-13.jpg" alt="The Clinical Power &amp; Boundaries of Touch"></a></figure><figure class="igf slide" data-txt="synthesis: the holistic nursing dashboard post-op anxious patient scenario applying mind, environment, body, and spirit interventions together."><figcaption>Synthesis: The Holistic Nursing Dashboard</figcaption><div class="chap">Post-op anxious patient scenario applying Mind, Environment, Body, and Spirit interventions together.</div><a href="slides/sl-m13-14-14.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-14.jpg" alt="Synthesis: The Holistic Nursing Dashboard"></a></figure><figure class="igf slide" data-txt="modules 13 &amp; 14: exam hit-list summary of high-yield points across stress/coping, sleep/senses, pain management, and complementary therapies."><figcaption>Modules 13 &amp; 14: Exam Hit-List</figcaption><div class="chap">Summary of high-yield points across stress/coping, sleep/senses, pain management, and complementary therapies.</div><a href="slides/sl-m13-14-15.jpg" target="_blank" rel="noopener"><img loading="lazy" src="slides/sl-m13-14-15.jpg" alt="Modules 13 &amp; 14: Exam Hit-List"></a></figure></div>
+<div class="foot">NUR 125 · Nursing Fundamentals</div></div><script>
+(function(){var b=document.getElementById('sq'),s=[].slice.call(document.querySelectorAll('.slide')),h=document.getElementById('shits');
+b.addEventListener('input',function(){var q=b.value.trim().toLowerCase(),n=0;
+s.forEach(function(x){var hit=!q||x.dataset.txt.indexOf(q)>-1;x.style.display=hit?'':'none';if(hit)n++;});
+h.textContent=q?(n+' of '+s.length+' slides match'):'';});})();
+</script><script id="a11yJS">
+/* a table wider than the screen scrolls inside its own box rather than dragging
+   the whole page sideways */
+(function(){
+  function wrap(){
+    document.querySelectorAll('table').forEach(function(t){
+      var p=t.parentNode;
+      if(!p||p.classList&&p.classList.contains('a11y-tblwrap'))return;
+      var d=document.createElement('div'); d.className='a11y-tblwrap';
+      p.insertBefore(d,t); d.appendChild(t);
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wrap);
+  else wrap();
+  setTimeout(wrap,1200);   /* catch tables built by the page's own scripts */
+})();
+</script>
+<script id="navDragJS">
+(function(){
+  var nb=document.getElementById('navBtns');
+  if(!nb||nb.dataset.dragReady) return;
+  nb.dataset.dragReady='1';
+
+  /* ── 1. modifier and middle clicks must open a new tab ───────────────
+     The ABSN link called preventDefault() every time, which killed
+     ctrl/cmd/shift-click and middle-click. Let those through. */
+  function passthrough(e){
+    return e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button===1;
+  }
+  nb.addEventListener('click',function(e){
+    var a=e.target.closest('a'); if(!a) return;
+    if(passthrough(e)){ e.stopImmediatePropagation(); }   /* before the page's own handler */
+  },true);
+  nb.addEventListener('auxclick',function(e){
+    var a=e.target.closest('a');
+    if(a&&e.button===1){ e.stopImmediatePropagation();
+      window.open(a.href,'_blank','noopener'); e.preventDefault(); }
+  },true);
+  /* every button in the cluster also gets a right-click / long-press menu that
+     works, because they stay real <a href> elements */
+
+  /* ── 2. a grip so it is obvious the cluster can be moved ───────────── */
+
+
+  /* ── 3. drag, and remember where she put it ─────────────────────────── */
+  var KEY='nbPos';
+  function clampPos(l,t){
+    var r=nb.getBoundingClientRect();
+    var maxL=Math.max(0,window.innerWidth-r.width-4);
+    var maxT=Math.max(0,window.innerHeight-r.height-4);
+    return [Math.min(Math.max(0,l),maxL), Math.min(Math.max(0,t),maxT)];
+  }
+  function place(l,t){
+    var p=clampPos(l,t);
+    nb.style.left=p[0]+'px'; nb.style.top=p[1]+'px';
+    nb.style.right='auto'; nb.style.bottom='auto';
+  }
+  function save(){
+    try{ localStorage.setItem(KEY,JSON.stringify({l:parseFloat(nb.style.left)||0,
+                                                  t:parseFloat(nb.style.top)||0})); }catch(e){}
+  }
+  function reset(){
+    nb.style.left=''; nb.style.top=''; nb.style.right=''; nb.style.bottom='';
+    try{ localStorage.removeItem(KEY); }catch(e){}
+  }
+  try{
+    var s=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(s&&typeof s.l==='number') place(s.l,s.t);
+  }catch(e){}
+
+  var dragging=false,ox=0,oy=0,moved=false;
+  function down(x,y,e){
+    var r=nb.getBoundingClientRect();
+    dragging=true; moved=false; ox=x-r.left; oy=y-r.top;
+    nb.classList.add('dragging');
+    if(e&&e.preventDefault) e.preventDefault();
+  }
+  function move(x,y){
+    if(!dragging) return;
+    moved=true; place(x-ox,y-oy);
+  }
+  function up(){
+    if(!dragging) return;
+    dragging=false; nb.classList.remove('dragging');
+    if(moved) save();
+  }
+  nb.addEventListener('mousedown',function(e){ if(e.button===0) down(e.clientX,e.clientY,e); });
+  window.addEventListener('mousemove',function(e){ move(e.clientX,e.clientY); });
+  window.addEventListener('mouseup',up);
+  nb.addEventListener('touchstart',function(e){
+    var t=e.touches[0]; down(t.clientX,t.clientY,e); },{passive:false});
+  window.addEventListener('touchmove',function(e){
+    if(!dragging) return; var t=e.touches[0]; move(t.clientX,t.clientY); e.preventDefault(); },{passive:false});
+  window.addEventListener('touchend',up);
+  nb.addEventListener('dblclick',function(e){ e.preventDefault(); reset(); });
+  /* keyboard: focus the grip and nudge with the arrows */
+  nb.addEventListener('keydown',function(e){
+    var step=e.shiftKey?24:6, r=nb.getBoundingClientRect(), l=r.left, t=r.top, hit=true;
+    if(e.key==='ArrowLeft') l-=step; else if(e.key==='ArrowRight') l+=step;
+    else if(e.key==='ArrowUp') t-=step; else if(e.key==='ArrowDown') t+=step;
+    else if(e.key==='Home'||e.key==='Escape'){ reset(); e.preventDefault(); return; }
+    else hit=false;
+    if(hit){ place(l,t); save(); e.preventDefault(); }
+  });
+  window.addEventListener('resize',function(){
+    if(nb.style.left) place(parseFloat(nb.style.left),parseFloat(nb.style.top));
+  });
+
+  /* ── 4. step aside for full-screen viewers ───────────────────────────
+     Some overlays (the NUR 175 image lightbox, the drug guide drawer) sit
+     below this cluster in the stacking order, so the cluster covered their
+     Close buttons. Find them once, then just watch whether they are shown. */
+  var overlays=[];
+  try{
+    document.querySelectorAll('body *').forEach(function(el){
+      if(overlays.length>40) return;
+      if(el===nb||nb.contains(el)) return;
+      var cs=getComputedStyle(el);
+      if(cs.position!=='fixed') return;
+      var z=parseInt(cs.zIndex,10);
+      if(!(z>=1000)) return;
+      /* covers most of the screen in at least one dimension */
+      var w=parseFloat(cs.width), h=parseFloat(cs.height);
+      var full=(cs.inset==='0px'||cs.top==='0px'&&cs.left==='0px'&&cs.right==='0px'&&cs.bottom==='0px');
+      if(full||(w>=window.innerWidth*0.9&&h>=window.innerHeight*0.9)) overlays.push(el);
+    });
+  }catch(e){}
+  function check(){
+    var open=overlays.some(function(el){
+      var cs=getComputedStyle(el);
+      return cs.display!=='none'&&cs.visibility!=='hidden'&&parseFloat(cs.opacity||'1')>0.05;
+    });
+    nb.classList.toggle('hidden-by-overlay',open);
+  }
+  if(overlays.length){
+    check();
+    var t=null;
+    new MutationObserver(function(){ clearTimeout(t); t=setTimeout(check,60); })
+      .observe(document.body,{attributes:true,subtree:true,
+                              attributeFilter:['class','style','hidden']});
+  }
+})();
+</script>
+<script id="skimJS">
+(function(){
+  /* What counts as a line of prose on these pages is NOT <p>. The 125 eBook units use
+     <p class="ebp">, but 175 is card-based divs and 198 mixes divs, p and li. So the
+     candidate set is "leaf text blocks": an element whose children are all inline.
+     Measured before choosing: on a 125 eBook unit that is 2,352 blocks of which ~456
+     are long unmarked prose; on the card pages it is a handful, which is the honest
+     answer - those pages are already skimmable. */
+  var INLINE = {B:1,I:1,EM:1,STRONG:1,SPAN:1,A:1,CODE:1,MARK:1,U:1,BR:1,SMALL:1,
+                SUB:1,SUP:1,ABBR:1,WBR:1,IMG:1};
+  var SIGNAL = 'b,strong,mark,u,code';
+  /* never touch: chrome, tables, quizzes, contents lists, captions, footers */
+  var SAFE = '#skimBtn,nav,header,#vwBar,.bar,.nb,.nbWrap,table,thead,tbody,tr,td,th,' +
+             '.stem,.q,.qa,.qt,.ans,.ansbox,.rationale,.fill,.blanks,.fp,.fpk,.nq,' +
+             '.toc,.foot,.cap,.chip,.chip-row,.sec-sub,.bn,.dvname,button,summary,' +
+             '[class*="nav"],[class*="btn"],[class*="quiz"]';
+  var MIN  = 110;      /* below this a line is a label or a rule, not padding */
+  var NUM  = /\d\s*(mg|mcg|g|kg|lb|ml|l|mmol|meq|mmhg|%|hr|hrs|min|sec|day|wk|yr|bpm|cm|mm|units?|°)/i;
+
+  var btn, marked=false, hid=0, total=0;
+
+  function leaf(el){
+    for(var i=0;i<el.children.length;i++)
+      if(!INLINE[el.children[i].tagName]) return false;
+    return true;
+  }
+
+  function mark(){
+    if(marked) return;
+    var all = document.querySelectorAll('p,li,div,dd');
+    for(var i=0;i<all.length;i++){
+      var el=all[i];
+      if(el.closest(SAFE)) continue;
+      if(!leaf(el)) continue;
+      var t=(el.textContent||'').trim();
+      if(!t) continue;
+      total++;
+      if(t.length < MIN) continue;
+      if(el.querySelector(SIGNAL)) continue;
+      if(NUM.test(t)) continue;
+      el.classList.add('skimHide'); hid++;
+    }
+    marked=true;
+  }
+
+  var wasShut=[];
+  function openAll(open){
+    if(open){
+      wasShut=[].slice.call(document.querySelectorAll('details:not([open])'));
+      wasShut.forEach(function(d){ d.open=true; });
+    } else {
+      wasShut.forEach(function(d){ d.open=false; });
+      wasShut=[];
+    }
+  }
+
+  function paint(on){
+    btn.querySelector('.lbl').textContent = on ? 'Skimming' : 'Skim mode';
+    btn.querySelector('.n').textContent =
+      on ? (hid ? ('hid ' + hid + ' of ' + total) : 'nothing to hide here') : '';
+  }
+
+  function toggle(){
+    var on=!document.body.classList.contains('skimOn');
+    if(on) mark();
+    document.body.classList.toggle('skimOn', on);
+    openAll(on); paint(on);
+    try{ localStorage.setItem('skimOn', on?'1':'0'); }catch(e){}
+  }
+
+  function build(){
+    /* an iframe shell has no prose of its own - the inner document carries its own
+       button, so a second dead one on the wrapper would just be a lie */
+    /* textContent, not innerText: innerText is render-aware, so on a page whose
+       content sits inside collapsed <details> it reads near-zero and this test would
+       suppress the button on a perfectly good page. That happened. */
+    if(document.querySelector('iframe') &&
+       (document.body.textContent||'').trim().length < 6000) return;
+
+    btn=document.createElement('button');
+    btn.type='button'; btn.id='skimBtn';
+    btn.setAttribute('aria-label','Toggle skim mode - hide the long prose, keep the rules');
+    btn.innerHTML='⚡ <span class="lbl">Skim mode</span> <span class="n"></span>';
+    btn.addEventListener('click', toggle);
+    document.body.appendChild(btn);
+    paint(false);
+
+  /* ---- draggable, because a button welded to a corner covers what she is reading
+     and at 300% zoom there is not much screen left to lose. Travel under 6px counts
+     as a click, 6px or more is a drag and the click is swallowed. */
+  var KEYPOS='skimBtnPos';
+  function clamp(x,y){
+    var r=btn.getBoundingClientRect(), m=4;
+    return [Math.max(m,Math.min(x,window.innerWidth-r.width-m)),
+            Math.max(m,Math.min(y,window.innerHeight-r.height-m))];
+  }
+  function place(x,y,save){
+    var p=clamp(x,y);
+    btn.style.left=p[0]+'px'; btn.style.top=p[1]+'px';
+    btn.style.right='auto'; btn.style.bottom='auto';
+    if(save){ try{ localStorage.setItem(KEYPOS,JSON.stringify(p)); }catch(e){} }
+  }
+  function restore(){
+    try{
+      var p=JSON.parse(localStorage.getItem(KEYPOS)||'null');
+      if(p && p.length===2) place(p[0],p[1],false);
+    }catch(e){}
+  }
+
+  var down=null, moved=false;
+  btn.addEventListener('pointerdown',function(e){
+    if(e.button && e.button!==0) return;
+    var r=btn.getBoundingClientRect();
+    down={x:e.clientX,y:e.clientY,dx:e.clientX-r.left,dy:e.clientY-r.top};
+    moved=false;
+    btn.setPointerCapture&&btn.setPointerCapture(e.pointerId);
+  });
+  btn.addEventListener('pointermove',function(e){
+    if(!down) return;
+    if(!moved && Math.abs(e.clientX-down.x)<6 && Math.abs(e.clientY-down.y)<6) return;
+    moved=true; btn.classList.add('dragging');
+    place(e.clientX-down.dx, e.clientY-down.dy, false);
+    e.preventDefault();
+  });
+  function end(e){
+    if(!down) return;
+    down=null;
+    if(moved){
+      btn.classList.remove('dragging');
+      var r=btn.getBoundingClientRect();
+      place(r.left,r.top,true);
+      /* swallow the click this drag would otherwise fire */
+      var kill=function(ev){ ev.stopPropagation(); ev.preventDefault();
+        btn.removeEventListener('click',kill,true); };
+      btn.addEventListener('click',kill,true);
+      setTimeout(function(){ btn.removeEventListener('click',kill,true); },0);
+    }
+  }
+  btn.addEventListener('pointerup',end);
+  btn.addEventListener('pointercancel',end);
+
+  /* arrows nudge it, so moving it never needs a precise drag */
+  btn.addEventListener('keydown',function(e){
+    var d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];
+    if(!d) return;
+    e.preventDefault();
+    var step=e.shiftKey?48:12, r=btn.getBoundingClientRect();
+    place(r.left+d[0]*step, r.top+d[1]*step, true);
+  });
+
+  window.addEventListener('resize',function(){
+    var r=btn.getBoundingClientRect(); place(r.left,r.top,false);
+  });
+  restore();
+
+    /* ---- never sit under the nav cluster ---------------------------- */
+    function unstack(){
+      var nb=document.getElementById('navBtns');
+      if(!nb || !btn) return;
+      var a=btn.getBoundingClientRect(), b=nb.getBoundingClientRect();
+      var hit = !(a.right < b.left-4 || a.left > b.right+4 ||
+                  a.bottom < b.top-4 || a.top > b.bottom+4);
+      if(!hit) return;
+      var below = b.bottom + 10;
+      var top = (below + a.height + 6 <= window.innerHeight) ? below
+                                                             : Math.max(6, b.top - a.height - 10);
+      btn.style.top = top + 'px';
+      btn.style.left = Math.max(6, Math.min(a.left, window.innerWidth - a.width - 6)) + 'px';
+      btn.style.right = 'auto'; btn.style.bottom = 'auto';
+    }
+    setTimeout(unstack, 60);
+    window.addEventListener('resize', function(){ setTimeout(unstack, 60); });
+
+    var want=false;
+    try{ want=localStorage.getItem('skimOn')==='1'; }catch(e){}
+    if(want) toggle();
+  }
+
+  if(document.readyState==='loading')
+    document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+</script>
+</body></html>
