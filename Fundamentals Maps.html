@@ -1,0 +1,1677 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Fundamentals Maps &middot; NUR 125</title>
+<style>
+:root{--amethyst:157,92,255;--sapphire:47,107,255;--emerald:18,184,134;--teal:0,194,199;
+ --topaz:255,194,51;--ruby:255,59,107;--citrine:255,138,61;--garnet:192,34,85;
+ --line:rgba(255,255,255,.30)}
+*{box-sizing:border-box}html,body{margin:0;padding:0}html{scroll-behavior:smooth}
+body{background-color:#140b24;color:#fff;font:16px/1.55 "Segoe UI",system-ui,-apple-system,sans-serif;
+ padding:0 0 70px}
+body::before{content:"";position:fixed;inset:0;background-image:url("bg.jpg");
+ background-size:cover;background-position:center;background-color:#140b24;z-index:-1}
+.wrap{max-width:1060px;margin:0 auto;padding:0 14px}
+
+.hero{background:rgba(20,11,36,.62);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+ border:1px solid var(--line);border-radius:20px;padding:17px 21px 15px;margin:16px 0 14px;
+ box-shadow:0 10px 34px rgba(0,0,0,.45)}
+.hero .crumb{font-size:0.82rem;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;opacity:.85}
+.hero h1{margin:3px 0 6px;font-size:clamp(1.4rem,4vw,2rem);font-weight:900;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.hero h1 .glow{color:#ffd75e}
+.hero p{margin:0 0 4px;font-size:.93rem}
+.key{display:flex;flex-wrap:wrap;gap:7px;margin:11px 0 2px}
+.key div{flex:1 1 168px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.26);
+ border-radius:12px;padding:8px 11px}
+.key b{display:block;font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;color:#ffd75e}
+.key span{font-size:.84rem}
+
+.bar{position:sticky;top:0;z-index:60;background:rgba(14,8,26,.92);
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+ border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:14px}
+.bar .wrap{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding-right:236px}
+@media(max-width:1024px){.bar .wrap{padding-right:132px}}
+@media(max-width:560px){.bar .wrap{padding-right:124px}}
+#q{flex:1 1 200px;min-width:145px;font:700 1.05rem inherit;padding:12px 14px;border-radius:13px;
+ border:2px solid rgba(255,255,255,.34);background:rgba(0,0,0,.5);color:#fff}
+#q:focus{outline:none;border-color:rgba(var(--topaz),.95)}
+#q::placeholder{color:#c7b5e8;font-weight:600}
+.bar button{background:rgba(255,255,255,.13);color:#fff;border:1px solid var(--line);
+ border-radius:12px;padding:11px 15px;font:800 .88rem inherit;cursor:pointer;white-space:nowrap}
+.bar button:hover{background:rgba(255,255,255,.27)}
+.bar button.on{background:rgba(var(--topaz),.92);color:#231a02;border-color:rgba(var(--topaz),.95)}
+#skim.on{background:rgba(var(--ruby),.92);color:#fff;border-color:rgba(var(--ruby),.95)}
+#count{font-size:.9rem;font-weight:800;color:#ffe49b;margin:0 0 12px}
+
+.dm{background:rgba(var(--amethyst),.60);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+ border:1px solid var(--line);border-left:6px solid rgba(255,255,255,.55);border-radius:16px;
+ margin-bottom:11px;box-shadow:0 8px 26px rgba(0,0,0,.40);overflow:hidden}
+.dm[data-test="mh"]{background:rgba(var(--teal),.58)}
+.dm[data-test="fund"]{background:rgba(var(--emerald),.58)}
+.dm[data-test="cardiac"]{background:rgba(var(--ruby),.56)}
+.dm[data-test="resp"]{background:rgba(var(--sapphire),.58)}
+.dm[data-test="renal"]{background:rgba(var(--citrine),.56)}
+.dm[data-test="msk"]{background:rgba(var(--garnet),.58)}
+.dm>h2{margin:0;font-size:1.1rem;font-weight:900;padding:14px 17px;cursor:pointer;
+ display:flex;align-items:center;gap:9px;user-select:none}
+.dm>h2::after{content:"\25BE";margin-left:auto;font-size:1rem;opacity:.9;transition:transform .2s}
+.dm.open>h2::after{transform:rotate(180deg)}
+.dm>h2:hover{background:rgba(255,255,255,.09)}
+.dm .body{display:none;padding:0 17px 15px}
+.dm.open .body{display:block}
+.one{margin:0 0 11px;font-size:.93rem;font-style:italic;background:rgba(0,0,0,.28);
+ border-left:4px solid rgba(255,215,94,.9);border-radius:9px;padding:8px 12px}
+.g{background:rgba(0,0,0,.27);border:1px solid rgba(255,255,255,.2);
+ border-left:5px solid rgba(255,255,255,.5);border-radius:12px;padding:10px 14px;margin-bottom:9px}
+.g>b{display:block;font-size:0.86rem;font-weight:900;letter-spacing:.7px;
+ text-transform:uppercase;color:#ffd75e;margin-bottom:5px}
+.g1{border-left-color:rgb(var(--sapphire))} .g2{border-left-color:rgb(var(--teal))}
+.g3{border-left-color:rgb(var(--emerald))} .g4{border-left-color:rgb(var(--citrine))}
+.g5{border-left-color:rgb(var(--ruby))}
+.g ul{margin:3px 0 0;padding-left:19px;font-size:.9rem}
+.g li{margin-bottom:4px}
+.g ul ul{margin:3px 0 4px;font-size:.97em}
+.g p{margin:3px 0;font-size:.9rem}
+.tell{background:rgba(var(--topaz),.90);color:#231a02;border-radius:12px;padding:10px 14px;
+ font-size:.92rem;font-weight:700}
+.tell b{color:#231a02}
+mark{background:rgba(255,194,51,.95);color:#231a02;padding:1px 5px;border-radius:4px;font-weight:800}
+.never{text-decoration:underline wavy rgba(255,59,107,.95);text-underline-offset:3px;font-weight:800}
+
+/* ── Skim mode ──────────────────────────────────────────────────────
+   Everything opens, but each card collapses to only the parts that carry
+   the signal: the hook, the highlighted phrase, the never-do rules and the
+   takeaway. About a 20-second pass per condition instead of two minutes. */
+body.skim .dm{margin-bottom:8px}
+body.skim .dm .body{display:block}
+body.skim .dm>h2::after{content:""}
+body.skim .g{padding:7px 12px;margin-bottom:6px}
+body.skim .g li{display:none}
+body.skim .g li:has(mark),
+body.skim .g li:has(.never){display:list-item}
+body.skim .g:not(:has(mark)):not(:has(.never)){display:none}
+body.skim .g p{display:none}
+body.skim .g ul ul{display:none}
+.skimnote{display:none;font-size:.82rem;opacity:.9;font-style:italic;margin:0 0 10px}
+body.skim .skimnote{display:block}
+body.skim .key{display:none}
+
+.none{background:rgba(0,0,0,.36);border:1px dashed var(--line);border-radius:14px;padding:16px 18px}
+.foot{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);font-size:.82rem;opacity:.85}
+@media(max-width:620px){.dm>h2{font-size:1rem;padding:12px 14px}.dm .body{padding:0 13px 13px}}
+@media print{.bar{display:none}.dm .body{display:block!important}}
+</style>
+<style>
+#navBtns{position:fixed;top:10px;right:12px;z-index:2147483000;display:flex;gap:7px;align-items:center}
+#navBtns a{display:inline-block;font:700 .8rem 'Segoe UI',system-ui,sans-serif;
+ padding:7px 13px;border-radius:22px;text-decoration:none;cursor:pointer;
+ border:1px solid rgba(255,255,255,.22);box-shadow:0 4px 14px rgba(0,0,0,.5);
+ color:#fff;white-space:nowrap;line-height:1.3;backdrop-filter:blur(6px)}
+#navBtns .nbLook{background:linear-gradient(135deg,#1d4ed8,#2f6bff)}
+#navBtns .nbHome{background:linear-gradient(135deg,#5a2d82,#8e2d6b)}
+#navBtns .nbAbsn{background:linear-gradient(135deg,#0f7d6b,#12b886)}
+#navBtns a:hover{filter:brightness(1.15)}
+@media(max-width:1024px){#navBtns{top:6px;right:6px;gap:5px}
+ #navBtns .nbLabel{display:none}#navBtns a{padding:8px 11px;font-size:1rem;line-height:1}}
+@media(max-width:560px){#navBtns a{padding:7px 9px;font-size:.95rem}}
+@media print{#navBtns{display:none}}
+</style><style id="skimCSS">
+#skimBtn{position:fixed;left:12px;bottom:12px;z-index:9000;
+ display:flex;align-items:center;gap:8px;
+ background:rgba(157,92,255,.92);border:1px solid rgba(255,255,255,.45);color:#fff;
+ border-radius:14px;padding:11px 14px;cursor:pointer;
+ font:800 .95rem 'Segoe UI',system-ui,sans-serif;
+ box-shadow:0 6px 20px rgba(0,0,0,.45);backdrop-filter:blur(6px);
+ max-width:calc(100vw - 24px)}
+#skimBtn:hover{background:rgba(157,92,255,1)}
+#skimBtn .n{font-weight:900;font-size:.88rem;opacity:.92;white-space:nowrap}
+body.skimOn #skimBtn{background:rgba(255,194,51,.95);color:#231a02;
+ border-color:rgba(0,0,0,.35)}
+body.skimOn .skimHide{display:none !important}
+body.skimOn .skimKeep{outline:0}
+
+#skimBtn{touch-action:none;cursor:grab}
+#skimBtn.dragging{opacity:.92;cursor:grabbing}
+
+#skimBtn:focus-visible{outline:3px solid #ffd76a;outline-offset:2px}
+@media print{#skimBtn{display:none}}
+</style>
+</head><body>
+<style id="navDragCSS">
+#navBtns{touch-action:none;cursor:grab}
+#navBtns.dragging{opacity:.9;cursor:grabbing}
+#navBtns.hidden-by-overlay{display:none !important}
+
+
+#navBtns.dragging 
+@media print{#navBtns{display:none !important}}
+</style>
+<div id="navBtns"><a class="nbLook" href="https://arnold7777777.github.io/NUR-198-Study-Guide/Look%20It%20Up.html" title="Look up any topic">&#128269;<span class="nbLabel"> Look Up</span></a><a class="nbHome" href="index.html" title="Home">&#127968;<span class="nbLabel"> Home</span></a><a class="nbAbsn" href="https://arnold7777777.github.io/ABSN-Study-Hub/" title="ABSN Study Hub">&#127891;<span class="nbLabel"> ABSN Hub</span></a></div>
+<div class="wrap">
+ <div class="hero">
+  <div class="crumb">NUR 125 &middot; Fundamentals &middot; one framework</div>
+  <h1>Fundamentals <span class="glow">Maps</span></h1>
+  <p>The same five questions, asked about every fundamentals concept. Group 4 is delegation and scope &mdash; ATI tests that harder here than anywhere else.</p>
+  <div class="key">
+   <div><b>1 &middot; What is happening</b><span>The change &middot; why the signs follow</span></div>
+   <div><b>2 &middot; How do you know</b><span>Assessment &middot; labs &middot; deterioration</span></div>
+   <div><b>3 &middot; How do you fix it</b><span>Priorities &middot; meds &middot; orders</span></div>
+   <div><b>4 &middot; Who is involved</b><span>The team &middot; delegation</span></div>
+   <div><b>5 &middot; Worse or prevented</b><span>Complications &middot; teaching</span></div>
+  </div>
+ </div>
+</div>
+<div class="bar"><div class="wrap">
+ <input id="q" type="search" placeholder="Filter&hellip;" autocomplete="off">
+ <button data-f="all" class="on">All</button>
+ <button id="skim" type="button" title="Strip every card to its key points (press s)">&#9889; Skim mode</button>
+ <button id="expand" type="button">Open all</button>
+</div></div>
+<div class="wrap">
+<p id="count"></p>
+<p class="skimnote">Skim mode: showing only the hook, the highlighted phrase, the never-do rules and the takeaway from each card. Tap <b>Leave skim</b> for the full version.</p>
+<section class="dm" id="delegation" data-name="Delegation &amp; Scope of Practice" data-test="fund">
+ <h2>👥 Delegation &amp; Scope of Practice</h2>
+ <p class="one">One-line hook: <b>you can delegate a task, never the nursing process</b> — assessment, diagnosis, planning, evaluation and teaching stay with the RN, always.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept, not an organ.)</i> <b>Delegation is transferring the authority to perform a task while keeping the accountability for the outcome.</b> The RN never hands off responsibility, only the doing.</li>
+   <li>It exists because care is a team sport and the RN's license is the one that certifies judgment — so judgment work cannot leave the RN.</li>
+   <li><b>The five rights of delegation:</b> right <b>task</b> · right <b>circumstance</b> · right <b>person</b> · right <b>direction/communication</b> · right <b>supervision/evaluation</b>.</li>
+   <li><b>Scope of practice</b> is defined by the state <i>Nurse Practice Act</i>, then narrowed further by facility policy and by the individual's demonstrated competence. Whichever is most restrictive wins.</li>
+   <li>Delegate tasks that are <b>routine, standardized, predictable, low-risk</b> and on a <b>stable</b> patient. Anything unstable, new, or requiring interpretation goes to the RN.</li>
+   <li><mark>If the patient is unstable, unpredictable, or the outcome is uncertain, the RN does it.</mark></li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li>Before delegating, ask: is this patient <b>stable</b>? Is the outcome <b>predictable</b>? Does it need <b>assessment, teaching, or clinical judgment</b>? If yes to the last one, do not delegate.</li>
+   <li><b>ATI question shape:</b> "Which task should the nurse assign to the LPN / UAP?" The correct answer is almost always the <i>most routine task on the most stable patient</i>.</li>
+   <li>Red flag that delegation went wrong: the UAP reports a change, and no RN reassessed it. <b>Data collected by others still has to be interpreted by the RN.</b></li>
+   <li>Watch for <b>competence</b>, not just role — a task inside the LPN scope still cannot go to an LPN who has never been trained on it at that facility.</li>
+   <li>Signs of unsafe direction: no time frame given, no "report back to me if…" parameters, no check that the person understood.</li>
+   <li>🚨 A UAP saying "I already gave the med / I did the assessment" = an incident, an error, and a scope violation to report up the chain.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li>Give <b>specific direction</b>: what, on whom, by when, and exactly <b>what to report back and at what threshold</b> ("tell me if the systolic is under 100").</li>
+   <li><b>Supervise and follow up</b> — check the task was done, check the result, and give feedback. Supervision is the right most often skipped and most often tested.</li>
+   <li>Prioritize using <b>ABC → Maslow → safety/acute-before-chronic → unstable-before-stable</b> when deciding who the RN sees personally.</li>
+   <li>Match the assignment to the shift reality: give the LPN the <b>stable, chronic, predictable</b> patients and keep the fresh post-ops, new admissions, and unstable patients yourself.</li>
+   <li>If asked to do something outside your scope, <b>refuse and escalate</b> through the chain of command — charge nurse first — and document.</li>
+   <li><span class="never">Never delegate assessment, nursing diagnosis, planning, evaluation, initial patient teaching, or the care of an unstable patient.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN only:</b> initial/admission assessment, nursing diagnosis, care plan, evaluating outcomes, <b>patient teaching</b>, discharge teaching, IV push medications, blood product administration and the first 15 minutes of the transfusion, triage, unstable patients, and delegation itself.</li>
+   <li><b>LPN/LVN may:</b> give most oral, IM and SubQ medications, do sterile dressing changes, tracheostomy care and suctioning, insert urinary catheters and NG tubes, monitor findings, <i>reinforce</i> teaching the RN already started, and care for <b>stable patients with predictable outcomes</b>.</li>
+   <li><b>LPN/LVN generally may NOT:</b> IV push medications, blood products, IV chemotherapy, central line care (varies by state), the initial assessment, the care plan, or the first teaching session.</li>
+   <li><b>UAP/AP may:</b> ADLs — bathing, feeding a patient with <i>no</i> swallowing risk, oral care, toileting, ambulating, transferring, positioning, bed making — plus <b>vital signs, I&amp;O, weights, routine specimen collection, and postmortem care</b> on stable patients.</li>
+   <li><b>A UAP may NEVER:</b> assess, teach, evaluate, plan, interpret data, give medications, take verbal or telephone orders, perform sterile procedures, insert or manage tubes, or care for an unstable patient. <i>Standard shortcut: no A-P-E-T (assess, plan, evaluate, teach) and no meds.</i></li>
+   <li><b>Charge nurse / nurse manager</b> — resolves assignment conflicts and staffing; <b>provider</b> — orders; <b>you</b> — still accountable for the delegated outcome.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>⚠️ <b>Under-delegating</b> is also a problem — the RN drowns, and the truly RN-only work gets rushed.</li>
+   <li>🚨 Over-delegation → missed deterioration, medication error, sentinel event, and <b>liability for the RN</b>, because accountability never transferred.</li>
+   <li>Prevent by giving <b>parameters, not just tasks</b>: every delegation ends with "report back to me if ___."</li>
+   <li>✅ Round on delegated care yourself at least once a shift — the RN still lays eyes and hands on every patient.</li>
+   <li>✅ Document what was delegated, to whom, and what was reported back.</li>
+   <li><span class="never">Never sign off on care you did not verify, and never chart an assessment based on someone else's report as if you performed it.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> The five rights are <b>task, circumstance, person, direction, supervision</b>. The RN keeps <b>A-P-E-T</b> — <b>A</b>ssess, <b>P</b>lan, <b>E</b>valuate, <b>T</b>each — and everything unstable. UAP = stable patients, routine tasks, no meds, no assessment.</div>
+</section>
+
+<section class="dm" id="therapeutic-communication" data-name="Therapeutic Communication" data-test="fund">
+ <h2>💬 Therapeutic Communication</h2>
+ <p class="one">One-line hook: the right answer <b>stays with the patient's feeling and invites them to say more</b> — it never reassures, advises, or changes the subject.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept.)</i> <b>Therapeutic communication is goal-directed talk that centers the patient's experience</b>, not the nurse's comfort. It exists because trust is the vehicle for every other intervention.</li>
+   <li>It works because naming a feeling out loud lowers arousal — the patient who feels <i>heard</i> gives you better data and cooperates more.</li>
+   <li>Communication is <b>verbal + nonverbal + paraverbal</b>. When they conflict, patients believe the <b>nonverbal</b> — so posture, eye contact and tone carry more than word choice.</li>
+   <li>Three phases of the nurse-patient relationship: <b>orientation</b> (trust, boundaries, purpose), <b>working</b> (the real work happens here), <b>termination</b> (review progress, prepare for the ending).</li>
+   <li>The relationship is <b>therapeutic, not social</b> — it has a purpose, boundaries, and an end date.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Therapeutic techniques:</b> open-ended questions, <b>silence</b>, reflecting, restating, clarifying, focusing, offering self, making observations, summarizing, presenting reality, giving broad openings.</li>
+   <li><b>Non-therapeutic — these are the wrong answers:</b> <i>false reassurance</i> ("everything will be fine"), <i>giving advice</i> ("if I were you"), approval or disapproval, <b>"why" questions</b>, changing the subject, minimizing, defending staff, stereotyped clichés, and closed-ended questions.</li>
+   <li><mark>If the option starts with "Don't worry," "Why," "I think you should," or talks about the nurse — it is wrong.</mark></li>
+   <li>Watch nonverbal cues: avoiding eye contact, guarded posture, flat tone, long pauses — these are assessment data, not noise.</li>
+   <li>Assess barriers first: <b>hearing, vision, language, literacy, cognition, pain, and cultural norms</b> around eye contact and touch.</li>
+   <li>Red flag: patient shuts down or gives one-word answers → your last statement was probably a block.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Sit down, at eye level, unhurried.</b> Sitting reads as "I have time" even when you have four minutes.</li>
+   <li><b>Reflect the feeling, then open it up:</b> "You sound frightened about the surgery. Tell me more about that."</li>
+   <li>Use <b>silence deliberately</b> — it is a technique, not an awkward gap. Let the patient fill it.</li>
+   <li><b>Validate before you educate.</b> Teaching lands only after the feeling is acknowledged.</li>
+   <li>For <b>hearing impairment</b>: face the patient, get their attention first, speak in a normal tone at a slightly slower pace, lower your pitch, reduce background noise, write things down. For <b>vision impairment</b>: announce yourself on entering and before leaving, describe what you are doing, orient by clock positions, keep items where you found them.</li>
+   <li>Use a <b>trained medical interpreter</b> for language barriers; speak to the <b>patient</b>, not the interpreter.</li>
+   <li><span class="never">Never use a family member — especially a child — as the interpreter for consent, teaching, or clinical information.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — establishes and maintains the therapeutic relationship; <b>initial teaching is RN-only</b> and cannot be delegated.</li>
+   <li><b>LPN</b> — <i>reinforces</i> teaching the RN has already given and reports patient responses.</li>
+   <li><b>UAP</b> — may sit with, listen to, and be present with a patient, and should report what a patient says, but <b>may not counsel, teach, or interpret</b> what it means.</li>
+   <li><b>Trained interpreter / language line</b> — required for consent and teaching; documented in the record.</li>
+   <li><b>Speech-language pathologist</b> — aphasia and communication devices; <b>social work / chaplaincy</b> — psychosocial and spiritual distress.</li>
+   <li><b>Provider</b> — must be the one to deliver a new diagnosis or prognosis; the nurse stays and supports afterward.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>⚠️ Broken trust is slow to rebuild — one dismissive comment ends disclosure for the rest of the admission.</li>
+   <li>⚠️ <b>Boundary drift</b>: sharing personal problems, accepting gifts, socializing outside the role, friending on social media. That is where therapeutic relationships fail.</li>
+   <li>✅ Prevent by keeping the focus on the patient, using self-disclosure rarely and only when it serves them.</li>
+   <li>✅ Teach families the same skills — presence and listening over advice-giving.</li>
+   <li>✅ Document quotes verbatim in the patient's own words; do not paraphrase feelings into your interpretation.</li>
+   <li><span class="never">Never promise to keep a secret that involves harm to self or others, and never give false reassurance about an outcome you cannot guarantee.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> The right option is <b>open-ended, feeling-focused, and patient-centered</b>. Eliminate anything with <b>"why," "don't worry," "you should,"</b> or the word <b>"I"</b> about the nurse.</div>
+</section>
+
+<section class="dm" id="infection-control" data-name="Infection Control &amp; Isolation Precautions" data-test="fund">
+ <h2>🦠 Infection Control &amp; Isolation Precautions</h2>
+ <p class="one">One-line hook: break the <b>chain of infection</b> at the easiest link — <b>mode of transmission</b> — and the precaution type tells you exactly which PPE.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><b>Chain of infection:</b> infectious agent → reservoir → portal of exit → <b>mode of transmission</b> → portal of entry → susceptible host. Break any link and transmission stops.</li>
+   <li><b>Hand hygiene breaks the transmission link</b> and is the single most effective intervention — that is why it is the answer so often.</li>
+   <li>Stages of infection: <b>incubation → prodromal → illness → convalescence</b>. Patients are often contagious in the prodromal stage, before they look sick.</li>
+   <li>Body's defenses: intact skin, mucous membranes and cilia, gastric acid, normal flora, then inflammation, then the immune response. <b>Every tube and every IV is a hole in that first line.</b></li>
+   <li>Localized signs = redness, warmth, swelling, pain, loss of function, drainage. Systemic = fever, chills, malaise, <b>rising WBC with a left shift</b>.</li>
+   <li>Older adults and the immunocompromised may show <b>no fever</b> — the first sign of sepsis in an older adult is often <b>confusion</b>.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li>🧪 <b>WBC 5,000–10,000/mm³</b>. Elevated with a left shift = bacterial; <b>neutropenia (ANC &lt;1,000, critical &lt;500)</b> = the patient cannot mount signs at all.</li>
+   <li>🧪 Cultures <b>before</b> the first antibiotic dose — always. ESR and CRP rise with inflammation.</li>
+   <li><b>Standard precautions on every patient, every time</b>: hand hygiene, gloves for blood/body fluids/mucous membranes/non-intact skin, plus gown, mask and eye protection whenever splash is possible.</li>
+   <li><b>Contact</b> — gown + gloves, private room or cohort, dedicated equipment. <i>C. difficile, MRSA, VRE, RSV, scabies, lice, impetigo, norovirus, draining wounds, conjunctivitis.</i></li>
+   <li><b>Droplet</b> — surgical mask within ~3–6 feet, private room, door may stay open. <i>Influenza, pertussis, meningococcal meningitis, mumps, rubella, group A strep, epiglottitis, diphtheria.</i></li>
+   <li><b>Airborne</b> — <b>N95 (fit-tested)</b>, negative-pressure airborne infection isolation room, <b>door closed</b>, 6–12 air exchanges/hour. <i>TB, measles (rubeola), varicella, disseminated zoster, SARS-CoV-2.</i> <b>Varicella and disseminated zoster need airborne + contact.</b></li>
+   <li><b>Protective (neutropenic) environment</b> — <b>positive</b> pressure, HEPA filtration, no fresh flowers, plants, or standing water, no ill visitors. <i>This one protects the patient from us.</i></li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Donning order: gown → mask or respirator → goggles/face shield → gloves.</b> Gloves go on last and cover the gown cuff.</li>
+   <li><b>Doffing order: gloves → goggles/face shield → gown → mask or respirator.</b> <i>Gloves first because they are the dirtiest; the mask last because the room air is still contaminated.</i></li>
+   <li><mark>Remove the N95 <b>after</b> leaving the room and closing the door — everything else comes off inside at the doorway.</mark> Hand hygiene after every doffing step where hands get contaminated, and again at the end.</li>
+   <li><b>Transport:</b> the <i>patient</i> wears a surgical mask (never an N95) for airborne or droplet transport; cover infectious wounds; notify the receiving department first.</li>
+   <li>Dedicate equipment — stethoscope, BP cuff, thermometer — to the isolation room, or disinfect between patients.</li>
+   <li>Sharps go directly into the puncture-resistant container at the point of use.</li>
+   <li><span class="never">Never recap a needle, and never leave an isolation room wearing any PPE except the respirator you remove just outside.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>Infection preventionist</b> — surveillance, outbreak response, decides precaution type and when it is discontinued.</li>
+   <li><b>RN</b> — determines and initiates precautions, teaches the patient/family/visitors, and is the one who assesses for infection.</li>
+   <li><b>UAP may</b> wear PPE, provide ADLs, take vital signs and clean equipment in an isolation room; a <b>UAP may not</b> decide the precaution type or assess for infection.</li>
+   <li><b>Environmental services</b> — <b>bleach-based cleaning is required for C. difficile and norovirus</b>; alcohol does not kill spores.</li>
+   <li><b>Employee/occupational health</b> — fit-testing for N95s, exposure follow-up, immunization and TB screening.</li>
+   <li><b>Provider / pharmacy</b> — antibiotic stewardship, cultures before antibiotics, de-escalation.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Sepsis</b> — fever or hypothermia, tachycardia, tachypnea, hypotension, altered mental status, <b>rising lactate</b>. Cultures, then broad-spectrum antibiotics within the first hour.</li>
+   <li>⚠️ HAIs: <b>CAUTI, CLABSI, VAP, SSI, C. difficile</b>. Almost all are prevented by removing devices early and doing hand hygiene.</li>
+   <li>⚠️ Antibiotic resistance from incomplete courses → <b>teach patients to finish the entire prescription even after they feel well</b>.</li>
+   <li>✅ Vaccination — patient, family, and staff — is the cheapest prevention on the list.</li>
+   <li>✅ Isolation causes real <b>sensory deprivation and depression</b>: spend deliberate time in the room, explain the precautions, and do not shortchange interaction.</li>
+   <li><span class="never">Never use alcohol-based rub as the only hand hygiene after caring for a patient with C. difficile or norovirus — soap, water, and friction are required.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Don gown-mask-goggles-gloves; doff gloves-goggles-gown-mask.</b> Airborne = N95 + negative pressure + door closed (TB, measles, varicella). Droplet = surgical mask. Contact = gown + gloves. <b>C. diff = contact + soap and water + bleach.</b></div>
+</section>
+
+<section class="dm" id="sterile-technique" data-name="Sterile Technique" data-test="fund">
+ <h2>🧤 Sterile Technique</h2>
+ <p class="one">One-line hook: <b>only sterile touches sterile</b> — and if you cannot see it, or it is below your waist, or it is wet, it is already contaminated.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept.)</i> <b>Surgical asepsis eliminates all microorganisms and spores</b>; medical asepsis (clean technique) only reduces them. Sterile technique exists because you are about to bypass the skin — the body's best barrier.</li>
+   <li>Required whenever you enter a <b>normally sterile body cavity or break the skin</b>: surgery, urinary catheterization, IV and central line insertion, tracheal suctioning, sterile dressing changes, injections.</li>
+   <li>Contamination happens by <b>contact, airborne fallout, and capillary action</b> — a wet field wicks organisms from the unsterile surface underneath straight up into the field.</li>
+   <li><b>Moisture = contamination.</b> This is the physical principle behind half the rules on this page.</li>
+   <li>Sterility is an <i>all-or-nothing</i> state. There is no "a little contaminated" — if you are unsure, it is contaminated.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li>Before opening: check the package for <b>tears, punctures, water stains, and the expiration date</b>. Any of those = discard it.</li>
+   <li>Check the <b>chemical indicator strip/tape</b> has changed color — that says it went through the sterilizer.</li>
+   <li><b>The outer 1 inch (2.5 cm) of the sterile field is contaminated.</b> Nothing sterile may be placed there.</li>
+   <li><b>Anything below waist level or below the level of the table is contaminated</b>, including your own sterile gloved hands if you drop them.</li>
+   <li><b>Anything out of your line of sight is contaminated</b> — which is why you never turn your back on the field and never leave it unattended.</li>
+   <li>🚨 If the field is breached, do not "work around it" — stop, discard, and set up again.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Set up on a clean, dry surface at or above waist level.</b> Open the flap <b>farthest from you first</b>, then the two sides, then the flap nearest you <b>last</b> — so you never reach across the field.</li>
+   <li>Add items by <b>dropping them onto the field from about 6 inches</b>, holding the wrapper so your hand never crosses over the sterile surface.</li>
+   <li>Pouring solution: hold the bottle <b>4–6 inches above the receptacle</b>, cap <b>up</b> on a clean surface (or keep it in your hand), pour off a small amount to clean the lip first, and <b>do not splash</b> — a wet drape is a contaminated drape.</li>
+   <li>Keep sterile gloved hands <b>above your waist, in front of your body, and in view</b>. Clasp them together when you are not actively working.</li>
+   <li>Move <b>around</b> the field facing it, keeping about a foot of distance; do not reach over it, and do not talk, cough, or sneeze across it.</li>
+   <li>Wear a mask if you have a respiratory infection or the procedure requires it, and turn your head away from the field to speak.</li>
+   <li><span class="never">Never turn your back on a sterile field, never reach across it, and never use a package that is wet, torn, or expired.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — sets up and maintains the field, performs sterile insertion procedures, and is accountable for calling a break in technique.</li>
+   <li><b>LPN/LVN</b> — commonly performs <b>sterile dressing changes, tracheostomy care, suctioning, and urinary catheterization</b> within state scope and facility competency.</li>
+   <li><b>UAP may NOT perform any sterile procedure.</b> A UAP may bring supplies, position the patient, and hold a limb steady, but may not open, touch, or maintain the field.</li>
+   <li><b>Circulating nurse (OR)</b> — unscrubbed; opens sterile supplies onto the field, does counts, advocates, and is the one who names a contamination out loud.</li>
+   <li><b>Scrub nurse / surgical tech</b> — scrubbed and gowned; manages instruments on the field.</li>
+   <li><b>Central sterile processing</b> — cleans, packages, sterilizes, and documents indicators; the nurse still verifies the package at the bedside.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 Breaks in sterile technique → <b>surgical site infection, CAUTI, CLABSI, ventilator-associated pneumonia, sepsis</b>.</li>
+   <li>⚠️ The most common real-world break is <b>reaching over the field</b> or a <b>drape getting wet</b> — both are silent.</li>
+   <li>✅ Prevent by setting up so everything you need is on the field <i>before</i> you glove, and by having a second person available to fetch.</li>
+   <li>✅ <mark>Anyone in the room can call a break in sterile technique, and it must be corrected — including a student calling out a surgeon.</mark></li>
+   <li>✅ Teach the patient not to reach toward, touch, or blow on the field, and to tell you if they need to move or cough.</li>
+   <li><span class="never">Never leave a sterile field unattended, and never assume that because no one saw a break, there was not one.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>1-inch border is dirty, below the waist is dirty, out of sight is dirty, wet is dirty.</b> Open the far flap first, the near flap last, and never turn your back on the field.</div>
+</section>
+
+<section class="dm" id="hand-hygiene" data-name="Hand Hygiene" data-test="fund">
+ <h2>🧼 Hand Hygiene</h2>
+ <p class="one">One-line hook: <b>hand hygiene is the single most effective way to prevent infection</b> — and the one exam answer that is right more often than any other.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept.)</i> Hands carry <b>transient flora</b> — picked up from surfaces and patients, loosely attached, and <b>removable by friction</b>. That is the population you are targeting.</li>
+   <li><b>Resident flora</b> live deeper in the skin and are not fully removed by routine washing; surgical scrub reduces them but does not eliminate them.</li>
+   <li><b>Alcohol-based hand rub (60–95% alcohol)</b> works by denaturing proteins. It kills faster and irritates skin less than soap — so it is the <i>preferred</i> method when hands are not visibly soiled.</li>
+   <li><b>Alcohol does not kill C. difficile spores or non-enveloped viruses like norovirus</b> — those need <b>soap, water, and mechanical friction</b> to physically wash them off.</li>
+   <li>Hand hygiene breaks the <b>mode of transmission</b> link in the chain of infection, which is the easiest link to break.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>The five moments (WHO):</b> before touching a patient · before a clean/aseptic task · after body fluid exposure risk · after touching a patient · after touching the patient's surroundings.</li>
+   <li>Also: <b>before and after glove use</b> (gloves are not a substitute), before eating, after using the restroom, after removing PPE, and between tasks on the same patient going <b>dirty → clean</b>.</li>
+   <li><b>Use soap and water when:</b> hands are <b>visibly soiled</b>, after caring for a patient with <b>C. difficile or norovirus</b>, after using the restroom, before eating, and after known exposure to spore-forming organisms.</li>
+   <li><b>Use alcohol rub</b> for everything else — it is faster and more effective on non-soiled hands.</li>
+   <li>Assess your own hands: <b>no artificial nails or extenders</b> in direct patient care, natural nails <b>under ¼ inch</b>, no chipped polish, minimal jewelry (a plain band at most).</li>
+   <li>Red flag: dermatitis and cracked skin — broken nurse skin is a reservoir and a portal of entry. Report it and use lotion the facility approves.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Soap and water technique:</b> wet hands first, apply soap, <b>lather with friction for at least 20 seconds</b> covering palms, backs, between fingers, thumbs, fingertips and nails, rinse, dry with a paper towel, then <b>turn off the faucet with a dry paper towel</b>.</li>
+   <li><mark>Keep hands and forearms <b>lower than your elbows</b> during handwashing so contaminated water runs off the fingertips and not back up your arms.</mark></li>
+   <li><b>Alcohol rub technique:</b> apply enough to cover all surfaces, rub every surface including under the nails and the thumbs, and <b>keep rubbing until completely dry</b> — usually about 20 seconds. Do not wipe or fan it off.</li>
+   <li><b>Surgical hand antisepsis</b> is different: hands held <b>above the elbows</b> so water runs from the cleanest point down toward the elbows, 2–6 minutes per manufacturer, then dry with a sterile towel.</li>
+   <li>Use a <b>paper towel to open the restroom door</b> after washing, and to touch anything you just avoided contaminating.</li>
+   <li><span class="never">Never wear artificial nails while providing direct patient care, and never rely on gloves in place of hand hygiene.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>Every single person</b> — RN, LPN, UAP, providers, therapists, students, visitors. There is no role that is exempt, and this is the one "delegation" that applies to all.</li>
+   <li><b>RN</b> — teaches the patient and family, models it, and <b>speaks up when a colleague or a provider skips it</b>. Advocacy includes that.</li>
+   <li><b>UAP</b> — performs hand hygiene, and may remind others; may not decide when precautions change.</li>
+   <li><b>Infection prevention</b> — audits compliance rates, gives feedback, and drives improvement projects; hand hygiene rates are a reported quality metric.</li>
+   <li><b>Patients and families</b> — teach them they are allowed to ask any staff member, "Did you clean your hands?" That is a recognized safety practice, not rudeness.</li>
+   <li><b>Environmental services</b> — keeps dispensers stocked; report empty dispensers, since availability drives compliance.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 Skipped hand hygiene is the direct cause of most <b>healthcare-associated infections</b> and of multidrug-resistant organism spread.</li>
+   <li>⚠️ The highest-risk missed moment is <b>after touching the patient's surroundings</b> — the bed rail and the pump, not the patient.</li>
+   <li>⚠️ Alcohol rub is <b>flammable</b>; let it dry fully before touching equipment, and do not use near an open flame or during defibrillation.</li>
+   <li>✅ Prevent dermatitis with facility-approved lotion — <i>petroleum-based products degrade latex gloves</i>, so use what infection prevention approves.</li>
+   <li>✅ Teach patients and families the same 20-second technique for home, especially before meals, after the bathroom, and around wounds or catheters.</li>
+   <li><span class="never">Never use alcohol rub on visibly soiled hands — the dirt shields the organisms and the alcohol cannot reach them.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>20 seconds of friction, hands below the elbows, faucet off with a dry towel.</b> Alcohol rub is preferred <i>unless</i> hands are visibly soiled or the patient has <b>C. difficile or norovirus</b> — then soap and water only.</div>
+</section>
+
+<section class="dm" id="fall-prevention" data-name="Fall Prevention" data-test="fund">
+ <h2>🚶 Fall Prevention</h2>
+ <p class="one">One-line hook: <b>bed low and locked, call light in reach, non-skid footwear</b> — and after a fall, <b>assess the patient before you move them</b>.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept and the physiology.)</i> Falls happen when <b>postural control fails</b>: vision, vestibular input, proprioception, muscle strength and cognition all have to work together to keep the center of gravity over the base of support.</li>
+   <li>Aging degrades every one of those inputs at once — plus <b>baroreceptor blunting</b> causes orthostatic hypotension, so standing up drops cerebral perfusion.</li>
+   <li>Illness adds more: <b>dehydration, anemia, hypoglycemia, infection-related delirium, pain, and new environments</b>.</li>
+   <li><b>Medications are a leading modifiable cause:</b> sedatives and benzodiazepines, opioids, antihypertensives, diuretics, anticholinergics, antipsychotics, and hypoglycemics. <b>Polypharmacy (≥5 drugs) is itself a risk factor.</b></li>
+   <li>Falls are the <b>most common adverse event in hospitals</b> and the leading cause of injury death in adults over 65. A hip fracture after 65 carries substantial one-year mortality.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Screen every patient on admission, every shift, after a change in condition, and after any fall.</b></li>
+   <li><b>Morse Fall Scale</b> — six items: <b>history of falling (25) · secondary diagnosis (15) · ambulatory aid (0 none / 15 cane, crutches, walker / 30 furniture) · IV or saline lock (20) · gait (0 normal / 10 weak / 20 impaired) · mental status (0 knows own limits / 15 overestimates or forgets limits)</b>. Range 0–125.</li>
+   <li><b>Morse cutoffs: 0–24 low risk · 25–44 moderate risk · 45 or higher high risk.</b> <i>Exact cutoffs vary by facility — the pattern (higher = worse) is what is tested.</i></li>
+   <li>Other tools: <b>Hendrich II</b> and the <b>Timed Up and Go</b> — <i>more than 12 seconds to stand, walk 10 feet, turn and sit indicates increased fall risk</i>.</li>
+   <li>Assess <b>orthostatic vital signs</b>: a drop of <b>≥20 mmHg systolic or ≥10 mmHg diastolic within 3 minutes of standing</b> is positive.</li>
+   <li>Biggest single predictor: <mark>a history of a previous fall.</mark> Always ask.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Universal fall precautions for everyone:</b> bed in the <b>lowest position and wheels locked</b>, <b>call light and personal items within reach</b>, <b>non-skid footwear</b>, clear uncluttered path, adequate lighting and a night light, orient the patient to the room.</li>
+   <li><b>Hourly rounding with the 4 Ps — pain, potty, position, possessions.</b> Proactive toileting prevents more falls than any alarm.</li>
+   <li>High risk adds: <b>bed/chair alarm, low bed with a floor mat, visual signage or a color armband, room near the nurses' station, and a sitter</b> for the patient who will not remember to call.</li>
+   <li>Get them up <b>slowly and in stages</b> — sit, then dangle at the edge of the bed, then stand with a gait belt and assistance.</li>
+   <li>Review the medication list with pharmacy and the provider; <b>deprescribing is a nursing advocacy action</b>.</li>
+   <li><b>After a fall: assess the patient where they are.</b> Level of consciousness, injury, pain, ROM, vital signs and neuro checks <i>before</i> moving them. Then notify the provider and family, complete an incident report, and reassess fall risk.</li>
+   <li><span class="never">Never use all four side rails up as a fall intervention — that is a restraint, and patients climb over them and fall farther.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — performs the fall risk <b>assessment</b>, writes the plan, evaluates it, and does the post-fall assessment. None of that is delegable.</li>
+   <li><b>UAP may</b> keep the bed low and locked, put the call light in reach, apply non-skid socks, answer alarms promptly, assist with ambulation and toileting on <b>stable</b> patients, clear clutter, and stay with a patient as a sitter.</li>
+   <li><b>UAP may NOT</b> screen or score fall risk, decide the level of precautions, assess a patient after a fall, or apply restraints on their own judgment. <i>They may report "the patient is unsteady" — the RN interprets it.</i></li>
+   <li><b>LPN</b> — reinforces precautions, contributes data, monitors and reports; the RN still owns the assessment and the plan.</li>
+   <li><b>Physical therapy</b> — gait training, strengthening, assistive device fitting; <b>occupational therapy</b> — ADLs and home safety evaluation.</li>
+   <li><b>Pharmacist</b> — medication review; <b>provider</b> — orders PT, imaging after a fall, and medication changes.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 Consequences: <b>hip and wrist fractures, subdural hematoma</b> (especially on anticoagulants — do neuro checks even without a visible head injury), and loss of independence.</li>
+   <li>⚠️ <b>Fear of falling</b> after a fall → less activity → more deconditioning → more falls. It is a self-feeding loop.</li>
+   <li>✅ <b>Home safety teaching:</b> remove throw rugs, install grab bars in the tub and by the toilet, raised toilet seat, handrails on both sides of stairs, non-slip mats, lighting on the path to the bathroom, cords out of walkways, and pet awareness.</li>
+   <li>✅ Annual <b>vision and hearing checks</b>, correct footwear (no backless slippers), vitamin D and calcium, and weight-bearing exercise.</li>
+   <li>✅ Teach a "get up in three steps" habit and to <b>never rush to answer the phone or the door</b>.</li>
+   <li><span class="never">Never leave a confused or sedated patient alone on a bedside commode or in the bathroom.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Bed low and locked · call light in reach · non-skid footwear · hourly rounding.</b> Morse ≥45 = high risk. <b>After a fall, assess before you move.</b></div>
+</section>
+
+<section class="dm" id="restraints" data-name="Restraints &amp; Safe Use" data-test="fund">
+ <h2>🔒 Restraints &amp; Safe Use</h2>
+ <p class="one">One-line hook: <b>least restrictive, provider order required, never PRN</b> — restraints are a last resort after alternatives fail and are documented as such.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept.)</i> A <b>restraint is any manual method, device, material or medication that restricts free movement or normal access to one's own body</b> and cannot be easily removed by the patient.</li>
+   <li><b>Three types: physical</b> (limb, vest, mitts, all four side rails up), <b>chemical</b> (a drug used to control behavior rather than to treat a diagnosed condition), and <b>seclusion</b> (involuntary confinement alone in a room the patient cannot leave).</li>
+   <li>Restraints exist as a narrow safety exception — the default legal and ethical position is <b>autonomy and freedom of movement</b>. Improper use is <b>false imprisonment</b> and battery.</li>
+   <li>Physiologically, immobilization causes <b>impaired circulation, skin breakdown, nerve injury, aspiration, incontinence, muscle wasting, delirium and, with vest or chest restraints, asphyxiation and death</b>.</li>
+   <li>Restraint use is a <b>regulated, reportable event</b> under CMS and Joint Commission standards, and it must be tied to a specific behavior that endangers the patient or others — <b>never to staffing shortages, convenience, or punishment</b>.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li>Justified only when there is <b>an immediate risk of harm to self or others</b> and <b>documented alternatives have been tried and failed</b>.</li>
+   <li>Two order categories with different rules: <b>violent/self-destructive (behavioral)</b> and <b>non-violent/non-self-destructive (medical-surgical</b>, e.g. protecting an endotracheal tube<b>)</b>.</li>
+   <li><b>Violent/self-destructive:</b> provider <b>face-to-face evaluation within 1 hour</b>. Order renewal limits: <b>every 4 hours for adults 18+, every 2 hours for ages 9–17, every 1 hour for under 9</b>, up to a <b>maximum of 24 hours</b> before a new in-person evaluation.</li>
+   <li><b>Monitoring: every 15 minutes for violent/self-destructive restraint or seclusion</b>; typically <b>every 1–2 hours for non-violent restraint</b> per facility policy.</li>
+   <li>Assess at every check: <b>circulation, color, temperature, sensation, capillary refill, skin integrity, correct placement, and the continued need</b>.</li>
+   <li>🚨 Signs it is going wrong: pallor, cyanosis, coolness, numbness, tingling, edema distal to the restraint, skin abrasion, escalating agitation, or any respiratory change.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Try alternatives first, in three families:</b> <b>(1) environmental</b> — bed low, alarms, floor mats, room near the station, better lighting, reduced noise; <b>(2) companionship and diversion</b> — sitter, family presence, activity, TV/music, frequent reorientation; <b>(3) physiologic-need</b> — treat the reason: pain, toileting, hunger, thirst, hypoxia, hypoglycemia, infection, or a medication side effect.</li>
+   <li><b>Obtain a provider order</b> specifying the type, location, reason and duration. <b>PRN restraint orders are prohibited.</b> In a true emergency the nurse may apply a restraint and obtain the order immediately afterward per policy.</li>
+   <li>Apply the <b>least restrictive</b> device that works, over clothing or padding, with <b>two fingers able to slide underneath</b>.</li>
+   <li><b>Tie with a quick-release knot to the movable part of the bed frame — never to the side rail</b>, so the restraint moves with the bed and can be released in one pull.</li>
+   <li><b>At least every 2 hours: release the restraint, reposition, do range of motion, offer fluids and toileting, and provide skin care.</b> Release one limb at a time in an agitated patient.</li>
+   <li><b>Document</b>: the behavior that required it, alternatives tried and their results, type and placement, the order, every monitoring check, care given during release, the patient's response, and family/patient education.</li>
+   <li><span class="never">Never use a PRN or "standing" restraint order, never tie a restraint to a side rail, and never restrain for staff convenience or punishment.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>Provider</b> — writes the order and performs the <b>1-hour face-to-face evaluation</b> for violent/self-destructive restraint. Only a licensed independent practitioner (or a trained RN where state law allows) may do that evaluation.</li>
+   <li><b>RN</b> — assesses the need, tries and documents alternatives, may initiate a restraint in an emergency, evaluates continued need, and performs the assessments. <b>The decision to restrain and the assessment of the restrained patient are RN-only.</b></li>
+   <li><b>UAP may</b> assist with the physical application under RN direction, sit with the patient, provide ADLs, offer fluids and toileting, take vital signs, and <b>report</b> observations such as color change or increasing agitation.</li>
+   <li><b>UAP may NOT</b> decide to apply a restraint, adjust or remove it based on their own judgment, or perform the required assessments. <i>They report; the RN assesses.</i></li>
+   <li><b>LPN</b> — may reinforce, monitor and document within scope; the RN still performs and signs the assessment of need.</li>
+   <li><b>Patient and family</b> — must be told the reason, the criteria for removal, and their rights; <b>staff education and competency</b> is a regulatory requirement, and risk management/patient advocacy get involved with any complaint.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Strangulation and asphyxiation</b> from vest or chest restraints, especially in a patient who slides down in bed — this is the classic restraint death.</li>
+   <li>🚨 <b>Aspiration</b> in a supine restrained patient — if a restrained patient must be supine, keep the head elevated and never restrain a vomiting patient flat.</li>
+   <li>⚠️ Nerve and circulatory injury, pressure injuries, incontinence, contractures, and <b>worsened delirium and agitation</b> — restraints usually escalate the behavior they were meant to stop.</li>
+   <li>⚠️ Legal exposure: <b>false imprisonment, battery, and negligence</b> if there is no order, no documentation, or no monitoring.</li>
+   <li>✅ Prevent by treating the cause — <mark>most agitation in the hospital is delirium from pain, hypoxia, infection, a full bladder, or a medication, and it resolves when you fix that.</mark></li>
+   <li>✅ <b>Discontinue at the earliest possible moment</b>; continued need must be re-justified, not assumed.</li>
+   <li><span class="never">Never leave a restrained patient without the call light in reach, and never restrain a patient in the prone position or with the head lower than the body.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Alternatives first · provider order · never PRN · quick-release knot to the bed frame, not the rail · two fingers underneath.</b> Check <b>q15 min</b> for behavioral restraint; <b>release, reposition, ROM, toilet and hydrate q2h</b>.</div>
+</section>
+
+<section class="dm" id="pressure-injury" data-name="Pressure Injury Prevention &amp; Staging" data-test="fund">
+ <h2>🛏️ Pressure Injury Prevention &amp; Staging</h2>
+ <p class="one">One-line hook: <b>stage by the deepest tissue you can actually see</b> — and if slough or eschar hides the base, it is <b>unstageable</b>, not stage 3.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><b>Sustained pressure over a bony prominence exceeds capillary closing pressure (~32 mmHg)</b>, blood flow stops, and the tissue becomes ischemic and dies.</li>
+   <li>Damage starts <b>deepest first</b>, at the bone–muscle interface, because muscle is less tolerant of ischemia than skin. That is why a small surface wound can hide a large cavity.</li>
+   <li>Three mechanical forces: <b>pressure</b> (perpendicular), <b>shear</b> (skeleton slides while skin stays put — the HOB above 30° problem), and <b>friction</b> (dragging the patient across the sheet).</li>
+   <li><b>Moisture</b> macerates skin and lowers its tolerance — incontinence-associated dermatitis is <i>not</i> a pressure injury but sets the stage for one.</li>
+   <li>Common sites: <b>sacrum, coccyx, heels, ischial tuberosities, greater trochanters, elbows, occiput, ears, and under medical devices</b>.</li>
+   <li>Risk multipliers: immobility, poor nutrition and <b>low protein/albumin</b>, poor perfusion, diabetes, advanced age, sensory loss, and fever.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Braden Scale</b> — six subscales: <b>sensory perception, moisture, activity, mobility, nutrition, and friction/shear</b>. The first five score <b>1–4</b>; friction/shear scores <b>1–3</b>. <b>Total 6–23, and a LOWER score means HIGHER risk.</b></li>
+   <li><b>Braden cutoffs: 19–23 no risk · 15–18 mild · 13–14 moderate · 10–12 high · 9 or below severe risk.</b> <mark>At risk is generally a Braden of 18 or below — lower number, worse patient.</mark></li>
+   <li><b>Stage 1</b> — <b>intact skin</b> with <b>non-blanchable erythema</b>. In darkly pigmented skin the color change may be purple, blue or simply <i>different from the surrounding skin</i>, so assess for <b>warmth, coolness, firmness, boggy texture, and pain</b> instead of relying on redness.</li>
+   <li><b>Stage 2</b> — <b>partial-thickness</b> loss of dermis: a shallow, <b>pink or red, moist</b> open ulcer, or an <b>intact or ruptured serum-filled blister</b>. <i>No slough, no eschar, no granulation tissue, no fat visible.</i></li>
+   <li><b>Stage 3</b> — <b>full-thickness</b> skin loss; <b>subcutaneous fat may be visible</b>, granulation tissue and rolled wound edges are common, and <b>undermining and tunneling may be present</b>. <i>No muscle, tendon or bone exposed.</i> Depth varies by site — the ear, occiput and bridge of the nose have little fat, so stage 3 there is shallow.</li>
+   <li><b>Stage 4</b> — full-thickness loss with <b>exposed or directly palpable fascia, muscle, tendon, ligament, cartilage or bone</b>. Undermining and tunneling are common. <b>Osteomyelitis risk.</b></li>
+   <li><b>Unstageable</b> — full-thickness loss where the base is <b>obscured by slough and/or eschar</b>; you cannot stage it until enough is removed to see the bottom. <b>Deep tissue pressure injury (DTPI)</b> — intact or non-intact skin with <b>persistent non-blanchable deep red, maroon or purple discoloration</b>, or a <b>blood-filled blister</b>, from pressure and shear at the bone–muscle interface. It can deteriorate rapidly to stage 3 or 4.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Offload the pressure — that is the treatment.</b> Reposition at least <b>every 2 hours in bed and every 1 hour in a chair</b> (or teach chair push-ups every 15 minutes), and use a pressure-redistribution surface.</li>
+   <li><b>Keep the head of the bed at 30° or lower</b> when the condition allows, and use a <b>30° lateral tilt</b> rather than direct side-lying on the trochanter.</li>
+   <li><b>Float the heels completely off the bed</b> with a pillow under the calves — heel injuries are common and entirely preventable.</li>
+   <li><b>Lift, do not drag.</b> Use a draw sheet or a mechanical lift to eliminate friction and shear.</li>
+   <li>Manage moisture: <b>cleanse promptly, pat dry, apply a moisture barrier</b>. Use a soft silicone foam dressing over high-risk bony prominences prophylactically.</li>
+   <li>Optimize nutrition: <b>protein roughly 1.25–2 g/kg/day</b>, adequate calories, fluids, vitamin C, vitamin A and zinc; consult the dietitian.</li>
+   <li><span class="never">Never massage over a bony prominence or a reddened area — it drives further tissue damage. Never use donut-shaped rings; they create a ring of ischemia.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — performs the skin assessment, <b>scores the Braden</b>, stages the injury, writes and evaluates the plan. <b>Staging and assessment are RN-only and cannot be delegated.</b></li>
+   <li><b>UAP may</b> turn and reposition on a schedule, keep the skin clean and dry, apply barrier cream, float heels, use lift equipment, and <b>report</b> any redness or skin change they see during a bath.</li>
+   <li><b>UAP may NOT</b> assess or stage skin, complete the Braden score, decide the turning schedule, or perform dressing changes on an open wound.</li>
+   <li><b>LPN</b> — collects data, performs many dressing changes within scope, and reports changes; the RN does the initial and ongoing assessment.</li>
+   <li><b>Wound, ostomy and continence nurse (WOCN)</b> — the consultant for complex staging, product selection, and debridement planning.</li>
+   <li><b>Dietitian</b> — protein and calorie targets; <b>PT/OT</b> — mobility, seating and cushion selection; <b>provider/surgeon</b> — debridement, cultures, antibiotics, flap repair.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Osteomyelitis and sepsis</b> from a stage 4 injury; wounds also cause pain, prolonged stays, and major protein loss.</li>
+   <li>⚠️ <b>Stable, dry, adherent eschar on a heel or ischemic limb should be left intact</b> — it acts as the body's biological cover. Do <i>not</i> debride it unless it becomes soft, boggy, draining, red, or fluctuant, which means infection.</li>
+   <li>⚠️ <b>Do not reverse-stage.</b> A healing stage 4 becomes a "healing stage 4," never a stage 2 — full-thickness tissue is replaced by scar, not by the original structures.</li>
+   <li>⚠️ <b>Medical device–related injuries</b> from oxygen tubing, nasal cannulas, cervical collars, casts, SCDs and catheters — check under every device at least every shift.</li>
+   <li>✅ Prevent with a scheduled <b>turn team, daily head-to-toe skin inspection, and a documented Braden on admission and each shift or per policy</b>.</li>
+   <li>✅ Teach the patient and family: shift weight frequently, inspect skin daily with a mirror, keep skin clean and dry, eat protein, stop smoking, and report any red area that does not fade in 30 minutes.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>1 = intact, non-blanchable red · 2 = partial thickness, shallow or blister · 3 = fat visible · 4 = muscle, tendon or bone · unstageable = base covered by slough/eschar · DTPI = intact skin, deep purple/maroon.</b> Low Braden = high risk. <b>Never massage red skin, never reverse-stage, and leave stable dry heel eschar alone.</b></div>
+</section>
+
+<section class="dm" id="wound-care" data-name="Wound Care &amp; Healing" data-test="fund">
+ <h2>🩹 Wound Care &amp; Healing</h2>
+ <p class="one">One-line hook: <b>clean from the least contaminated to the most contaminated area</b>, and match the dressing to the wound — <b>red protect, yellow cleanse, black debride</b>.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><b>Four phases:</b> <b>hemostasis</b> (immediate clotting) → <b>inflammatory</b> (days 1–4: redness, warmth, edema, and a <i>low-grade fever up to about 100.4°F is expected, not infection</i>) → <b>proliferative</b> (days 5–21: granulation tissue, collagen, epithelialization) → <b>maturation/remodeling</b> (day 21 to 1–2 years; the scar contracts and reaches only about <b>80% of original tensile strength</b>).</li>
+   <li><b>Healing by intention: primary</b> (edges approximated, surgical, minimal scar) · <b>secondary</b> (left open to granulate in from the base — more scar, more infection risk, slower) · <b>tertiary / delayed primary</b> (left open deliberately, then closed later).</li>
+   <li>Healing needs <b>oxygen, perfusion, protein, vitamin C, vitamin A, zinc and controlled glucose</b> — collagen synthesis literally cannot proceed without them.</li>
+   <li>Impaired healing: <b>age, diabetes and hyperglycemia, corticosteroids and immunosuppressants, smoking, obesity, poor perfusion, radiation, malnutrition, and infection</b>.</li>
+   <li>A wound needs to be <b>moist but not wet</b> — a dry wound bed stops epithelial migration, and a macerated one breaks down the edges.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li>Assess and document: <b>location, size (length × width × depth in cm), wound bed color/tissue type, undermining and tunneling with clock positions, exudate amount, color and odor, wound edges, periwound skin, and pain</b>.</li>
+   <li><b>Drainage types: serous</b> (clear, watery, straw) · <b>sanguineous</b> (bright red, fresh bleeding) · <b>serosanguineous</b> (pale pink, watery — normal in the first days) · <b>purulent</b> (thick, yellow, green or tan, often odorous — <b>infection</b>).</li>
+   <li><mark>Wound bed color rule: <b>red = protect, yellow = cleanse, black = debride.</b></mark></li>
+   <li>Infection: <b>increasing pain</b>, purulent drainage, foul odor, erythema spreading beyond the edges, induration, edema, fever after the first 3 days, <b>WBC rising</b>, and delayed healing. <i>Increasing pain in a healing wound is one of the earliest signs.</i></li>
+   <li>🚨 <b>Dehiscence</b> — the wound layers separate, often days 4–14 and often right after coughing, vomiting or straining; the patient may say <b>"something gave way."</b> Look for a sudden increase in serosanguineous drainage beforehand.</li>
+   <li>🚨 <b>Evisceration</b> — abdominal organs protrude through the opened wound. A surgical emergency.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Clean from the least contaminated to the most contaminated:</b> from the incision outward, from top to bottom, and <b>use a new swab or gauze for every stroke</b>. Never go back over an area with a used swab.</li>
+   <li>Irrigate with <b>0.9% sodium chloride</b> at 4–15 psi (a <b>35 mL syringe with a 19-gauge angiocatheter</b> hits that range); hold the basin below and irrigate from the clean end toward the dirty end until the return runs clear.</li>
+   <li><b>Match the dressing:</b> <b>transparent film</b> for stage 1/superficial with no exudate (lets you see it) · <b>hydrogel</b> to <i>add</i> moisture to a dry wound · <b>hydrocolloid</b> for autolytic debridement and light exudate (occlusive, leaves in place 3–5 days) · <b>foam</b> for moderate exudate · <b>calcium alginate</b> for <b>heavy exudate or minor bleeding</b> (it gels and can absorb many times its weight).</li>
+   <li><b>Debridement:</b> autolytic (the body's own enzymes under an occlusive dressing — slowest, least painful), enzymatic (collagenase ointment), mechanical (irrigation, wet-to-dry — nonselective and largely discouraged), sharp/surgical (fastest, for infected or extensive necrosis), and biologic (larval).</li>
+   <li><b>Negative pressure wound therapy (wound VAC)</b> — typically <b>–75 to –125 mmHg</b>; it removes exudate, reduces edema and pulls wound edges together. Report a loss of seal or bright red bleeding.</li>
+   <li><b>🚨 Evisceration response:</b> stay with the patient, <b>cover the organs with sterile gauze moistened with sterile normal saline</b>, position <b>low Fowler with the knees bent</b> to reduce abdominal tension, keep NPO, take vitals and watch for shock, and notify the surgeon — surgery is coming.</li>
+   <li><span class="never">Never attempt to push protruding organs back in, and never leave the eviscerated tissue uncovered or allow the gauze to dry out.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — <b>assesses and measures the wound</b>, evaluates healing, teaches the patient, and manages complex or new wounds. The <b>wound assessment cannot be delegated</b>.</li>
+   <li><b>LPN/LVN</b> — performs <b>sterile dressing changes on stable, established wounds</b> and reports findings, within state scope and facility competency.</li>
+   <li><b>UAP may</b> bathe around a wound, position the patient, gather supplies, and <b>report</b> drainage seen on the linens or a dressing that has fallen off.</li>
+   <li><b>UAP may NOT</b> perform any sterile dressing change, assess or measure a wound, irrigate, or pack a wound.</li>
+   <li><b>WOCN</b> — complex wounds, ostomies, product selection, and NPWT troubleshooting; <b>surgeon</b> — sharp debridement, closure, drain management.</li>
+   <li><b>Dietitian</b> — protein and micronutrient targets; <b>PT</b> — mobility and offloading; <b>pharmacy/infection prevention</b> — culture-driven antibiotics.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Hemorrhage</b> (highest risk in the first 24–48 hours), <b>infection</b>, <b>dehiscence</b>, <b>evisceration</b>, and <b>fistula formation</b>.</li>
+   <li>⚠️ Fever pattern helps: fever in the first 48 hours is usually <b>atelectasis</b>; fever appearing on day 3 or later points to <b>infection</b>.</li>
+   <li>✅ Prevent dehiscence by <b>splinting the incision with a pillow during coughing, deep breathing, sneezing and moving</b>, controlling nausea and constipation, and avoiding heavy lifting for the surgeon's stated interval.</li>
+   <li>✅ Optimize the modifiable: <b>glucose control, smoking cessation, protein intake, and perfusion</b>.</li>
+   <li>✅ Teach home care: <b>hand hygiene before and after</b>, clean technique at home, how to recognize infection, and to report <b>fever, increasing pain, purulent or foul drainage, or spreading redness</b>.</li>
+   <li>✅ Document with objective measurements every dressing change so the trend — improving or not — is visible to the next nurse.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Clean least-contaminated to most, new swab every stroke.</b> Purulent + fever + increasing pain = infection. <b>Evisceration: sterile saline-moistened gauze, low Fowler with knees bent, NPO, call the surgeon — never push it back in.</b></div>
+</section>
+
+<section class="dm" id="medication-administration" data-name="Medication Administration &amp; the Rights" data-test="fund">
+ <h2>💊 Medication Administration &amp; the Rights</h2>
+ <p class="one">One-line hook: <b>three checks, the rights every time, two identifiers</b> — and if anything about the order does not make sense, you do not give it.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept plus the pharmacology.)</i> <b>Pharmacokinetics is what the body does to the drug</b> — absorption, distribution, metabolism, excretion — and it is why route and timing matter as much as dose.</li>
+   <li><b>Onset, peak and duration</b> drive the whole schedule: you assess for effect at <b>peak</b> and for adverse effects across the <b>duration</b>. <i>Insulin questions are peak questions.</i></li>
+   <li><b>First-pass metabolism</b> in the liver is why an oral dose is larger than an IV dose of the same drug, and why IV effects appear fastest and are <b>irreversible once pushed</b>.</li>
+   <li>Route speed, fastest to slowest: <b>IV → inhalation → sublingual → IM → SubQ → oral → topical/transdermal</b>.</li>
+   <li>Older adults have <b>decreased hepatic metabolism, decreased renal clearance, less body water and less albumin</b> — so start low, go slow, and expect a longer duration of action.</li>
+   <li>Two safety concepts run through everything: <b>therapeutic index</b> (narrow = digoxin, lithium, warfarin, phenytoin, theophylline → monitor levels) and <b>high-alert drugs</b> (insulin, heparin and anticoagulants, opioids, concentrated electrolytes, chemotherapy, neuromuscular blockers).</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>The rights — the original five: right patient · right medication · right dose · right route · right time</b> (generally within 30 minutes before or after the scheduled time for non–time-critical drugs).</li>
+   <li><b>Expanded to nine: + right documentation · right reason/indication · right response/evaluation · right to refuse</b> — the patient may refuse any medication; you educate, document, and notify the provider.</li>
+   <li><mark><b>Three checks:</b> compare the medication to the MAR when you <b>take it from the drawer/dispenser</b>, when you <b>prepare it</b>, and at the <b>bedside before you give it</b>.</mark></li>
+   <li><b>Two patient identifiers</b> — name and date of birth or medical record number, verified against the armband and the MAR. <b>The room number is never an identifier.</b></li>
+   <li>Assess before giving: <b>allergies, apical pulse for digoxin (hold if under 60), blood pressure for antihypertensives, respiratory rate for opioids (hold if under 12 and reassess), blood glucose for insulin, potassium for digoxin and diuretics, and relevant labs/levels</b>.</li>
+   <li>Red flags in the order itself: no route, no dose, a dangerous abbreviation, an unusually large dose, or a drug that duplicates something already prescribed. <b>Clarify with the prescriber, not with a coworker's opinion.</b></li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Injection landmarks and volumes: SubQ</b> 45–90° into the fatty layer, usually up to <b>1 mL</b> · <b>IM ventrogluteal is the preferred adult site</b> (away from major nerves and vessels) at 90°, up to about <b>3 mL</b> · <b>deltoid</b> up to <b>1 mL</b> · <b>vastus lateralis</b> is the site for infants.</li>
+   <li><b>Z-track for all IM injections</b> — pull the skin laterally, inject, wait 10 seconds, withdraw, release — it seals the drug in the muscle and prevents tracking and staining.</li>
+   <li><b>Insulin: clear before cloudy</b> (regular drawn up before NPH). <b>Rotate sites within one anatomic area</b>; the <b>abdomen absorbs fastest</b>. <b>Only regular and rapid-acting insulins may be given IV.</b></li>
+   <li><b>Oral safety:</b> sit the patient upright, verify swallowing ability, and <b>do not crush enteric-coated or extended-release forms</b> (SR, ER, XL, CD, LA) — crushing releases the entire dose at once.</li>
+   <li><b>Ear drops:</b> pull the pinna <b>up and back for adults, down and back for children under 3</b>. <b>Eye drops:</b> into the lower conjunctival sac, <b>never on the cornea</b>, apply punctal pressure for 30–60 seconds; give <b>drops before ointment</b> and wait 5 minutes between different drops.</li>
+   <li><b>If an error occurs:</b> assess the patient first, take vital signs, notify the provider and the charge nurse, complete an <b>incident report</b>, and document the <i>facts and the patient's condition</i> in the chart — but <b>do not chart that an incident report was filed</b>.</li>
+   <li><span class="never">Never give a medication you did not personally prepare, never give from an unlabeled syringe or container, and never chart a medication before you give it.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — assesses before and evaluates after, administers <b>IV push medications, blood products, and IV chemotherapy</b>, gives the <b>initial teaching</b>, and takes verbal/telephone orders using <b>read-back verification</b>.</li>
+   <li><b>LPN/LVN may</b> give <b>oral, topical, subcutaneous, intramuscular, rectal, ophthalmic and otic medications</b> in most states; <b>may not</b> give IV push medications, blood products, or IV chemotherapy, and may not do the initial assessment or teaching.</li>
+   <li><b>UAP may NEVER administer any medication</b>, including over-the-counter drugs, topical creams ordered as a medication, or eye drops. This is one of the hardest lines in Fundamentals.</li>
+   <li><b>UAP may</b> take vital signs and blood glucose readings (per facility policy) that the RN then uses to decide, hand the patient a cup of water, and report that the patient did not take a pill.</li>
+   <li><b>Pharmacist</b> — verifies orders, checks interactions and doses, prepares IV admixtures, and is the resource before you give an unfamiliar drug.</li>
+   <li><b>Independent double check by two licensed nurses</b> is required for high-alert drugs: <b>insulin, heparin, chemotherapy, PCA settings, and concentrated electrolytes</b>.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Anaphylaxis</b> — stop the drug, stay with the patient, call for help, maintain the airway, and expect <b>epinephrine IM</b>, oxygen, IV fluids, antihistamines and steroids.</li>
+   <li>🚨 <b>Look-alike/sound-alike errors</b> (hydralazine vs hydroxyzine, metoprolol vs metronidazole) and <b>infiltration or extravasation</b> of an IV vesicant — stop the infusion, disconnect but leave the catheter to aspirate, and follow the antidote protocol.</li>
+   <li>⚠️ Prevention systems: <b>barcode scanning, smart pumps, computerized order entry, tall-man lettering, and the pharmacy verification step</b>. Do not create a workaround for any of them.</li>
+   <li>✅ <b>Teach the patient</b>: name, purpose, dose, timing with or without food, what to report, what not to combine, and never to stop an antibiotic, antihypertensive, steroid or antidepressant abruptly on their own.</li>
+   <li>✅ Reconcile medications at <b>admission, transfer, and discharge</b>, including over-the-counter drugs, herbals and supplements — <i>patients rarely volunteer these unless asked directly</i>.</li>
+   <li><span class="never">Never leave medications at the bedside for the patient to take later, and never let a family member or UAP administer a hospital medication for you.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Right patient, medication, dose, route, time</b> — plus <b>documentation, reason, response, and the right to refuse</b>. <b>Three checks, two identifiers, and a UAP never gives medications.</b></div>
+</section>
+
+<section class="dm" id="dosage-calculation" data-name="Dosage Calculation Safety" data-test="fund">
+ <h2>🧮 Dosage Calculation Safety</h2>
+ <p class="one">One-line hook: <b>Desired ÷ Have × Quantity</b>, then ask the question that saves lives — <b>does this answer make sense?</b></p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept.)</i> A dose is only correct <b>relative to this patient's weight, age, renal function and diagnosis</b> — the same number can be therapeutic in one patient and lethal in another.</li>
+   <li>Drugs with a <b>narrow therapeutic index</b> — digoxin, lithium, warfarin, phenytoin, theophylline, aminoglycosides — have almost no gap between effective and toxic, so a tenfold math error is a poisoning.</li>
+   <li><b>Pediatric and older-adult dosing is weight- and organ-function-based</b> because clearance is reduced; children are not small adults.</li>
+   <li><b>The classic fatal error is a decimal point</b> — a tenfold overdose. That is why the formatting rules exist and why they are tested.</li>
+   <li>Key conversions worth memorizing: <b>1 kg = 2.2 lb · 1 L = 1,000 mL · 1 g = 1,000 mg · 1 mg = 1,000 mcg · 1 tsp = 5 mL · 1 tbsp = 15 mL · 1 oz = 30 mL · 1 grain ≈ 60 mg</b>.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Formula method: (Desired ÷ Have) × Quantity.</b> Everything must be in the <b>same unit</b> before you divide — convert first, calculate second.</li>
+   <li><b>Weight-based:</b> convert pounds to kilograms by <b>dividing by 2.2</b>, then multiply by the mg/kg dose. For a mg/kg/<i>day</i> order divided into doses, calculate the daily total first, <i>then</i> divide by the number of doses.</li>
+   <li><b>Safe dose range:</b> calculate the low and high limits from a reference and compare the prescribed dose to that range. <b>If it falls outside, hold and call the prescriber.</b></li>
+   <li><b>IV flow rate in mL/hr = total volume ÷ hours.</b> <b>Drops per minute = (volume in mL × drop factor in gtt/mL) ÷ time in minutes</b>, rounded to the nearest whole drop — you cannot give a partial drop.</li>
+   <li><mark>Do-not-use abbreviations: write <b>"units"</b> not U, <b>"daily"</b> not QD, <b>"every other day"</b> not QOD, and spell out <b>morphine</b> and <b>magnesium sulfate</b> rather than MS/MSO₄/MgSO₄.</mark></li>
+   <li><b>Always use a leading zero (0.5 mg) and never a trailing zero (5 mg, not 5.0 mg)</b> — a missed decimal point turns 0.5 into 5 and 5.0 into 50.</li>
+   <li>🚨 Sense-check every answer: more than <b>3 mL</b> in an adult IM injection, more than <b>2 tablets</b> of a routine drug, or a rate that empties the bag in minutes all mean <b>recheck the math before you touch the patient</b>.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Work in one method consistently</b> — formula, ratio-proportion or dimensional analysis — and label every unit as you go so they cancel correctly.</li>
+   <li><b>Round according to the drug and the device:</b> most adult doses to the tenth, tuberculin syringe volumes to the hundredth, drops per minute and mL/hr to a whole number, and pediatric doses per policy.</li>
+   <li><b>Independent double check</b> — a second nurse calculates it separately, without seeing your answer, for <b>insulin, heparin, chemotherapy, PCA and epidural settings, and pediatric doses</b>.</li>
+   <li>Use the pump's <b>drug library and dose-error-reduction software</b>; if the pump alarms that a dose is outside limits, <b>stop and recheck rather than overriding</b>.</li>
+   <li><b>Verify the concentration on the vial every time</b> — heparin, insulin and opioids come in multiple strengths that look nearly identical.</li>
+   <li><b>Question the order, not just the math.</b> A correctly calculated dose from a wrong order is still a medication error, and the nurse who gives it shares the liability.</li>
+   <li><span class="never">Never give potassium chloride by IV push, never give a concentrated electrolyte undiluted, and never guess or round a pediatric dose to make it "easier" to draw up.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — calculates, verifies, and is <b>legally accountable for every dose given</b>, even one prepared by pharmacy or calculated by a pump. "The pump did it" is not a defense.</li>
+   <li><b>Pharmacist</b> — independently verifies the order, prepares high-risk admixtures, and is the first call for a dose that looks wrong. Use them <i>before</i> giving.</li>
+   <li><b>Second licensed nurse</b> — performs the independent double check for high-alert drugs. It must be <b>independent</b>: they calculate first, then compare.</li>
+   <li><b>LPN/LVN</b> — calculates and gives medications within scope; <b>may not</b> calculate or administer IV push doses or titrate IV drips.</li>
+   <li><b>UAP may NEVER calculate, prepare, or administer a medication</b>, or convert weights for dosing purposes. A UAP may obtain the weight; the RN uses it.</li>
+   <li><b>Prescriber</b> — the only person who may change a dose; <b>risk management and pharmacy</b> analyze errors and near-misses for system fixes.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 Tenfold overdoses of <b>insulin, heparin, opioids and digoxin</b> are the classic sentinel events, and all four have antidotes worth knowing: <b>D50, protamine sulfate, naloxone, and digoxin immune Fab</b>.</li>
+   <li>⚠️ Interruptions during medication preparation are a leading cause of error — use a <b>no-interruption zone</b> and do not calculate while talking.</li>
+   <li>⚠️ Underdosing is an error too: a subtherapeutic antibiotic or anticoagulant harms the patient just as surely, only more slowly.</li>
+   <li>✅ Report <b>near-misses</b>, not just errors. A near-miss is free information about a system that is about to hurt someone.</li>
+   <li>✅ <b>Teach the patient at home</b>: use the dosing device that came with the liquid, never a kitchen spoon; know the dose in mg, not just "one pill"; keep an updated list; and use one pharmacy so interactions get caught.</li>
+   <li><span class="never">Never accept a verbal order for a chemotherapy agent, and never round a dose to a number you find convenient — recalculate instead.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>(Desired ÷ Have) × Quantity, in matching units.</b> <b>Leading zero always, trailing zero never.</b> Independent double check for insulin, heparin, chemo and pediatric doses — and if the answer looks absurd, it is.</div>
+</section>
+
+<section class="dm" id="vital-signs" data-name="Vital Signs Interpretation" data-test="fund">
+ <h2>🌡️ Vital Signs Interpretation</h2>
+ <p class="one">One-line hook: <b>the trend beats the single number</b> — and a change in the patient's mental status is a vital sign, even though it is not on the flowsheet.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><b>Temperature</b> is the balance of heat production and heat loss, set by the hypothalamus. Pyrogens raise the set point, which is why the patient <b>shivers while the temperature climbs</b> and sweats when it breaks.</li>
+   <li><b>Pulse</b> reflects stroke volume and rate; <b>cardiac output = heart rate × stroke volume</b>. When stroke volume falls, the heart rate climbs first to compensate — <b>tachycardia is the earliest sign of shock and of hemorrhage</b>.</li>
+   <li><b>Respirations</b> are driven mainly by CO₂ sensed by central chemoreceptors, with a backup <b>hypoxic drive</b> from peripheral chemoreceptors that becomes primary in some chronic CO₂ retainers.</li>
+   <li><b>Blood pressure = cardiac output × systemic vascular resistance</b>, buffered by baroreceptors. <b>Blood pressure is a late sign</b> — it drops only after compensation fails.</li>
+   <li><b>Pulse oximetry measures saturation, not ventilation.</b> A patient can retain CO₂ and be sedated with a saturation of 99% on oxygen — which is why respiratory rate and level of consciousness still matter.</li>
+   <li>The <b>fifth vital sign is pain</b>; many facilities count <b>pulse oximetry</b> as well.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Adult normals: temperature 36.5–37.5 °C / 97.7–99.5 °F</b> (average 37 °C / 98.6 °F) · <b>pulse 60–100/min</b> · <b>respirations 12–20/min</b> · <b>blood pressure below 120/80 mmHg</b> · <b>SpO₂ 95–100%</b>.</li>
+   <li><mark>Route shifts temperature: <b>rectal and temporal run about 0.5–1 °F higher than oral; axillary runs about 0.5–1 °F lower.</b> Tympanic approximates core.</mark></li>
+   <li><b>Blood pressure categories: normal below 120/80 · elevated 120–129 systolic with diastolic below 80 · stage 1 hypertension 130–139 or 80–89 · stage 2 at or above 140 or 90 · hypertensive crisis above 180 and/or above 120</b>, which needs immediate evaluation.</li>
+   <li><b>Pulse pressure</b> (systolic minus diastolic) is normally about <b>30–40 mmHg</b>; a narrowing pulse pressure suggests falling stroke volume, and a widening one suggests rising intracranial pressure.</li>
+   <li><b>Orthostatic hypotension:</b> a fall of <b>20 mmHg systolic or 10 mmHg diastolic within 3 minutes of standing</b>, often with a heart rate rise of 20 or more.</li>
+   <li>Cuff errors: a cuff <b>too small or too tight reads falsely high</b>; <b>too large reads falsely low</b>. The bladder should cover about <b>80% of the arm circumference and 40% of the width</b>, with the arm supported at heart level.</li>
+   <li>🚨 Report immediately: <b>respiratory rate under 12 or over 24 with distress, SpO₂ under 90%, new irregular pulse, systolic under 90, temperature at or above 38.0–38.3 °C in a neutropenic patient, or any acute change in mental status</b>.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Count apical pulse for a full minute</b> at the fifth intercostal space, midclavicular line, for any irregular rhythm, for infants and children, and <b>before digoxin</b> — hold digoxin and notify if the apical rate is under 60.</li>
+   <li><b>Count respirations for a full minute without telling the patient</b> — keep your fingers on the pulse afterward so the rate stays natural.</li>
+   <li>Take the blood pressure with the patient <b>seated, feet flat, back supported, arm at heart level, after 5 minutes of rest, with no caffeine or smoking for 30 minutes</b>. <b>Avoid the arm with a dialysis fistula, a mastectomy on that side, an IV, a PICC, or an injury.</b></li>
+   <li><b>Always confirm an abnormal automated reading manually</b> before you act on it — and recheck the other arm if there is a large difference.</li>
+   <li><b>Fever:</b> antipyretics as ordered, cool environment, fluids, and monitor for dehydration; <b>do not use cold water or alcohol baths</b> — they cause shivering, which raises the temperature further.</li>
+   <li>Troubleshoot a low SpO₂ reading before treating it: <b>cold or poorly perfused extremity, motion, dark or artificial nails, and hypotension</b> read falsely low; <b>carbon monoxide poisoning reads falsely high</b>.</li>
+   <li><span class="never">Never take a temperature rectally in a patient who is neutropenic, thrombocytopenic, or has had rectal surgery, and never take a blood pressure in an arm with a fistula.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>UAP may</b> take and record routine vital signs on <b>stable</b> patients and must report the values to the nurse — <b>with specific parameters given in advance</b> ("call me if the systolic is under 100").</li>
+   <li><b>UAP may NOT</b> take vital signs on an unstable patient, take the first set on a new admission, take vitals during a blood transfusion or after a rapid response, or <b>interpret</b> any value or decide what to do about it.</li>
+   <li><b>RN</b> — takes the baseline/admission set, reassesses any abnormal value personally, <b>interprets the trend</b>, and decides the intervention. That interpretation is never delegable.</li>
+   <li><b>LPN</b> — takes and records vital signs, reports findings, and contributes data; the RN evaluates and adjusts the plan.</li>
+   <li><b>Provider / rapid response team</b> — called for deterioration; SBAR is the handoff format, and <b>any nurse can activate a rapid response</b>.</li>
+   <li><b>The patient</b> — teach home blood pressure technique, the same rest-and-position rules, and to bring the log and the cuff to appointments.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Early shock is subtle</b>: restlessness, anxiety, tachycardia, tachypnea, and cool clammy skin come <i>before</i> hypotension. Waiting for the blood pressure to fall is waiting too long.</li>
+   <li>🚨 <b>Sepsis in an older adult often presents as confusion with a normal or low temperature</b> — no fever does not rule out infection.</li>
+   <li>⚠️ Single readings mislead. Compare against the patient's <b>own baseline</b>, especially in someone whose usual blood pressure runs high or low.</li>
+   <li>✅ Prevent missed deterioration with <b>early warning score tools, reassessment after every intervention, and escalating rather than rechecking a fourth time</b>.</li>
+   <li>✅ Teach: how and when to check at home, what numbers to report, that hypertension is symptomless, and never to stop an antihypertensive because the reading looks normal.</li>
+   <li><span class="never">Never chart a vital sign you did not take or personally verify, and never dismiss an abnormal value as "probably the machine" without a manual recheck.</span></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>T 36.5–37.5 °C · P 60–100 · R 12–20 · BP under 120/80 · SpO₂ 95–100%.</b> Tachycardia and restlessness come first; <b>hypotension is a late sign</b>. A UAP may take vitals on stable patients but may never interpret them.</div>
+</section>
+
+<section class="dm" id="oxygenation" data-name="Oxygenation &amp; Airway Basics" data-test="fund">
+ <h2>🫁 Oxygenation &amp; Airway Basics</h2>
+ <p class="one">One-line hook: <b>restlessness is the first sign of hypoxia and cyanosis is the last</b> — sit them up, give oxygen, and reassess.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li>Oxygenation needs three things to work: <b>ventilation</b> (air moving in and out), <b>diffusion</b> (gas crossing the alveolar-capillary membrane), and <b>perfusion</b> (blood there to carry it). A problem with any one causes hypoxemia.</li>
+   <li><b>The brain is the most oxygen-sensitive organ</b>, which is why <b>restlessness, anxiety and confusion appear before any change in color or vital signs</b>.</li>
+   <li>Normal drive to breathe is <b>rising CO₂</b>. In some patients with chronic CO₂ retention, high-flow oxygen worsens hypercapnia through V/Q mismatch and reduced hemoglobin CO₂ carriage — which is why the <b>target SpO₂ in COPD is 88–92%</b>.</li>
+   <li>Atelectasis is alveolar collapse from shallow breathing, immobility, pain and secretions — the reason post-op patients need deep breathing more than they need bed rest.</li>
+   <li><b>Oxygen is a drug.</b> It requires a prescription (except in an emergency), has a dose (flow rate and FiO₂), and has toxicity at high concentrations over time.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Early hypoxia — RAT: R</b>estlessness, <b>A</b>nxiety, <b>T</b>achycardia and tachypnea. Also elevated blood pressure and use of accessory muscles.</li>
+   <li><b>Late hypoxia — BED: B</b>radycardia, <b>E</b>xtreme restlessness, <b>D</b>yspnea — plus <b>cyanosis, hypotension and decreasing level of consciousness</b>. <mark>Cyanosis is a late and unreliable sign — never wait for it.</mark></li>
+   <li>Assess: rate, depth, rhythm, effort, symmetry, accessory muscle use, position (<b>tripod</b>), ability to speak in full sentences, breath sounds in all fields, cough and sputum, and SpO₂.</li>
+   <li>🧪 ABGs: <b>pH 7.35–7.45 · PaCO₂ 35–45 mmHg · HCO₃⁻ 22–26 mEq/L · PaO₂ 80–100 mmHg</b>.</li>
+   <li>Adventitious sounds: <b>crackles</b> (fluid or collapsed alveoli popping open) · <b>wheezes</b> (narrowed airways) · <b>rhonchi</b> (secretions, may clear with coughing) · <b>stridor</b> — <b>🚨 stridor is upper airway obstruction and is an emergency</b>.</li>
+   <li>🚨 Escalate for: silent chest in an asthmatic, inability to speak, SpO₂ falling despite oxygen, a rising respiratory rate with a falling level of consciousness, or new confusion.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Position first — high Fowler's</b> (or tripod, leaning forward on the overbed table). Positioning is free, immediate, and often the highest-priority first action.</li>
+   <li><b>Delivery devices: nasal cannula 1–6 L/min (about 24–44% FiO₂; humidify above 4 L) · simple face mask 5–8 L/min (40–60%; never below 5 L or the patient rebreathes CO₂) · partial rebreather 6–11 L/min (60–75%) · non-rebreather 10–15 L/min (80–95%) · Venturi mask 24–60% and the most precise, so it is the COPD device</b>.</li>
+   <li><b>The reservoir bag on a partial or non-rebreather must stay inflated</b> — if it collapses on inspiration, turn the flow up.</li>
+   <li><b>Suctioning:</b> sterile technique for tracheal suctioning, wall pressure <b>100–150 mmHg</b> in adults, <b>hyperoxygenate before and after</b>, apply suction <b>only while withdrawing</b>, limit each pass to <b>10–15 seconds</b>, no more than <b>3 passes</b>, and rest 30–60 seconds between. Suction the <b>mouth last</b>.</li>
+   <li><b>Mobilize secretions:</b> hydration, incentive spirometry <b>10 breaths per hour while awake with a 3–5 second hold, then cough</b>, turn-cough-deep-breathe every 1–2 hours, early ambulation, and huff coughing.</li>
+   <li><b>Unilateral lung disease: good lung down</b> to put the better lung in the dependent, best-perfused position — <i>except after a pneumonectomy, where the patient lies on the operative side or as the surgeon directs</i>.</li>
+   <li><span class="never">Never instill saline into a tracheostomy or ET tube before suctioning, and never apply suction while inserting the catheter.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — assesses respiratory status and breath sounds, interprets oximetry and ABGs, titrates oxygen within ordered parameters, and performs or supervises suctioning.</li>
+   <li><b>Respiratory therapist</b> — nebulizers, ventilator management, ABG draws, chest physiotherapy, and device selection.</li>
+   <li><b>UAP may</b> reposition the patient upright, apply a nasal cannula that is already ordered and in use, remind and coach the patient to use an incentive spirometer, take a pulse oximetry reading, and <b>report</b> a number or a complaint of breathlessness.</li>
+   <li><b>UAP may NOT</b> assess breath sounds, initiate or change an oxygen flow rate, perform any suctioning, or decide what a low saturation means. <i>Adjusting oxygen is administering a drug.</i></li>
+   <li><b>LPN</b> — commonly performs tracheostomy care and suctioning within scope, monitors and reports; the RN performs the assessment.</li>
+   <li><b>Provider</b> — orders oxygen, imaging, and escalation to BiPAP or intubation; <b>rapid response team</b> for acute deterioration.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Respiratory arrest</b>, and <b>oxygen-induced hypercapnia</b> in a chronic retainer given high-flow oxygen without monitoring — watch for increasing somnolence, which is the warning.</li>
+   <li>🚨 <b>Fire risk:</b> oxygen supports combustion. <b>No smoking, no open flame, no petroleum-based products on the face, no wool or synthetic blankets that build static</b>, and secure cylinders upright so they cannot fall.</li>
+   <li>⚠️ Skin breakdown behind the ears, on the nares and at the cheeks from tubing and mask straps — pad it and check every shift.</li>
+   <li>⚠️ Drying of mucous membranes → nosebleeds and thicker secretions. Humidify above 4 L/min and offer oral care.</li>
+   <li>✅ Prevent atelectasis and post-op pneumonia with <b>incentive spirometry, early ambulation, adequate pain control so they can breathe deeply, and oral care</b>.</li>
+   <li>✅ Teach home oxygen safety, pursed-lip breathing for COPD, when to call, and that <b>turning the oxygen up on their own is not safe</b>.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Restlessness first, cyanosis last.</b> Sit them up in high Fowler's, then oxygen. <b>Nasal cannula 1–6 L · simple mask 5–8 L · non-rebreather 10–15 L · Venturi for COPD, target 88–92%.</b> Suction <b>on withdrawal only, 10–15 seconds, 3 passes max</b>.</div>
+</section>
+
+<section class="dm" id="mobility" data-name="Mobility, Positioning &amp; Body Mechanics" data-test="fund">
+ <h2>🦴 Mobility, Positioning &amp; Body Mechanics</h2>
+ <p class="one">One-line hook: <b>bend at the knees, keep the load close, push instead of lift</b> — and for a cane, <b>the cane goes on the strong side and moves with the weak leg</b>.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><b>Balance requires the center of gravity to stay over the base of support.</b> A wider stance and a lower center of gravity make both the nurse and the patient more stable — that is the entire physics of body mechanics.</li>
+   <li>Immobility hits every system fast: <b>atelectasis and pneumonia, venous stasis and DVT, orthostatic hypotension, pressure injuries, constipation and ileus, urinary stasis and calculi, contractures and footdrop, muscle atrophy — texts commonly cite roughly a 3% loss of muscle strength per day of bed rest, disuse osteoporosis with hypercalcemia, and negative nitrogen balance</b>.</li>
+   <li><b>Orthostatic hypotension</b> develops within days of bed rest because baroreceptors and plasma volume both adapt downward — hence dangling before standing.</li>
+   <li>Muscles shorten into a <b>contracture</b> within days when a joint is held in flexion; <b>footdrop</b> is the classic preventable one.</li>
+   <li>The nurse's own spine is at risk: the lumbar spine is a lever with terrible mechanical advantage, so <b>twisting while loaded</b> is the injury mechanism.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li>Assess before every transfer: <b>strength, balance, weight-bearing status, cognition and ability to follow directions, pain, dizziness, vision, and how much help was needed last time</b>.</li>
+   <li>Check the <b>activity order and weight-bearing status</b> — non-weight-bearing, partial, or as tolerated — and any surgical restrictions.</li>
+   <li>Assess the equipment: <b>rubber tips intact on canes, crutches and walkers; brakes working; correct height</b>.</li>
+   <li><b>Correct heights:</b> cane and walker handgrip at the level of the <b>greater trochanter/wrist crease with the elbow flexed 15–30°</b>; crutch pads <b>2–3 finger widths (about 1–2 inches) below the axilla</b>.</li>
+   <li>🚨 Stop the transfer for <b>dizziness, sudden weakness, chest pain, a drop in blood pressure, or a patient who cannot follow instructions</b>. Lower them to the nearest surface or ease them to the floor along your body.</li>
+   <li>Watch for <b>crutch palsy</b> — numbness, tingling or weakness in the hand from resting the axillae on the crutch pads.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Nurse body mechanics:</b> feet apart in a wide base, <b>bend at the hips and knees, not the waist</b>, keep the load close to your center of gravity, <b>face the direction of movement and pivot with your feet — never twist</b>, use large muscle groups, <b>push, pull, roll or slide rather than lift</b>, raise the bed to your waist, and lock the wheels.</li>
+   <li><b>Use a mechanical lift and at least two people</b> when the patient cannot help, or when more than about <b>35 pounds</b> of the patient's weight must be lifted. Use a gait belt and a friction-reducing sheet.</li>
+   <li><b>Cane:</b> hold it on the <b>strong/unaffected side</b>, tip about <b>4–6 inches to the side of the foot</b>; sequence is <b>cane forward → weak leg → strong leg</b>, because <i>the cane and the weak leg move together to share the load</i>. <b>Walker:</b> stand inside it and <b>advance the walker → weak leg → strong leg</b>; never use a walker on stairs.</li>
+   <li><b>Crutches:</b> weight is carried on the <b>hands, never the axillae</b>. <b>Stairs: up with the good leg first, down with the bad leg and the crutches first</b> — <i>"up with the good, down with the bad."</i> Gaits: four-point (both legs bear weight, most stable), three-point (one leg non-weight-bearing), two-point, swing-through.</li>
+   <li><b>Positions:</b> high Fowler's 60–90° (dyspnea, eating, tube feeding) · semi-Fowler's 30–45° (aspiration prevention, post-op) · low Fowler's 15–30° · <b>Sims' left lateral</b> (enemas, rectal exams) · lateral (pressure relief) · prone (rare, extends the hips) · <b>Trendelenburg vs reverse Trendelenburg</b>. <b>After a total hip replacement: no flexion beyond 90°, no adduction past midline, no internal rotation — use an abduction pillow.</b></li>
+   <li><b>Transfer:</b> chair on the patient's <b>strong side</b> at a slight angle, gait belt on, stand on the <b>weak side</b>, patient's stronger leg forward, count out loud, pivot with your feet.</li>
+   <li><span class="never">Never lift a patient by pulling under the axillae, and never let a patient grab your neck during a transfer.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — assesses activity tolerance, mobility status and readiness, determines the level of assistance needed, and evaluates the response. <b>The decision that a patient may get up is an assessment.</b></li>
+   <li><b>UAP may</b> ambulate, transfer, reposition, apply a gait belt, perform <b>passive range of motion</b> on a stable patient, apply SCDs and antiembolic stockings, and use lift equipment they are trained on.</li>
+   <li><b>UAP may NOT</b> decide whether a patient is ready to ambulate, ambulate a patient for the first time after surgery or a change in status, perform the initial gait or fall risk assessment, or teach crutch or walker use.</li>
+   <li><b>Physical therapist</b> — <b>owns gait training, assistive device fitting and teaching, and weight-bearing progression</b>. The RN reinforces the PT's instructions; PT does the initial teaching.</li>
+   <li><b>Occupational therapist</b> — ADLs, adaptive equipment, and home evaluation; <b>orthopedic provider</b> — weight-bearing orders and precautions.</li>
+   <li><b>LPN</b> — assists with mobility, applies devices, monitors tolerance, and reinforces teaching; the RN performs the assessment.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>DVT and pulmonary embolism</b> — sudden dyspnea, pleuritic chest pain, tachycardia and anxiety. Prevent with early ambulation, ankle pumps, SCDs and prophylactic anticoagulation. <b>Never massage a suspected DVT.</b></li>
+   <li>🚨 <b>Total hip dislocation</b> — sudden severe pain, shortening, and internal or external rotation of the leg. Keep the leg abducted and call the surgeon.</li>
+   <li>⚠️ <b>Footdrop and contractures</b> — prevent with footboards or high-top shoes, ROM at least twice daily, and positioning in neutral alignment with the hands in a functional position.</li>
+   <li>⚠️ Nurse injury — the leading cause of nurse disability is back injury from manual lifting. <b>Ask for help; it is not weakness, it is the policy.</b></li>
+   <li>✅ <b>Get them up early and often.</b> Mobility is the single most effective prevention for pneumonia, DVT, ileus, delirium and deconditioning at once.</li>
+   <li>✅ Teach: <mark>rise in stages — sit, dangle, then stand with support — because most falls happen in the first few seconds of standing.</mark></li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>COAL — Cane On the Opposite (strong) side, Advance with the weak Leg.</b> Crutches: weight on the hands, <b>up with the good, down with the bad</b>. For the nurse: <b>wide base, bend the knees, load close, pivot — never twist</b>.</div>
+</section>
+
+<section class="dm" id="nutrition" data-name="Nutrition &amp; Feeding Safety" data-test="fund">
+ <h2>🍽️ Nutrition &amp; Feeding Safety</h2>
+ <p class="one">One-line hook: <b>upright 90° to eat, stay up 30–60 minutes after</b> — and after a stroke, <b>nothing by mouth until a swallow screen is passed</b>.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li>Swallowing has an <b>oral, pharyngeal and esophageal phase</b>; the pharyngeal phase closes the epiglottis over the airway. <b>Dysphagia means that protection failed</b>, and food or fluid enters the trachea.</li>
+   <li><b>Thin liquids are the hardest to control</b> and the most commonly aspirated — which is why liquids get thickened rather than solids softened first.</li>
+   <li>Aspiration causes pneumonia and, with acid, chemical pneumonitis. <b>Silent aspiration</b> happens without coughing, especially with a diminished gag reflex.</li>
+   <li>Nutrition drives everything else on this page: <b>protein for wound healing and immune function, albumin for oncotic pressure, calories to spare protein from being burned for fuel</b>.</li>
+   <li>Prolonged inadequate intake → <b>negative nitrogen balance, muscle wasting, delayed wound healing, immunosuppression and edema</b>.</li>
+   <li>Gastric feeding relies on intact gastric emptying — <b>high residuals mean the stomach is not moving, which raises aspiration risk</b>.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li>Screen for dysphagia: <b>coughing or choking with meals, a wet or gurgly voice after swallowing, drooling, pocketing food in the cheek, a delayed swallow, unexplained weight loss, and recurrent pneumonia</b>.</li>
+   <li>🧪 Nutritional labs: <b>albumin 3.5–5 g/dL</b> (half-life about 21 days, so it reflects the past month) and <b>prealbumin 15–36 mg/dL</b> (half-life about 2 days — the better <i>acute</i> marker). Both fall with inflammation, so interpret with the whole picture.</li>
+   <li><b>BMI: under 18.5 underweight · 18.5–24.9 normal · 25–29.9 overweight · 30 or above obese.</b> Also track <b>daily weights at the same time, same scale, same clothing</b> — a 1 kg change is about 1 L of fluid.</li>
+   <li><b>Tube placement verification: an X-ray is the gold standard before the first use</b> of a newly placed tube. Afterward, check the <b>external marking against the documented length and aspirate gastric contents for pH (gastric is typically 1–5)</b>.</li>
+   <li><mark>The <b>air bolus auscultation ("whoosh") method is unreliable and is not an acceptable way to verify tube placement.</b></mark></li>
+   <li>🚨 Signs of aspiration during feeding: <b>coughing, choking, sudden dyspnea, decreasing SpO₂, tachypnea, wet voice, or fever</b>. Stop the feeding immediately.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Aspiration precautions:</b> sit fully <b>upright at 90°</b> to eat, <b>chin tucked toward the chest</b> when swallowing, small bites and small sips, <b>alternate solids and liquids</b>, check for pocketing, minimize distractions and do not rush, and <b>stay upright 30–60 minutes after</b>.</li>
+   <li>After a stroke, <b>place food on the unaffected side of the mouth</b>, and <b>keep the patient NPO until a swallow screen or speech-language pathology evaluation is passed</b>.</li>
+   <li><b>Enteral feeding:</b> keep the <b>head of the bed at 30–45°</b> during the feeding and for 30–60 minutes after, verify placement before each feeding and before each medication, and check residuals per policy — <b>hold and reassess for a residual above roughly 500 mL</b>, and return the aspirate unless policy says otherwise.</li>
+   <li><b>Flush with 30 mL of water before and after each feeding and before and after each medication.</b> Give medications <b>one at a time, each diluted, flushing between</b> — and <b>never add medications to the formula bag</b>.</li>
+   <li><b>Formula handling:</b> label with date and time, limit open-system hang time to about <b>4–8 hours</b>, change the bag and tubing every <b>24 hours</b>, and give formula at room temperature — cold formula causes cramping and diarrhea.</li>
+   <li><b>TPN:</b> requires a <b>central line</b>, monitor <b>glucose every 4–6 hours</b>, change bag and tubing every 24 hours, use a dedicated port, and <b>never abruptly stop it</b> — hang <b>10% dextrose</b> if the next bag is delayed, to prevent rebound hypoglycemia.</li>
+   <li><span class="never">Never give anything by mouth — including ice chips and medications — to a patient who has not passed a swallow screen, and never lay a tube-fed patient flat during or right after a feeding.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — assesses swallowing risk and nutritional status, verifies tube placement, initiates and monitors feedings, and does the teaching.</li>
+   <li><b>UAP may</b> feed a patient who has <b>no swallowing difficulty</b>, set up the tray, position the patient upright, record intake and output, and obtain daily weights.</li>
+   <li><b>UAP may NOT</b> feed a patient with dysphagia or any aspiration risk, feed a patient who has not been cleared, administer or manage tube feedings, verify tube placement, or assess swallowing. <i>"Assist a patient with dysphagia to eat" is a classic wrong delegation answer.</i></li>
+   <li><b>LPN</b> — may administer enteral feedings and insert NG tubes within state scope, monitor tolerance and report; the RN does the assessment and the plan.</li>
+   <li><b>Speech-language pathologist</b> — performs the swallow evaluation, determines diet texture and liquid consistency, and teaches swallowing strategies. <b>Diet texture changes come from the SLP and the provider, not the nurse alone.</b></li>
+   <li><b>Registered dietitian</b> — calculates calorie and protein needs and formula selection; <b>pharmacy</b> — TPN compounding and drug–nutrient interactions.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Aspiration pneumonia</b> — the reason every rule above exists. Suspect it with a new fever, cough and infiltrate after a meal or a feeding.</li>
+   <li>🚨 <b>Refeeding syndrome</b> in a severely malnourished patient started too fast: <b>hypophosphatemia, hypokalemia and hypomagnesemia</b> with cardiac arrhythmias. Start slowly and monitor electrolytes daily.</li>
+   <li>⚠️ Tube feeding <b>diarrhea</b> (rate too fast, formula too concentrated, contamination, sorbitol-containing medications) and <b>clogged tubes</b> — flush with warm water, and never use cola or force a stylet.</li>
+   <li>⚠️ <b>Dumping syndrome</b> after gastric surgery, and <b>TPN complications</b>: hyperglycemia, infection at the central line, and rebound hypoglycemia if it is stopped suddenly.</li>
+   <li>✅ Prevent with early nutrition screening on admission, weighing on the same schedule, treating pain and nausea before meals, oral care before eating to improve taste, and making mealtimes unhurried and social.</li>
+   <li>✅ Teach the family the aspiration precautions in writing — <b>most home aspiration happens because a well-meaning relative gave a drink of water</b>.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Upright 90° to eat, HOB 30–45° for tube feeds, stay up 30–60 minutes after.</b> <b>X-ray confirms new tube placement; the air-bolus whoosh does not.</b> A UAP may never feed a patient with dysphagia.</div>
+</section>
+
+<section class="dm" id="elimination" data-name="Elimination — Urinary &amp; Bowel" data-test="fund">
+ <h2>🚻 Elimination — Urinary &amp; Bowel</h2>
+ <p class="one">One-line hook: <b>at least 30 mL/hr of urine</b> is the floor — and the best CAUTI prevention is <b>not placing the catheter, then removing it as soon as possible</b>.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><b>Urine output below 30 mL/hr (about 0.5 mL/kg/hr) signals inadequate renal perfusion</b> — from hypovolemia, low cardiac output, or obstruction. It is an early organ-failure warning, not a bathroom issue.</li>
+   <li>Normal adult output is about <b>1,500 mL/day</b>. <b>Oliguria is under 400 mL/day; anuria is under 100 mL/day</b>.</li>
+   <li>An indwelling catheter is a <b>direct highway past every urinary defense</b> — that is why duration is the single strongest risk factor for CAUTI.</li>
+   <li>Bowel elimination depends on <b>peristalsis, fluid, fiber, and mobility</b>. Opioids, anticholinergics, iron, immobility and dehydration all slow it; <b>opioid constipation does not improve with tolerance</b>.</li>
+   <li><b>Valsalva during straining</b> raises intrathoracic pressure and can cause <b>bradycardia</b> — dangerous after an MI, in glaucoma, and with increased intracranial pressure.</li>
+   <li>Normal stool frequency ranges widely, from <b>three times a day to three times a week</b> — the change from the patient's own pattern is what matters.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li>Normal urine is <b>clear, pale yellow to amber, and faintly aromatic</b>. <b>Cloudy, foul-smelling, or dark urine suggests infection or concentration.</b></li>
+   <li><b>UTI in an older adult often presents as new confusion, falls, or incontinence without fever or dysuria</b> — that is the tested presentation.</li>
+   <li><b>Urinary retention:</b> distended suprapubic area, frequent small voids, restlessness, and a <b>bladder scan showing a post-void residual over about 100–150 mL</b>. Bladder scan before you catheterize.</li>
+   <li><b>Fecal impaction:</b> a hard mass on digital exam with <b>liquid stool leaking around it</b> — the diarrhea is the clue, not the exclusion. Also abdominal distention, anorexia, and no formed stool for days.</li>
+   <li>Assess bowel sounds in all four quadrants <b>before</b> palpation; <b>absent sounds require listening for a full 5 minutes per quadrant</b> before calling them absent.</li>
+   <li>🚨 Report: <b>no urine output for 6–8 hours post-op, output under 30 mL/hr, gross hematuria, absent bowel sounds with distention and vomiting, or new severe abdominal pain with a rigid abdomen</b>.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Catheter insertion: sterile technique</b>. Advance <b>2–3 inches (5–7.5 cm) in a female and 6–9 inches (17–22.5 cm) in a male</b>, then <b>advance another 1–2 inches after urine appears before inflating the balloon</b>. <i>Inflating the balloon in the urethra is a serious injury.</i></li>
+   <li><b>CAUTI prevention bundle: insert only when truly indicated, remove as early as possible, maintain a closed system, keep the bag below the level of the bladder and off the floor, avoid dependent loops, secure the tubing to the leg, and do perineal care with soap and water.</b></li>
+   <li><b>Specimens:</b> a sterile specimen comes from the <b>sampling port with a syringe after clamping briefly — never from the drainage bag</b>. A <b>24-hour urine</b> starts by <b>discarding the first void</b>, collecting everything after, and <b>including the final void at the end time</b>.</li>
+   <li><b>Enema:</b> position <b>left lateral Sims'</b>, warm the solution to about <b>105–110 °F</b>, insert <b>3–4 inches</b> in an adult pointing toward the umbilicus, and hang the bag about <b>12–18 inches above the anus</b>. <b>If cramping occurs, lower the bag and slow the flow — do not stop and restart at speed.</b></li>
+   <li><b>Constipation:</b> increase fluid to about <b>2–3 L/day</b> unless restricted, fiber to <b>25–30 g/day</b> increased gradually, mobilize, and honor the urge — <b>the gastrocolic reflex is strongest 30 minutes after a meal, especially breakfast</b>.</li>
+   <li><b>Bladder training:</b> scheduled voiding every 2–3 hours, Kegel exercises, timed fluids with most intake earlier in the day, and limiting caffeine and alcohol. <b>Do not restrict fluids to control incontinence</b> — concentrated urine irritates the bladder and makes it worse.</li>
+   <li><span class="never">Never irrigate or disconnect a closed urinary drainage system without an order, and never perform a digital disimpaction or give an enema to a neutropenic, thrombocytopenic, or recent rectal-surgery patient without a specific order.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — assesses elimination patterns, performs the bladder scan interpretation, evaluates retention and impaction, and decides whether catheterization is indicated. <b>The assessment and the decision are RN work.</b></li>
+   <li><b>LPN/LVN</b> — inserts urinary catheters, administers enemas, and performs ostomy care within state scope; reports findings to the RN.</li>
+   <li><b>UAP may</b> assist to the toilet or bedside commode, place and empty bedpans and urinals, provide perineal care and catheter hygiene, <b>empty the drainage bag and record output</b>, collect a routine (non-sterile) specimen, and apply incontinence briefs.</li>
+   <li><b>UAP may NOT</b> insert or irrigate a catheter, perform a bladder scan interpretation, give an enema (varies by state and facility — many prohibit it), perform digital disimpaction, or assess for retention or impaction.</li>
+   <li><mark>A UAP may empty the catheter bag and record the volume, but the <b>RN interprets what a falling output means</b>.</mark></li>
+   <li><b>Provider</b> — catheter and enema orders, laxative and imaging orders; <b>WOCN</b> — incontinence-associated dermatitis and ostomy management; <b>PT/urology</b> — pelvic floor rehabilitation.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Urosepsis</b> from a CAUTI, and <b>bowel perforation</b> from an aggressive disimpaction or a retained impaction.</li>
+   <li>🚨 <b>Bradycardia and syncope from Valsalva</b> during straining — teach cardiac patients to exhale through the mouth and never to bear down.</li>
+   <li>⚠️ <b>Incontinence-associated dermatitis</b> and pressure injuries from moisture; cleanse promptly and apply a barrier rather than relying on absorbent products alone.</li>
+   <li>⚠️ Chronic <b>laxative dependence</b> — teach that stimulant laxatives are short-term and that fluid, fiber and movement are the maintenance plan.</li>
+   <li>✅ <b>Every patient on an opioid needs a bowel regimen started at the same time as the opioid</b> — a stool softener plus a stimulant, not one after they are already impacted.</li>
+   <li>✅ Teach: wipe front to back, void after intercourse, do not delay voiding, drink enough that urine stays pale, and report burning, urgency, cloudy urine, or any change in bowel pattern.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>30 mL/hr is the floor.</b> Bladder scan before catheterizing; <b>advance 1–2 inches past the first urine before inflating the balloon</b>; keep the bag below the bladder and pull the catheter early. <b>Liquid stool leaking around a hard mass is impaction, not diarrhea.</b></div>
+</section>
+
+<section class="dm" id="pain" data-name="Pain Assessment &amp; Management" data-test="fund">
+ <h2>😖 Pain Assessment &amp; Management</h2>
+ <p class="one">One-line hook: <b>pain is whatever the patient says it is, occurring whenever they say it does</b> — self-report is the gold standard, and it beats your observation and their vital signs.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li>Four steps: <b>transduction</b> (tissue injury generates an impulse) → <b>transmission</b> (up the spinal cord to the brain) → <b>perception</b> (the conscious experience) → <b>modulation</b> (descending endorphins and serotonin/norepinephrine dampen it).</li>
+   <li><b>Gate control theory</b> explains why massage, heat, cold, TENS and distraction work — non-pain input closes the "gate" in the dorsal horn to pain input.</li>
+   <li><b>Nociceptive pain</b> — somatic (sharp, localized, from bone/muscle/skin) or visceral (dull, cramping, poorly localized, often referred). Responds to opioids and NSAIDs.</li>
+   <li><b>Neuropathic pain</b> — burning, shooting, electric, tingling, from nerve damage. Responds poorly to opioids and better to <b>gabapentin, pregabalin, duloxetine and tricyclics</b>.</li>
+   <li><b>Acute pain</b> has a purpose, an identifiable cause, and sympathetic signs (tachycardia, hypertension, diaphoresis). <b>Chronic pain lasts beyond 3–6 months and the vital signs are normal</b> — <i>which is why normal vitals never rule out pain</i>.</li>
+   <li>Untreated pain has real physiology: <b>splinting → atelectasis and pneumonia, immobility → DVT, catecholamines → tachycardia and delayed healing, sleep loss → delirium</b>.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Ask, and believe the answer.</b> Use <b>PQRSTU</b>: provoking/palliating, quality, region/radiation, severity, timing, and understanding/effect on the patient.</li>
+   <li><b>Scales by population: 0–10 numeric</b> for adults who can self-report · <b>Wong-Baker FACES</b> from about age 3 · <b>FLACC</b> (face, legs, activity, cry, consolability) for infants and nonverbal children · <b>CRIES</b> for neonates · <b>PAINAD</b> for advanced dementia.</li>
+   <li><mark>Self-report always outranks behavioral cues and vital signs — a smiling, sleeping, or stoic patient can still be in severe pain.</mark></li>
+   <li>Assess before and <b>after</b> the intervention at the drug's peak: about <b>30–60 minutes after oral, 15–30 minutes after IM/SubQ, and 15–30 minutes after IV</b>. <b>Reassessment is the step most often missed and most often tested.</b></li>
+   <li>Nonverbal indicators: grimacing, guarding, restlessness, moaning, rigidity, agitation, refusing to move, and in dementia, a change in behavior or appetite.</li>
+   <li>🚨 Warning signs on opioids, in this order: <b>increasing sedation comes BEFORE respiratory depression</b>. A patient who is difficult to rouse is the warning — do not wait for the respiratory rate to fall.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Multimodal is the standard:</b> combine a nonopioid, an adjuvant and a nonpharmacologic method so the opioid dose can stay low. The <b>WHO ladder</b> steps up from nonopioid → weak opioid → strong opioid, with adjuvants at every level.</li>
+   <li><b>Give analgesia before the pain becomes severe</b> — around-the-clock dosing for constant pain, and <b>premedicate before painful procedures, dressing changes, and the first ambulation</b>, timed to the peak.</li>
+   <li><b>Acetaminophen: maximum 4 g/day in a healthy adult, and 2–3 g/day or less with liver disease or regular alcohol use</b> — check every combination product for hidden acetaminophen, because that is how accidental hepatotoxicity happens. <b>NSAIDs</b>: take with food, watch for GI bleeding and renal impairment, and <b>limit ketorolac to 5 days</b>. <b>Avoid meperidine in older adults</b> (the normeperidine metabolite causes seizures).</li>
+   <li><b>PCA:</b> the pump is set with a demand dose and a <b>lockout interval</b>; monitor sedation and respiratory rate, keep <b>naloxone available</b>, and require an <b>independent double check of the settings by two nurses</b>.</li>
+   <li><b>Manage opioid side effects proactively: start a stool softener plus a stimulant laxative with the first dose</b> — constipation is the one side effect that never develops tolerance. Also treat nausea, pruritus and urinary retention.</li>
+   <li><b>Nonpharmacologic:</b> heat and cold, massage, repositioning, splinting, distraction, guided imagery, relaxation breathing, music, TENS, and acupuncture. <i>These are additions, not substitutes.</i></li>
+   <li><span class="never">Never let anyone but the patient press the PCA button — "PCA by proxy" by a family member or a nurse has killed patients. And never give a placebo for pain outside consented research.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — assesses and reassesses pain, administers and evaluates analgesia, titrates within ordered parameters, programs and double-checks the PCA, and teaches the patient. <b>Pain assessment cannot be delegated.</b></li>
+   <li><b>UAP may</b> reposition, apply a warm or cold pack the RN has approved, provide a back rub, dim lights and reduce noise, help with distraction, and <b>report</b> that a patient says they are hurting or looks uncomfortable.</li>
+   <li><b>UAP may NOT</b> assess or rate pain, administer any analgesic, push the PCA button, or decide whether pain relief was adequate.</li>
+   <li><b>LPN/LVN</b> — may administer oral, IM and SubQ analgesics within scope and collect data; <b>may not</b> give IV push opioids or manage epidural or PCA titration.</li>
+   <li><b>Provider / pain service</b> — prescribes and adjusts the regimen; <b>pharmacist</b> — equianalgesic conversions, interactions, and total daily acetaminophen.</li>
+   <li><b>Palliative care, physical therapy, and behavioral health</b> — chronic and cancer pain, functional goals, and coping strategies.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Opioid-induced respiratory depression</b> — hold the drug, stimulate, apply oxygen, and give <b>naloxone</b> per protocol. Naloxone has a shorter half-life than most opioids, so <b>monitor for the pain and the sedation to return</b> and be ready to repeat.</li>
+   <li>⚠️ Know the vocabulary, because ATI tests it: <b>tolerance</b> (needs more for the same effect) · <b>physical dependence</b> (withdrawal if stopped abruptly — expected, not addiction) · <b>addiction</b> (compulsive use despite harm) · <b>pseudoaddiction</b> (drug-seeking behavior caused by <i>undertreated</i> pain that resolves once pain is controlled).</li>
+   <li>⚠️ <b>Undertreatment is the most common error</b>, driven by fear of addiction. Addiction is rare in patients treated for acute pain, and older adults and nonverbal patients are undertreated most often.</li>
+   <li>⚠️ Chronic pain → depression, sleep disruption, deconditioning, and social withdrawal. Screen for mood, not just for the number.</li>
+   <li>✅ Prevent by setting a realistic <b>functional goal</b> ("comfortable enough to walk to the bathroom and cough") rather than promising zero pain.</li>
+   <li>✅ Teach: stay ahead of the pain, take the bowel regimen, do not drive while sedated, never share opioids, store them locked, and dispose of leftovers at a take-back site.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Believe the patient's self-report, and reassess after every intervention.</b> <b>Sedation precedes respiratory depression.</b> Start the bowel regimen with the first opioid dose, and <b>only the patient presses the PCA button</b>.</div>
+</section>
+
+<section class="dm" id="sleep" data-name="Sleep &amp; Rest" data-test="fund">
+ <h2>😴 Sleep &amp; Rest</h2>
+ <p class="one">One-line hook: <b>cluster your care so the patient gets uninterrupted 90-minute blocks</b> — sleep is restorative only if the cycle is allowed to finish.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li>Sleep cycles through <b>NREM stages N1 → N2 → N3 and then REM, roughly every 90 minutes, four to six times a night</b>. Interrupting a cycle sends the patient back to the beginning.</li>
+   <li><b>N1</b> is the lightest transition stage (about 5%). <b>N2</b> is the bulk of the night (about 45–55%). <b>N3 is deep, slow-wave, physically restorative sleep</b> — growth hormone release, tissue repair and immune function — and it is the hardest stage to wake someone from.</li>
+   <li><b>REM (about 20–25%)</b> is when dreaming, memory consolidation and emotional processing happen, with <b>skeletal muscle atonia</b> and irregular pulse, blood pressure and respirations.</li>
+   <li><b>Sleepwalking, night terrors and enuresis occur in N3; nightmares occur in REM.</b> That distinction is a classic test item.</li>
+   <li>Sleep is regulated by the <b>circadian rhythm</b> (light-driven melatonin release from the pineal gland) plus homeostatic sleep pressure — which is why light exposure and a consistent schedule matter more than any pill.</li>
+   <li><b>Older adults need about the same total sleep but get less N3 and more awakenings</b>, and their rhythm shifts earlier — that is normal aging, not insomnia.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Adults need 7–9 hours.</b> Ask about the usual bedtime routine, actual hours, how long it takes to fall asleep, awakenings, naps, and how rested they feel — <b>daytime function is the real measure</b>.</li>
+   <li>Assess contributors: <b>pain, dyspnea, nocturia, anxiety, depression, caffeine and alcohol, nicotine, shift work, environment, and medications</b> (steroids, stimulants, diuretics at night, beta-blockers, some antidepressants).</li>
+   <li><b>Obstructive sleep apnea:</b> loud snoring with <b>witnessed apnea episodes of 10 seconds or longer</b>, gasping, morning headache, dry mouth, and daytime sleepiness. Risk factors: obesity, large neck circumference, male sex, older age.</li>
+   <li><b>Narcolepsy:</b> sudden irresistible sleep attacks, plus <b>cataplexy</b> (sudden loss of muscle tone with emotion), sleep paralysis and hypnagogic hallucinations.</li>
+   <li><b>Restless legs syndrome:</b> an urge to move the legs, worse at rest and in the evening, relieved by movement; check <b>iron and ferritin</b>.</li>
+   <li>🚨 Sleep deprivation shows up as <b>irritability, poor concentration, impaired judgment, slowed reaction time, and in the hospital, delirium</b> — especially in older adults in the ICU.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Nonpharmacologic first, always.</b> <b>Cluster nursing care</b> so vitals, medications and assessments happen together, and protect at least one uninterrupted 90-minute block.</li>
+   <li><b>Sleep hygiene teaching:</b> a consistent bedtime and wake time <i>including weekends</i>, use the bed only for sleep and sex, get up if not asleep within about 20 minutes, avoid screens before bed, and get morning light exposure.</li>
+   <li><b>No caffeine for 4–6 hours before bed</b>, no nicotine, and <b>no alcohol</b> — alcohol shortens sleep latency but <i>fragments the second half of the night and suppresses REM</i>.</li>
+   <li><b>Exercise regularly but not within 2–3 hours of bedtime.</b> A light carbohydrate snack or warm milk is fine; a heavy meal is not.</li>
+   <li>Environment: <b>dark, quiet, cool</b>. In hospital, dim the lights, close the door, silence non-essential alarms, offer earplugs and an eye mask, and <b>do not wake a patient for routine vital signs if the provider has approved holding them</b>.</li>
+   <li><b>Medications are short-term:</b> melatonin and ramelteon are lower-risk; <b>benzodiazepines and Z-drugs (zolpidem) carry fall risk, next-day sedation, complex sleep behaviors, and are on the Beers list for older adults</b>. Diphenhydramine is anticholinergic and causes confusion in older adults.</li>
+   <li><span class="never">Never leave the side rails down and the bed high for a patient who took a sedative-hypnotic — put them on fall precautions before the drug takes effect.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>RN</b> — assesses the sleep pattern and its causes, plans the care schedule, evaluates the response, and <b>teaches sleep hygiene</b>.</li>
+   <li><b>UAP may</b> provide a back rub, warm the room or bring a blanket, dim lights, reduce noise, offer a warm non-caffeinated drink, assist with toileting before bed, and <b>report</b> that the patient was awake all night.</li>
+   <li><b>UAP may NOT</b> assess sleep quality, teach sleep hygiene, administer any sleep medication, or decide to skip a scheduled assessment so the patient can sleep.</li>
+   <li><b>LPN</b> — may administer ordered sleep medications within scope, monitor, and reinforce teaching.</li>
+   <li><b>Provider / sleep medicine</b> — orders polysomnography, diagnoses OSA and narcolepsy, prescribes CPAP; <b>respiratory therapy</b> — CPAP setup and mask fitting.</li>
+   <li><b>Whole unit</b> — quiet hours are a team behavior. Alarm reduction, hallway noise and overhead paging are nursing-influenced, and the charge nurse can enforce them.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Untreated OSA</b> → hypertension, atrial fibrillation, heart failure, stroke, pulmonary hypertension and daytime crashes. <mark>Bring the patient's own CPAP to the hospital and use it every night, especially post-operatively — OSA patients are extremely sensitive to opioids and sedatives.</mark></li>
+   <li>🚨 <b>Sleep deprivation in the hospital is a major driver of delirium</b>, which increases falls, length of stay and mortality.</li>
+   <li>⚠️ <b>Rebound insomnia and REM rebound</b> after stopping a hypnotic abruptly; taper rather than stop.</li>
+   <li>⚠️ Sedative-hypnotics in older adults → falls, hip fractures, confusion, and next-day impairment. This is a deprescribing conversation worth starting.</li>
+   <li>✅ Prevent by promoting <b>daytime activity and light</b> — the daytime half of the plan is what makes the nighttime half work.</li>
+   <li>✅ Teach shift workers: consistent sleep block, blackout curtains, no caffeine in the second half of the shift, and a wind-down routine before day sleep.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>N3 is deep restorative sleep; REM is dreaming with muscle atonia.</b> Cluster care into <b>90-minute blocks</b>, do sleep hygiene before pills, and <b>use the patient's CPAP every night in the hospital</b>.</div>
+</section>
+
+<section class="dm" id="perioperative" data-name="Perioperative Care" data-test="fund">
+ <h2>🏥 Perioperative Care</h2>
+ <p class="one">One-line hook: <b>teach it before surgery, protect the airway after</b> — and in PACU the first priority is always <b>airway, breathing, circulation</b>.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li>Anesthesia and surgery create a <b>controlled physiologic insult</b>: the airway reflexes are suppressed, the diaphragm splints from pain, the patient is immobile, and the stress response raises glucose and retains fluid.</li>
+   <li><b>Anesthesia abolishes the gag and cough reflexes</b> — which is why NPO status and side-lying positioning after surgery exist. Aspiration is the risk being prevented.</li>
+   <li><b>Shallow breathing plus retained secretions → atelectasis</b>, the reason for fever in the first 48 hours and the reason incentive spirometry is not optional.</li>
+   <li><b>Immobility plus the surgical hypercoagulable state → DVT and PE</b>. Anesthesia and opioids also slow the gut, producing <b>paralytic ileus</b>.</li>
+   <li>Three phases: <b>preoperative</b> (from the decision to surgery), <b>intraoperative</b> (entering the OR to PACU admission), and <b>postoperative</b> (PACU through recovery).</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Preoperative verification:</b> signed <b>informed consent</b>, identity with two identifiers, correct procedure and site with the surgeon's <b>site marking</b>, allergies (including <b>latex, iodine, and eggs/soy for propofol</b>), NPO status, labs and imaging, baseline vital signs, and removal of jewelry, prostheses, dentures, contact lenses and nail polish.</li>
+   <li><b>NPO guidance:</b> generally <b>2 hours for clear liquids, 6 hours for a light meal, and 8 hours for fried, fatty foods or meat</b>.</li>
+   <li><b>Medication review:</b> anticoagulants and antiplatelets are typically held; <b>metformin is usually held around the procedure because of contrast and lactic acidosis risk</b>; beta-blockers are usually continued; ask about herbals — <b>the "G" herbs (ginkgo, ginger, garlic, ginseng) increase bleeding</b>.</li>
+   <li><mark>The <b>Time Out / Universal Protocol</b> is performed immediately before incision, with the <b>entire team stopping</b> to confirm <b>correct patient, correct procedure, correct site and side</b>.</mark></li>
+   <li>🚨 <b>Malignant hyperthermia</b> — triggered by <b>succinylcholine and volatile anesthetics</b> in a genetically susceptible patient. <b>The earliest signs are a rising end-tidal CO₂ and masseter (jaw) rigidity, then tachycardia and muscle rigidity; the high fever is a LATE sign.</b> Ask every patient about a personal or family history of anesthesia problems.</li>
+   <li>PACU assessment order: <b>airway patency and breathing first</b>, then circulation, then level of consciousness, then the surgical site, drains, dressings, pain and nausea. The <b>Aldrete score</b> gates discharge from PACU.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Teach BEFORE surgery, while the patient can still learn:</b> turn-cough-deep-breathe, <b>incentive spirometry, splinting the incision with a pillow</b>, leg and ankle exercises, the pain scale and how to ask for medication, and what the tubes and drains will be.</li>
+   <li>Preop: have the patient <b>void before the preoperative medication</b>, apply SCDs or antiembolic stockings, start the IV, give preoperative antibiotics within the ordered window, and keep the side rails up and the bed low once sedation is given.</li>
+   <li><b>PACU:</b> position <b>side-lying or with the head turned to the side until the gag reflex returns</b>, give oxygen, monitor continuously, keep the patient warm (shivering triples oxygen consumption), and manage pain and nausea aggressively.</li>
+   <li><b>Malignant hyperthermia response:</b> stop the triggering agent, give <b>dantrolene</b>, hyperventilate with 100% oxygen, cool the patient actively, treat the hyperkalemia and arrhythmias, and monitor urine output for myoglobinuria.</li>
+   <li><b>Postoperative routine: incentive spirometry 10 breaths every hour while awake, turn-cough-deep-breathe every 1–2 hours, ambulate early — the same day when possible — SCDs, and adequate analgesia so the patient can actually breathe deeply and move.</b></li>
+   <li><b>Monitor for: urine output at least 30 mL/hr and voiding within 6–8 hours, return of bowel sounds and passing flatus before advancing diet, and drainage that decreases and lightens rather than increasing.</b></li>
+   <li><span class="never">Never give anything by mouth until the gag reflex has returned, and never let a patient get up alone the first time after surgery.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>Circulating nurse — an RN, unscrubbed.</b> Verifies consent and the patient, positions and preps, manages the sterile supplies onto the field, documents, performs the <b>sponge, sharp and instrument counts</b> with the scrub, and <b>acts as the patient's advocate</b> while they are anesthetized.</li>
+   <li><b>Scrub nurse or surgical technologist</b> — scrubbed, gowned and gloved; maintains the sterile field and passes instruments; participates in the counts.</li>
+   <li><b>Surgeon</b> — performs the procedure and is <b>responsible for obtaining informed consent</b>; <b>anesthesia provider</b> — airway, anesthetic agents, and hemodynamic management.</li>
+   <li><b>Preop and PACU RNs</b> — verification, teaching, and the postanesthesia assessment; the <b>handoff report</b> between them uses a structured format and includes the procedure, anesthesia, estimated blood loss, drains, allergies, and intraoperative events.</li>
+   <li><b>UAP may</b> take vital signs on a <b>stable</b> post-op patient, help with hygiene, assist with ambulation once the RN has cleared it, apply SCDs, record intake and output, and <b>remind</b> the patient to use the incentive spirometer.</li>
+   <li><b>UAP may NOT</b> do the first postoperative assessment or vital signs, teach the incentive spirometer or splinting, assess the wound or drains, witness informed consent, or ambulate a patient for the first time after surgery.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Airway obstruction, aspiration, hemorrhage and shock</b> are the immediate PACU emergencies. Check under the patient — blood pools at the back where you cannot see it on the dressing.</li>
+   <li>⚠️ <b>Postoperative fever, by timing — the five Ws: Wind</b> (atelectasis/pneumonia, first 24–48 h) · <b>Water</b> (UTI, day 3–5) · <b>Walking</b> (DVT, day 4–6 and after) · <b>Wound</b> (infection, day 5–7) · <b>Wonder drugs</b> (drug fever or a transfusion reaction, any time).</li>
+   <li>🚨 <b>Dehiscence and evisceration</b> — sterile saline-moistened gauze, low Fowler's with knees bent, NPO, call the surgeon. <b>Paralytic ileus</b> — absent bowel sounds, distention, no flatus: keep NPO, consider an NG tube, and ambulate.</li>
+   <li>⚠️ Older adults are at higher risk for <b>postoperative delirium, hypothermia, and drug accumulation</b> — reorient, warm them, and dose conservatively.</li>
+   <li>✅ Prevent nearly all of it with the same short list: <b>early ambulation, incentive spirometry, adequate pain control, VTE prophylaxis, glucose control, and hand hygiene around the incision</b>.</li>
+   <li>✅ Discharge teaching: wound care and signs of infection, activity and lifting limits, when to resume driving, medication schedule including the bowel regimen, follow-up appointment, and <b>exactly which symptoms mean call now</b>.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Teach TCDB, incentive spirometry and splinting BEFORE surgery.</b> In PACU: <b>airway first, side-lying until the gag reflex returns.</b> <b>Malignant hyperthermia = rising end-tidal CO₂ and jaw rigidity first, fever late → dantrolene.</b> Fever timing: <b>wind, water, walking, wound, wonder drugs</b>.</div>
+</section>
+
+<section class="dm" id="end-of-life" data-name="End-of-Life &amp; Advance Directives" data-test="fund">
+ <h2>🕊️ End-of-Life &amp; Advance Directives</h2>
+ <p class="one">One-line hook: <b>a competent patient's current wishes override every document</b> — and <b>DNR never means "do not care."</b></p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li>Dying is a predictable physiologic process: <b>circulation shunts to the core</b>, so the extremities become <b>cool, pale and mottled</b> with weak, thready pulses and falling blood pressure.</li>
+   <li>Respirations become irregular — <b>Cheyne-Stokes breathing</b> (cycles of deepening breaths then apnea) and the <b>"death rattle"</b> from secretions pooling in a throat that can no longer clear itself.</li>
+   <li><b>Appetite and thirst decrease naturally</b>; this is part of dying, not starvation, and forcing intake causes aspiration and discomfort rather than comfort.</li>
+   <li>Consciousness declines with periods of restlessness or <b>terminal delirium</b>; urine output drops and incontinence is common.</li>
+   <li><mark><b>Hearing is believed to be the last sense to go</b> — keep speaking to the patient, use their name, and never say anything at the bedside you would not say to them awake.</mark></li>
+   <li>The concept behind the documents: <b>autonomy extends past the point of being able to speak</b>, which is why advance directives exist at all.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Living will</b> — states what treatments the patient does and does not want. <b>Durable power of attorney for health care (health care proxy/agent)</b> — names the <i>person</i> who decides when the patient cannot. Most patients should have both.</li>
+   <li><b>The Patient Self-Determination Act</b> requires facilities receiving Medicare or Medicaid to <b>ask every patient on admission whether they have an advance directive, offer information, and document the answer</b>. It does not require them to have one.</li>
+   <li><b>DNR / AND (allow natural death) requires a provider's order written in the chart.</b> A family's verbal statement is not an order. <b>POLST/MOLST</b> forms are actual portable medical orders for seriously ill patients and travel between settings.</li>
+   <li><b>Hospice</b> — prognosis of <b>6 months or less</b> if the disease follows its usual course; comfort-focused, curative treatment stopped. <b>Palliative care</b> — appropriate at <b>any stage of any serious illness, alongside curative treatment</b>. That distinction is heavily tested.</li>
+   <li>Signs death is near: cool mottled extremities, Cheyne-Stokes respirations, the death rattle, decreased urine, weak pulse, decreased responsiveness, and a surge of energy some patients have shortly before dying.</li>
+   <li>Assess the family too: <b>anticipatory grief</b> before the death, <b>complicated grief</b> that stays disabling, and <b>disenfranchised grief</b> when the loss is not socially recognized.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Treat symptoms aggressively.</b> <b>Opioids for pain and for dyspnea</b> — titrate to comfort. The <b>principle of double effect</b> means that relieving suffering is ethical even if a side effect may shorten life, as long as relief is the intent. <b>Do not withhold pain medication out of fear of respiratory depression at the end of life.</b></li>
+   <li><b>Death rattle: reposition on the side with the head elevated, stop or reduce IV fluids, and give an anticholinergic</b> such as glycopyrrolate or scopolamine. <b>Deep suctioning is distressing and generally avoided</b>; it does not reach pooled secretions.</li>
+   <li>Comfort care continues in full: <b>oral and lip care, eye lubrication, skin and pressure relief, repositioning gently, warm blankets, quiet, low light, and presence</b>.</li>
+   <li><b>Offer food and fluids but never force them.</b> Ice chips, sips and moistened swabs are for comfort, not nutrition.</li>
+   <li><b>Communicate with honesty and silence.</b> Do not correct a dying patient's beliefs, do not give false hope, and do not fill the silence — sitting quietly is a documented intervention.</li>
+   <li><b>Postmortem care:</b> follow cultural and religious practices, allow the family time and privacy, position the body in alignment with the head slightly elevated, close the eyes, replace dentures, apply ID tags, and remove tubes <i>only if</i> it is not a coroner's case or an organ donation.</li>
+   <li><span class="never">Never remove lines, tubes or the endotracheal tube in a coroner's case or a potential organ donation, and never assume a DNR order means comfort measures should be reduced.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>The patient</b> — the decision maker whenever competent. <b>A competent patient can revoke an advance directive at any time, verbally or in writing, and their current wishes always win.</b></li>
+   <li><b>Health care proxy / surrogate</b> — decides only when the patient cannot, and must decide <b>as the patient would have</b> (substituted judgment), not as the proxy prefers. Without a proxy, states use a legal hierarchy of next of kin.</li>
+   <li><b>RN</b> — assesses symptoms and grief, provides comfort care, advocates for the patient's stated wishes, teaches the family what to expect, and <b>ensures the advance directive is in the chart and the DNR order matches it</b>.</li>
+   <li><b>UAP may</b> provide hygiene, mouth care, repositioning, linen changes, and <b>postmortem care</b>, and may sit with the patient and family.</li>
+   <li><b>UAP may NOT</b> discuss prognosis, witness or explain an advance directive, assess symptoms, or teach the family about what is happening.</li>
+   <li><b>Provider</b> — writes the DNR/comfort care orders and delivers the prognosis; <b>hospice/palliative team, chaplain, social worker, and ethics committee</b> — spiritual care, resources, bereavement follow-up, and conflict resolution; <b>organ procurement organization</b> — the trained requestor makes the donation request, <b>not the treating nurse or physician</b>.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>A DNR order being read as "do not treat."</b> Pain control, oxygen for comfort, hygiene, repositioning, antibiotics if desired, and every other comfort measure continue.</li>
+   <li>⚠️ <b>Family conflict</b> when wishes were never discussed, or when a family member wants everything done against a documented directive. Escalate to the provider and the ethics committee; the nurse advocates for the patient.</li>
+   <li>⚠️ <b>Undertreated pain and dyspnea</b> at the end of life, usually from staff fear of hastening death. This is the most common failure in this topic.</li>
+   <li>✅ Prevent it all by having the conversation <b>early, while the patient is well</b> — advance care planning belongs in primary care, not the ICU at 3 a.m.</li>
+   <li>✅ Teach the family what dying looks like <i>before</i> it happens — mottling, breathing changes and decreased intake are far less frightening when they were predicted.</li>
+   <li>✅ Care for yourself and the team: <b>compassion fatigue and moral distress are real</b>; debrief, use employee assistance, and do not normalize carrying it alone.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Living will = wishes; durable power of attorney = the person.</b> A competent patient can revoke either at any time. <b>DNR requires a provider order and never means withdrawing comfort care.</b> Hospice = 6 months or less; palliative care = any stage, any time.</div>
+</section>
+
+<section class="dm" id="documentation" data-name="Documentation &amp; Legal/Ethical Principles" data-test="fund">
+ <h2>📝 Documentation &amp; Legal/Ethical Principles</h2>
+ <p class="one">One-line hook: <b>if it was not documented, it was not done</b> — chart facts, chart after the care, and never chart for someone else.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept.)</i> The medical record is simultaneously a <b>communication tool, a legal document, a billing record, and the evidence of the standard of care</b>. Every documentation rule follows from one of those four roles.</li>
+   <li>Good documentation must be <b>factual, accurate, complete, current, and organized</b> — objective observations and the patient's own quoted words, not your conclusions about them.</li>
+   <li><b>Malpractice requires all four elements: duty, breach of duty, causation, and damages.</b> Missing any one and the claim fails — the chart is usually what establishes or refutes breach.</li>
+   <li><b>Negligence</b> is failing to act as a reasonably prudent nurse would in the same situation; <b>malpractice is professional negligence</b>.</li>
+   <li>The <b>ethical principles</b> underneath every question: <b>autonomy</b> (self-determination) · <b>beneficence</b> (do good) · <b>nonmaleficence</b> (do no harm) · <b>justice</b> (fairness) · <b>fidelity</b> (keep promises) · <b>veracity</b> (tell the truth).</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li><b>Intentional torts to recognize: assault</b> (threatening to touch — "hold still or I'll restrain you") · <b>battery</b> (touching without consent, including giving a medication to a patient who refused) · <b>false imprisonment</b> (improper restraint or refusing to let a patient leave) · <b>defamation</b> (libel written, slander spoken) · <b>invasion of privacy</b>.</li>
+   <li><b>HIPAA violations</b>: discussing a patient in the elevator or cafeteria, looking up a chart you are not caring for, leaving a screen open, sharing a password, posting anything about a patient on social media <i>even without a name</i>.</li>
+   <li>Documentation formats: <b>narrative · SOAP(IER) · PIE · Focus/DAR · charting by exception</b>, and <b>SBAR</b> (situation, background, assessment, recommendation) for handoffs and provider calls.</li>
+   <li><mark>An <b>incident/occurrence report is an internal quality-improvement tool and is NOT part of the medical record</b> — document the facts and the patient's condition in the chart, but <b>never write "incident report completed" in the chart</b>.</mark></li>
+   <li>Red flags in charting: opinions, blame, staffing complaints, block charting done at the end of a shift, blank lines, and entries that conflict with the flowsheet.</li>
+   <li>Know your <b>state Nurse Practice Act</b> — it defines scope, and facility policy can narrow it but never expand it.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>Chart promptly after care, never before.</b> Include the date, time, your <b>full signature and credentials</b>, and use only approved abbreviations.</li>
+   <li><b>Correcting a paper error: draw a single line through it, write "error" or "mistaken entry," initial and date it, and write the correction — the original must stay readable.</b> <span class="never">Never erase, scribble out, use correction fluid, or delete an entry.</span></li>
+   <li><b>Late entry:</b> label it "late entry," give the date and time of the <i>care</i> and the date and time you are <i>writing</i>. Leave <b>no blank lines</b>; draw a line through unused space.</li>
+   <li><b>Verbal and telephone orders:</b> write it down, <b>read it back, and get confirmation</b>; record the date, time, provider name, and your signature; and have it co-signed within the facility's time frame. <b>Only take them in an emergency or when a written order is not possible.</b></li>
+   <li><b>Quote the patient directly.</b> Chart "Patient states, 'I feel like I can't breathe'" — not "patient anxious."</li>
+   <li><b>Refusal of care:</b> document what was refused, the education you gave about the risks, that the provider was notified, and the patient's stated reason. Have them sign an AMA or refusal form when applicable.</li>
+   <li><span class="never">Never chart for another nurse, never chart an assessment you did not perform, and never alter a record after an incident — that turns a defensible case into an indefensible one.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>Each licensed person documents their own care and signs it.</b> That is the whole rule, and it is why "chart it for me, I'm swamped" is always the wrong answer.</li>
+   <li><b>RN</b> — documents the assessment, the nursing diagnoses, the plan, the interventions and the <b>evaluation of outcomes</b>, plus all teaching and the patient's response.</li>
+   <li><b>LPN</b> — documents the care they gave and the data they collected; may not document the initial assessment or the care plan.</li>
+   <li><b>UAP may</b> document what they did — vital signs, intake and output, weights, ADLs, ambulation — and <b>must report anything abnormal to the nurse</b> rather than acting on it.</li>
+   <li><b>UAP may NOT</b> document an assessment, chart in the nursing narrative as if they assessed, take a verbal or telephone order, or witness an informed consent.</li>
+   <li><b>Chain of command:</b> charge nurse → nurse manager → supervisor/administration. Use it when a provider will not respond, an order seems unsafe, or you are asked to work outside your scope — and <b>document each escalation with times</b>.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 Poor documentation is the most common reason a defensible nurse loses a lawsuit. <b>A thin chart looks like thin care.</b></li>
+   <li>⚠️ <b>Mandatory reporting</b> is not optional and overrides confidentiality: <b>suspected child or elder abuse, certain communicable diseases, gunshot and stab wounds, and impaired colleagues</b>. Failing to report is itself a violation.</li>
+   <li>⚠️ <b>Good Samaritan laws</b> protect care given at the scene of an emergency in good faith and within your training — they do not protect gross negligence or care given for payment.</li>
+   <li>✅ Prevent errors with <b>real-time charting, structured handoffs (SBAR), and speaking up early</b> rather than documenting your concerns after the fact.</li>
+   <li>✅ Carry your own <b>professional liability insurance</b>, know your Nurse Practice Act, and keep your documentation habits the same on your worst shift as on your best one.</li>
+   <li>✅ Teach patients their rights: to see their record, to request an amendment, to know who has accessed it, and to refuse treatment.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Factual, objective, timely, signed — and only for your own care.</b> Correct a paper error with <b>one line, "error," initials and date</b>. The <b>incident report is never mentioned in the chart</b>. Malpractice needs <b>duty, breach, causation, damages</b>.</div>
+</section>
+
+<section class="dm" id="informed-consent" data-name="Informed Consent" data-test="fund">
+ <h2>✍️ Informed Consent</h2>
+ <p class="one">One-line hook: <b>the provider obtains consent; the nurse witnesses the signature</b> — and if the patient cannot tell you what they are having done, stop and call the provider.</p>
+ <div class="g g1"><b>1 · What is happening in the body?</b><div>
+  <ul>
+   <li><i>(The concept.)</i> Informed consent operationalizes <b>autonomy</b> — the right to decide what happens to your own body. Touching someone without it is <b>battery</b>, regardless of how beneficial the procedure was.</li>
+   <li><b>Three required elements: (1) disclosure of adequate information, (2) a competent patient who comprehends it, and (3) a voluntary decision free of coercion.</b> All three, every time.</li>
+   <li><b>Adequate information means:</b> the nature and purpose of the procedure, who will perform it, the expected benefits, the material risks and complications, <b>reasonable alternatives</b>, and <b>the consequences of doing nothing</b>.</li>
+   <li>Consent is required for <b>surgery, anesthesia, invasive procedures, blood products, chemotherapy and radiation, research participation, and procedures with meaningful risk</b> — not for routine care covered by the general admission consent.</li>
+   <li>The signed form is only <b>evidence</b> of the conversation. The consent is the conversation; the paper documents that it happened.</li>
+  </ul></div></div>
+ <div class="g g2"><b>2 · How do you know?</b><div>
+  <ul>
+   <li>Before witnessing, verify: the patient can <b>state in their own words what procedure they are having and why</b>, they are <b>not premedicated or sedated</b>, they are signing <b>voluntarily</b>, and the form is complete with the correct procedure and site.</li>
+   <li><mark>If the patient says "I'm not really sure what they're doing" or expresses new doubt — <b>stop, do not have them sign, and notify the provider to come back and explain.</b></mark></li>
+   <li>Assess capacity, which is decision-specific: can they <b>understand the information, appreciate how it applies to them, reason through the options, and communicate a choice</b>? Confusion, dementia, intoxication, or sedation may remove it.</li>
+   <li>Check whether an <b>interpreter</b> is needed — consent obtained across a language barrier without a trained interpreter is not informed consent.</li>
+   <li>🚨 Red flags: the form already signed but the patient is groggy from a preop medication, the site on the form does not match the marked site, the surgeon's name does not match who is operating, or the family signed for a competent adult.</li>
+   <li>Know the special cases: <b>emancipated minors</b> and minors seeking care for pregnancy, sexually transmitted infection or substance use may consent themselves in many states; otherwise a <b>parent or legal guardian</b> consents for a minor.</li>
+  </ul></div></div>
+ <div class="g g3"><b>3 · How do you fix it?</b><div>
+  <ul>
+   <li><b>The nurse's role is to witness the signature</b> — confirming the signature is authentic, the patient appears competent, and the consent is voluntary — <b>and to verify that the patient understands and to notify the provider if they do not</b>.</li>
+   <li><b>Emergency exception:</b> when a delay would cause death or serious harm and the patient cannot consent and no surrogate is reachable, <b>consent is implied</b>. Document the emergency and the attempts to reach a surrogate.</li>
+   <li><b>Illiterate patient:</b> may sign with an <b>X</b> after the information is read aloud, with two witnesses. <b>Blind patient:</b> may sign after the form is read to them; <b>blindness does not affect competence</b>.</li>
+   <li><b>Telephone consent</b> from a surrogate requires <b>two nurses on the line as witnesses</b>, both documenting.</li>
+   <li><b>Refusal or withdrawal:</b> the patient may refuse at any time, <b>including after signing and even on the way to the OR</b>. Stop, notify the provider, document the refusal and the teaching given, and do not pressure them.</li>
+   <li>Document who explained, who witnessed, the date and time, the interpreter used, and the patient's understanding in their own words.</li>
+   <li><span class="never">Never witness a consent for a patient who has received preoperative sedation, and never have a family member — especially a child — serve as the interpreter for a consent discussion.</span></li>
+  </ul></div></div>
+ <div class="g g4"><b>4 · Who is involved?</b><div>
+  <ul>
+   <li><b>The provider performing the procedure is legally responsible for obtaining informed consent</b> and for explaining the procedure, risks, benefits and alternatives. This cannot be handed to the nurse.</li>
+   <li><b>RN</b> — <b>witnesses the signature</b>, verifies comprehension, verifies voluntariness, ensures the form is in the chart before the procedure, clarifies and <b>reinforces</b> information the provider already gave, and <b>advocates by stopping the process</b> if understanding is missing.</li>
+   <li><b>The nurse may NOT</b> obtain informed consent, explain the procedure for the first time, describe risks that were not covered, or sign on the patient's behalf.</li>
+   <li><b>LPN/LVN and UAP may NOT witness informed consent.</b> <i>Witnessing consent is not a delegable task — it requires verifying comprehension, which is an assessment.</i></li>
+   <li><b>Legal guardian, health care proxy, or next of kin</b> — signs when the patient lacks capacity, following the state's surrogate hierarchy; <b>parent or guardian</b> signs for a minor.</li>
+   <li><b>Trained medical interpreter</b> — required and documented for any language barrier; <b>risk management and ethics</b> — capacity disputes, refusals of life-saving care, and guardianship questions.</li>
+  </ul></div></div>
+ <div class="g g5"><b>5 · How can it get worse / be prevented?</b><div>
+  <ul>
+   <li>🚨 <b>Proceeding without valid consent is battery</b>, and performing a different or additional procedure than the one consented to is as well.</li>
+   <li>⚠️ <b>Wrong-site and wrong-procedure surgery</b> — prevented by the consent matching the site marking and the <b>Time Out</b>. If the consent and the marking disagree, everything stops.</li>
+   <li>⚠️ Religious or personal refusals — a <b>Jehovah's Witness patient may refuse blood products</b>, and a competent adult's refusal must be honored even when the team disagrees. Explore alternatives, do not coerce.</li>
+   <li>✅ Prevent problems by having the conversation <b>before any sedation is given</b> and early enough that the patient can think and ask questions.</li>
+   <li>✅ Teach patients that they may ask questions, ask for more time, get a second opinion, and change their mind at any point — and that doing so will not affect the rest of their care.</li>
+   <li>✅ Keep a copy of any advance directive and the consent together in the chart, so the surgical team sees both.</li>
+  </ul></div></div>
+ <div class="tell"><b>⭐ If you only remember one thing:</b> <b>Provider obtains, nurse witnesses.</b> Three elements: <b>informed, competent, voluntary</b>. If the patient cannot describe the procedure or is already sedated — <b>stop and call the provider.</b> The patient may withdraw consent at any time.</div>
+</section>
+<div class="none" id="empty" style="display:none">Nothing matches. Try a shorter word.</div>
+<div class="foot">Study material only &mdash; always check your course materials and facility policy.</div>
+</div>
+<script>
+(function(){
+ var q=document.getElementById('q'), count=document.getElementById('count'),
+     empty=document.getElementById('empty'), cards=[].slice.call(document.querySelectorAll('.dm')),
+     filt='all';
+ cards.forEach(function(c){
+   c.querySelector('h2').addEventListener('click',function(){
+     if(document.body.classList.contains('skim')) return;   /* skim keeps them all open */
+     c.classList.toggle('open');
+   });
+ });
+ function visible(){ return cards.filter(function(c){return c.style.display!=='none';}); }
+ function run(){
+   var t=q.value.trim().toLowerCase(), n=0;
+   cards.forEach(function(c){
+     var okF = filt==='all' || c.getAttribute('data-test')===filt;
+     var okT = !t || c.textContent.toLowerCase().indexOf(t)>-1;
+     var show=okF&&okT; c.style.display=show?'':'none';
+     if(show){ n++; if(t) c.classList.add('open'); }
+   });
+   count.textContent=n+' '+(n===1?'card':'cards')+(t?' matching "'+q.value.trim()+'"':'');
+   empty.style.display=n?'none':'block';
+ }
+ q.addEventListener('input',run);
+ document.querySelectorAll('.bar button[data-f]').forEach(function(b){
+   b.addEventListener('click',function(){
+     document.querySelectorAll('.bar button[data-f]').forEach(function(x){x.classList.remove('on');});
+     b.classList.add('on'); filt=b.getAttribute('data-f'); run();
+   });
+ });
+ var ex=document.getElementById('expand');
+ ex.addEventListener('click',function(){
+   var vis=visible(), anyClosed=vis.some(function(c){return !c.classList.contains('open');});
+   vis.forEach(function(c){ c.classList.toggle('open',anyClosed); });
+   ex.textContent=anyClosed?'Close all':'Open all';
+ });
+ var sk=document.getElementById('skim');
+ sk.addEventListener('click',function(){
+   var on=document.body.classList.toggle('skim');
+   sk.classList.toggle('on',on);
+   sk.textContent=on?'✖ Leave skim':'⚡ Skim mode';
+   if(on) cards.forEach(function(c){c.classList.add('open');});
+   try{ localStorage.setItem('dmSkim',on?'1':'0'); }catch(e){}
+ });
+ try{ if(localStorage.getItem('dmSkim')==='1') sk.click(); }catch(e){}
+ document.addEventListener('keydown',function(e){
+   if(e.key==='/'&&document.activeElement!==q){ e.preventDefault(); q.focus(); q.select(); }
+   if(e.key==='s'&&document.activeElement!==q){ sk.click(); }
+ });
+ (function(){
+   var want=(location.hash||'').slice(1)||new URLSearchParams(location.search).get('c');
+   if(!want) return;
+   var c=document.getElementById(want);
+   if(c){ c.classList.add('open'); setTimeout(function(){c.scrollIntoView({block:'start'});},80); }
+ })();
+ run();
+})();
+</script>
+<script id="navDragJS">
+(function(){
+  var nb=document.getElementById('navBtns');
+  if(!nb||nb.dataset.dragReady) return;
+  nb.dataset.dragReady='1';
+
+  /* ── 1. modifier and middle clicks must open a new tab ───────────────
+     The ABSN link called preventDefault() every time, which killed
+     ctrl/cmd/shift-click and middle-click. Let those through. */
+  function passthrough(e){
+    return e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button===1;
+  }
+  nb.addEventListener('click',function(e){
+    var a=e.target.closest('a'); if(!a) return;
+    if(passthrough(e)){ e.stopImmediatePropagation(); }   /* before the page's own handler */
+  },true);
+  nb.addEventListener('auxclick',function(e){
+    var a=e.target.closest('a');
+    if(a&&e.button===1){ e.stopImmediatePropagation();
+      window.open(a.href,'_blank','noopener'); e.preventDefault(); }
+  },true);
+  /* every button in the cluster also gets a right-click / long-press menu that
+     works, because they stay real <a href> elements */
+
+  /* ── 2. a grip so it is obvious the cluster can be moved ───────────── */
+
+
+  /* ── 3. drag, and remember where she put it ─────────────────────────── */
+  var KEY='nbPos';
+  function clampPos(l,t){
+    var r=nb.getBoundingClientRect();
+    var maxL=Math.max(0,window.innerWidth-r.width-4);
+    var maxT=Math.max(0,window.innerHeight-r.height-4);
+    return [Math.min(Math.max(0,l),maxL), Math.min(Math.max(0,t),maxT)];
+  }
+  function place(l,t){
+    var p=clampPos(l,t);
+    nb.style.left=p[0]+'px'; nb.style.top=p[1]+'px';
+    nb.style.right='auto'; nb.style.bottom='auto';
+  }
+  function save(){
+    try{ localStorage.setItem(KEY,JSON.stringify({l:parseFloat(nb.style.left)||0,
+                                                  t:parseFloat(nb.style.top)||0})); }catch(e){}
+  }
+  function reset(){
+    nb.style.left=''; nb.style.top=''; nb.style.right=''; nb.style.bottom='';
+    try{ localStorage.removeItem(KEY); }catch(e){}
+  }
+  try{
+    var s=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(s&&typeof s.l==='number') place(s.l,s.t);
+  }catch(e){}
+
+  var dragging=false,ox=0,oy=0,moved=false;
+  function down(x,y,e){
+    var r=nb.getBoundingClientRect();
+    dragging=true; moved=false; ox=x-r.left; oy=y-r.top;
+    nb.classList.add('dragging');
+    if(e&&e.preventDefault) e.preventDefault();
+  }
+  function move(x,y){
+    if(!dragging) return;
+    moved=true; place(x-ox,y-oy);
+  }
+  function up(){
+    if(!dragging) return;
+    dragging=false; nb.classList.remove('dragging');
+    if(moved) save();
+  }
+  nb.addEventListener('mousedown',function(e){ if(e.button===0) down(e.clientX,e.clientY,e); });
+  window.addEventListener('mousemove',function(e){ move(e.clientX,e.clientY); });
+  window.addEventListener('mouseup',up);
+  nb.addEventListener('touchstart',function(e){
+    var t=e.touches[0]; down(t.clientX,t.clientY,e); },{passive:false});
+  window.addEventListener('touchmove',function(e){
+    if(!dragging) return; var t=e.touches[0]; move(t.clientX,t.clientY); e.preventDefault(); },{passive:false});
+  window.addEventListener('touchend',up);
+  nb.addEventListener('dblclick',function(e){ e.preventDefault(); reset(); });
+  /* keyboard: focus the grip and nudge with the arrows */
+  nb.addEventListener('keydown',function(e){
+    var step=e.shiftKey?24:6, r=nb.getBoundingClientRect(), l=r.left, t=r.top, hit=true;
+    if(e.key==='ArrowLeft') l-=step; else if(e.key==='ArrowRight') l+=step;
+    else if(e.key==='ArrowUp') t-=step; else if(e.key==='ArrowDown') t+=step;
+    else if(e.key==='Home'||e.key==='Escape'){ reset(); e.preventDefault(); return; }
+    else hit=false;
+    if(hit){ place(l,t); save(); e.preventDefault(); }
+  });
+  window.addEventListener('resize',function(){
+    if(nb.style.left) place(parseFloat(nb.style.left),parseFloat(nb.style.top));
+  });
+
+  /* ── 4. step aside for full-screen viewers ───────────────────────────
+     Some overlays (the NUR 175 image lightbox, the drug guide drawer) sit
+     below this cluster in the stacking order, so the cluster covered their
+     Close buttons. Find them once, then just watch whether they are shown. */
+  var overlays=[];
+  try{
+    document.querySelectorAll('body *').forEach(function(el){
+      if(overlays.length>40) return;
+      if(el===nb||nb.contains(el)) return;
+      var cs=getComputedStyle(el);
+      if(cs.position!=='fixed') return;
+      var z=parseInt(cs.zIndex,10);
+      if(!(z>=1000)) return;
+      /* covers most of the screen in at least one dimension */
+      var w=parseFloat(cs.width), h=parseFloat(cs.height);
+      var full=(cs.inset==='0px'||cs.top==='0px'&&cs.left==='0px'&&cs.right==='0px'&&cs.bottom==='0px');
+      if(full||(w>=window.innerWidth*0.9&&h>=window.innerHeight*0.9)) overlays.push(el);
+    });
+  }catch(e){}
+  function check(){
+    var open=overlays.some(function(el){
+      var cs=getComputedStyle(el);
+      return cs.display!=='none'&&cs.visibility!=='hidden'&&parseFloat(cs.opacity||'1')>0.05;
+    });
+    nb.classList.toggle('hidden-by-overlay',open);
+  }
+  if(overlays.length){
+    check();
+    var t=null;
+    new MutationObserver(function(){ clearTimeout(t); t=setTimeout(check,60); })
+      .observe(document.body,{attributes:true,subtree:true,
+                              attributeFilter:['class','style','hidden']});
+  }
+})();
+</script>
+<script id="skimJS">
+(function(){
+  /* What counts as a line of prose on these pages is NOT <p>. The 125 eBook units use
+     <p class="ebp">, but 175 is card-based divs and 198 mixes divs, p and li. So the
+     candidate set is "leaf text blocks": an element whose children are all inline.
+     Measured before choosing: on a 125 eBook unit that is 2,352 blocks of which ~456
+     are long unmarked prose; on the card pages it is a handful, which is the honest
+     answer - those pages are already skimmable. */
+  var INLINE = {B:1,I:1,EM:1,STRONG:1,SPAN:1,A:1,CODE:1,MARK:1,U:1,BR:1,SMALL:1,
+                SUB:1,SUP:1,ABBR:1,WBR:1,IMG:1};
+  var SIGNAL = 'b,strong,mark,u,code';
+  /* never touch: chrome, tables, quizzes, contents lists, captions, footers */
+  var SAFE = '#skimBtn,nav,header,#vwBar,.bar,.nb,.nbWrap,table,thead,tbody,tr,td,th,' +
+             '.stem,.q,.qa,.qt,.ans,.ansbox,.rationale,.fill,.blanks,.fp,.fpk,.nq,' +
+             '.toc,.foot,.cap,.chip,.chip-row,.sec-sub,.bn,.dvname,button,summary,' +
+             '[class*="nav"],[class*="btn"],[class*="quiz"]';
+  var MIN  = 110;      /* below this a line is a label or a rule, not padding */
+  var NUM  = /\d\s*(mg|mcg|g|kg|lb|ml|l|mmol|meq|mmhg|%|hr|hrs|min|sec|day|wk|yr|bpm|cm|mm|units?|°)/i;
+
+  var btn, marked=false, hid=0, total=0;
+
+  function leaf(el){
+    for(var i=0;i<el.children.length;i++)
+      if(!INLINE[el.children[i].tagName]) return false;
+    return true;
+  }
+
+  function mark(){
+    if(marked) return;
+    var all = document.querySelectorAll('p,li,div,dd');
+    for(var i=0;i<all.length;i++){
+      var el=all[i];
+      if(el.closest(SAFE)) continue;
+      if(!leaf(el)) continue;
+      var t=(el.textContent||'').trim();
+      if(!t) continue;
+      total++;
+      if(t.length < MIN) continue;
+      if(el.querySelector(SIGNAL)) continue;
+      if(NUM.test(t)) continue;
+      el.classList.add('skimHide'); hid++;
+    }
+    marked=true;
+  }
+
+  var wasShut=[];
+  function openAll(open){
+    if(open){
+      wasShut=[].slice.call(document.querySelectorAll('details:not([open])'));
+      wasShut.forEach(function(d){ d.open=true; });
+    } else {
+      wasShut.forEach(function(d){ d.open=false; });
+      wasShut=[];
+    }
+  }
+
+  function paint(on){
+    btn.querySelector('.lbl').textContent = on ? 'Skimming' : 'Skim mode';
+    btn.querySelector('.n').textContent =
+      on ? (hid ? ('hid ' + hid + ' of ' + total) : 'nothing to hide here') : '';
+  }
+
+  function toggle(){
+    var on=!document.body.classList.contains('skimOn');
+    if(on) mark();
+    document.body.classList.toggle('skimOn', on);
+    openAll(on); paint(on);
+    try{ localStorage.setItem('skimOn', on?'1':'0'); }catch(e){}
+  }
+
+  function build(){
+    /* an iframe shell has no prose of its own - the inner document carries its own
+       button, so a second dead one on the wrapper would just be a lie */
+    /* textContent, not innerText: innerText is render-aware, so on a page whose
+       content sits inside collapsed <details> it reads near-zero and this test would
+       suppress the button on a perfectly good page. That happened. */
+    if(document.querySelector('iframe') &&
+       (document.body.textContent||'').trim().length < 6000) return;
+
+    btn=document.createElement('button');
+    btn.type='button'; btn.id='skimBtn';
+    btn.setAttribute('aria-label','Toggle skim mode - hide the long prose, keep the rules');
+    btn.innerHTML='⚡ <span class="lbl">Skim mode</span> <span class="n"></span>';
+    btn.addEventListener('click', toggle);
+    document.body.appendChild(btn);
+    paint(false);
+
+  /* ---- draggable, because a button welded to a corner covers what she is reading
+     and at 300% zoom there is not much screen left to lose. Travel under 6px counts
+     as a click, 6px or more is a drag and the click is swallowed. */
+  var KEYPOS='skimBtnPos';
+  function clamp(x,y){
+    var r=btn.getBoundingClientRect(), m=4;
+    return [Math.max(m,Math.min(x,window.innerWidth-r.width-m)),
+            Math.max(m,Math.min(y,window.innerHeight-r.height-m))];
+  }
+  function place(x,y,save){
+    var p=clamp(x,y);
+    btn.style.left=p[0]+'px'; btn.style.top=p[1]+'px';
+    btn.style.right='auto'; btn.style.bottom='auto';
+    if(save){ try{ localStorage.setItem(KEYPOS,JSON.stringify(p)); }catch(e){} }
+  }
+  function restore(){
+    try{
+      var p=JSON.parse(localStorage.getItem(KEYPOS)||'null');
+      if(p && p.length===2) place(p[0],p[1],false);
+    }catch(e){}
+  }
+
+  var down=null, moved=false;
+  btn.addEventListener('pointerdown',function(e){
+    if(e.button && e.button!==0) return;
+    var r=btn.getBoundingClientRect();
+    down={x:e.clientX,y:e.clientY,dx:e.clientX-r.left,dy:e.clientY-r.top};
+    moved=false;
+    btn.setPointerCapture&&btn.setPointerCapture(e.pointerId);
+  });
+  btn.addEventListener('pointermove',function(e){
+    if(!down) return;
+    if(!moved && Math.abs(e.clientX-down.x)<6 && Math.abs(e.clientY-down.y)<6) return;
+    moved=true; btn.classList.add('dragging');
+    place(e.clientX-down.dx, e.clientY-down.dy, false);
+    e.preventDefault();
+  });
+  function end(e){
+    if(!down) return;
+    down=null;
+    if(moved){
+      btn.classList.remove('dragging');
+      var r=btn.getBoundingClientRect();
+      place(r.left,r.top,true);
+      /* swallow the click this drag would otherwise fire */
+      var kill=function(ev){ ev.stopPropagation(); ev.preventDefault();
+        btn.removeEventListener('click',kill,true); };
+      btn.addEventListener('click',kill,true);
+      setTimeout(function(){ btn.removeEventListener('click',kill,true); },0);
+    }
+  }
+  btn.addEventListener('pointerup',end);
+  btn.addEventListener('pointercancel',end);
+
+  /* arrows nudge it, so moving it never needs a precise drag */
+  btn.addEventListener('keydown',function(e){
+    var d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];
+    if(!d) return;
+    e.preventDefault();
+    var step=e.shiftKey?48:12, r=btn.getBoundingClientRect();
+    place(r.left+d[0]*step, r.top+d[1]*step, true);
+  });
+
+  window.addEventListener('resize',function(){
+    var r=btn.getBoundingClientRect(); place(r.left,r.top,false);
+  });
+  restore();
+
+    /* ---- never sit under the nav cluster ---------------------------- */
+    function unstack(){
+      var nb=document.getElementById('navBtns');
+      if(!nb || !btn) return;
+      var a=btn.getBoundingClientRect(), b=nb.getBoundingClientRect();
+      var hit = !(a.right < b.left-4 || a.left > b.right+4 ||
+                  a.bottom < b.top-4 || a.top > b.bottom+4);
+      if(!hit) return;
+      var below = b.bottom + 10;
+      var top = (below + a.height + 6 <= window.innerHeight) ? below
+                                                             : Math.max(6, b.top - a.height - 10);
+      btn.style.top = top + 'px';
+      btn.style.left = Math.max(6, Math.min(a.left, window.innerWidth - a.width - 6)) + 'px';
+      btn.style.right = 'auto'; btn.style.bottom = 'auto';
+    }
+    setTimeout(unstack, 60);
+    window.addEventListener('resize', function(){ setTimeout(unstack, 60); });
+
+    var want=false;
+    try{ want=localStorage.getItem('skimOn')==='1'; }catch(e){}
+    if(want) toggle();
+  }
+
+  if(document.readyState==='loading')
+    document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+</script>
+</body></html>
